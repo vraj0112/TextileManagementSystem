@@ -309,6 +309,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Sidebar"
 });
@@ -1021,10 +1038,39 @@ var staticRenderFns = [
                 ]),
                 _vm._v(" "),
                 _c("li", { staticClass: "nav-item" }, [
-                  _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
                     _c("i", { staticClass: "nav-icon far bi bi-dash-circle" }),
                     _vm._v(" "),
-                    _c("p", [_vm._v("Expense")])
+                    _c("p", [
+                      _vm._v("\n              Expense\n              "),
+                      _c("i", { staticClass: "right fas fa-angle-left" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "nav nav-treeview" }, [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        { staticClass: "nav-link", attrs: { href: "/" } },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Expense Category")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        { staticClass: "nav-link", attrs: { href: "/" } },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Expense Management")])
+                        ]
+                      )
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
