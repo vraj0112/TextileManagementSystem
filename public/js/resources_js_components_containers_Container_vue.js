@@ -684,7 +684,7 @@ var render = function() {
   return _c("footer", { staticClass: "main-footer" }, [
     _c("strong", [
       _vm._v("Copyright © " + _vm._s(new Date().getFullYear()) + " "),
-      _c("a", { attrs: { href: "/" } }, [_vm._v("Sahajanand Textiles")]),
+      _c("a", { attrs: { href: "/" } }, [_vm._v("Sahajanand Textile")]),
       _vm._v(".")
     ]),
     _vm._v("\n  All rights reserved.\n")
