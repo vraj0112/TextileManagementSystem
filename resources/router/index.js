@@ -3,6 +3,7 @@ import Vue from "vue";
 
 const Container = () => import('../js/components/containers/Container');
 const Dashboard = () => import('../js/components/Dashboard');
+const Customer = () => import('../js/components/Customer/Customer');
 
 Vue.use(Router);
 
@@ -25,6 +26,11 @@ function configRoutes() {
                     path: "dashboard",
                     name: "Dashboard",
                     component: Dashboard
+                },
+                {
+                    path: "customer",
+                    name: "Customer",
+                    component: Customer
                 }
             ]
         }
