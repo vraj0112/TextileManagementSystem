@@ -827,7 +827,7 @@ var render = function() {
                 [
                   _c(
                     "router-link",
-                    { staticClass: "nav-link", attrs: { to: "/customer" } },
+                    { staticClass: "nav-link", attrs: { to: "/" } },
                     [
                       _c("i", {
                         staticClass: "nav-icon far bi bi-person-circle"
