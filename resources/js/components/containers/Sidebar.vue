@@ -51,7 +51,7 @@
           </li>
 
           <li class="nav-item">
-            <router-link to="/customer" class="nav-link">
+            <router-link to="/" class="nav-link">
               <i class="nav-icon far bi bi-person-circle"></i>
               <p>Customer</p>
             </router-link>
