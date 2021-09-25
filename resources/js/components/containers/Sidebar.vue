@@ -25,49 +25,49 @@
           <li class="nav-item">
             <a href="/" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>Dashboard</p>
+              <p class="text-md">Dashboard</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="/" class="nav-link">
+            <router-link to="/inwardquality" class="nav-link">
               <i class="nav-icon far bi bi-pip"></i>
-              <p>Yarn Qualtiy</p>
-            </a>
+              <p class="text-md">Inward Quality</p>
+            </router-link>
           </li>
 
           <li class="nav-item">
-            <a href="/" class="nav-link">
+            <router-link to="/sellquality" class="nav-link">
               <i class="nav-icon far bi bi-pip"></i>
-              <p>Grey Qualtiy</p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="/" class="nav-link">
-              <i class="nav-icon far bi bi-person-circle"></i>
-              <p>Vendor</p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <router-link to="/" class="nav-link">
-              <i class="nav-icon far bi bi-person-circle"></i>
-              <p>Customer</p>
+              <p class="text-md">Sell Quality</p>
             </router-link>
           </li>
 
           <li class="nav-item">
             <a href="/" class="nav-link">
               <i class="nav-icon far bi bi-person-circle"></i>
-              <p>Broker</p>
+              <p class="text-md">Vendor</p>
             </a>
+          </li>
+
+          <li class="nav-item">
+            <router-link to="/customer" class="nav-link">
+              <i class="nav-icon far bi bi-person-circle"></i>
+              <p class="text-md">Customer</p>
+            </router-link>
+          </li>
+
+          <li class="nav-item">
+            <router-link to="/broker" class="nav-link">
+              <i class="nav-icon far bi bi-person-circle"></i>
+              <p class="text-md">Broker</p>
+            </router-link>
           </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon nav-icon far bi bi-box-arrow-in-right"></i>
-              <p>
+              <p class="text-md">
                 Inward
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -76,13 +76,13 @@
               <li class="nav-item">
                 <a href="/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>New Inward</p>
+                  <p class="text-md">New Inward</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Manage Inward</p>
+                  <p class="text-md">Manage Inward</p>
                 </a>
               </li>
             </ul>
@@ -91,7 +91,7 @@
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon nav-icon far bi bi-receipt"></i>
-              <p>
+              <p class="text-md">
                 Challan
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -100,13 +100,13 @@
               <li class="nav-item">
                 <a href="/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>New Challan</p>
+                  <p class="text-md">New Challan</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Manage Challan</p>
+                  <p class="text-md">Manage Challan</p>
                 </a>
               </li>
             </ul>
@@ -115,7 +115,7 @@
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon nav-icon far bi bi-receipt-cutoff"></i>
-              <p>
+              <p class="text-md">
                 Invoice
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -124,25 +124,25 @@
               <li class="nav-item">
                 <a href="/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Generate Direct Invoice</p>
+                  <p class="text-md">Generate Direct Invoice</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Manage Direct Invoice</p>
+                  <p class="text-md">Manage Direct Invoice</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Generate from Challan</p>
+                  <p class="text-md">Generate from Challan</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Manage Challan Invoice</p>
+                  <p class="text-md">Manage Challan Invoice</p>
                 </a>
               </li>
             </ul>
@@ -151,14 +151,14 @@
           <li class="nav-item">
             <a href="/" class="nav-link">
               <i class="nav-icon far bi bi-bank"></i>
-              <p>Bank Details</p>
+              <p class="text-md">Bank Details</p>
             </a>
           </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far bi bi-dash-circle"></i>
-              <p>
+              <p class="text-md">
                 Expense
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -167,13 +167,13 @@
               <li class="nav-item">
                 <a href="/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Expense Category</p>
+                  <p class="text-md">Expense Category</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Expense Management</p>
+                  <p class="text-md">Expense Management</p>
                 </a>
               </li>
             </ul>
@@ -182,7 +182,7 @@
           <li class="nav-item">
             <a href="/" class="nav-link">
               <i class="nav-icon far bi bi-currency-dollar"></i>
-              <p>Credit</p>
+              <p class="text-md">Credit</p>
             </a>
           </li>
         </ul>
