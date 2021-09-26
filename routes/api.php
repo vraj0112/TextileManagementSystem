@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InwardQualityController;
 use App\Http\Controllers\SellQualityController;
 use App\Http\Controllers\BrokerController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\VendorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +45,15 @@ Route::prefix('/broker')->group(function(){
     Route::put('/update/{broker_id}',[BrokerController::class,'updateBroker']);
     Route::delete('/delete/{broker_id}',[BrokerController::class,'deleteBroker']);
 });
+
+Route::post("/customer", [CustomerController::class, "addNewCustomer"]);
+Route::get("/customers", [CustomerController::class, "getAllCustomers"]);
+Route::put("/customer/update/{customer_id}", [CustomerController::class, "updateCustomer"]);
+Route::delete("/customer/delete/{customer_id}", [CustomerController::class, "deleteCustomer"]);
+
+Route::post("/vendor", [VendorController::class, "addNewVendor"]);
+Route::get("/vendors", [VendorController::class, "getAllVendors"]);
+Route::put("/vendor/update/{vendor_id}", [VendorController::class, "updateVendor"]);
+Route::delete("/vendor/delete/{vendor_id}", [VendorController::class, "deleteVendor"]);
+
+

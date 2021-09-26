@@ -6,6 +6,8 @@ const Dashboard = () => import('../js/components/Dashboard');
 const InwardQuality = () => import('../js/components/InwardQuality/InwardQualityContainer');
 const SellQuality = () => import('../js/components/SellQuality/SellQualityContainer');
 const Broker = () => import('../js/components/Broker/BrokerContainer');
+const Customer = () => import('../js/components/Customer/CustomerContainer');
+const Vendor = () => import('../js/components/Vendor/VendorContainer');
 
 Vue.use(Router);
 
@@ -43,6 +45,16 @@ function configRoutes() {
                     path: "broker",
                     name: "Broker",
                     component: Broker
+                },
+                {
+                    path: "customer",
+                    name: "CustomerContainer",
+                    component: Customer
+                },
+                {
+                    path: "vendor",
+                    name: "VendorContainer",
+                    component: Vendor
                 }
             ]
         }
