@@ -3072,7 +3072,8 @@ __webpack_require__(/*! ../../node_modules/bootstrap4-toggle/js/bootstrap4-toggl
 
 __webpack_require__(/*! ../../node_modules/sweetalert2/dist/sweetalert2.all.min.js */ "./node_modules/sweetalert2/dist/sweetalert2.all.min.js");
 
-__webpack_require__(/*! ../../node_modules/toastr/build/toastr.min.js */ "./node_modules/toastr/build/toastr.min.js");
+__webpack_require__(/*! ../../node_modules/toastr/build/toastr.min.js */ "./node_modules/toastr/build/toastr.min.js"); // require('../../node_modules/select2/dist/js/select2.full.min.js');
+
 
 
 
@@ -3156,6 +3157,18 @@ var Dashboard = function Dashboard() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_Dashboard_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../js/components/Dashboard */ "./resources/js/components/Dashboard.vue"));
 };
 
+var InwardQuality = function InwardQuality() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_InwardQuality_InwardQualityContainer_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../js/components/InwardQuality/InwardQualityContainer */ "./resources/js/components/InwardQuality/InwardQualityContainer.vue"));
+};
+
+var SellQuality = function SellQuality() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_SellQuality_SellQualityContainer_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../js/components/SellQuality/SellQualityContainer */ "./resources/js/components/SellQuality/SellQualityContainer.vue"));
+};
+
+var Broker = function Broker() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_Broker_BrokerContainer_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../js/components/Broker/BrokerContainer */ "./resources/js/components/Broker/BrokerContainer.vue"));
+};
+
 var Customer = function Customer() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_Customer_CustomerContainer_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../js/components/Customer/CustomerContainer */ "./resources/js/components/Customer/CustomerContainer.vue"));
 };
@@ -3186,6 +3199,18 @@ function configRoutes() {
       path: "dashboard",
       name: "Dashboard",
       component: Dashboard
+    }, {
+      path: "inwardquality",
+      name: "InwardQuality",
+      component: InwardQuality
+    }, {
+      path: "sellquality",
+      name: "SellQuality",
+      component: SellQuality
+    }, {
+      path: "broker",
+      name: "Broker",
+      component: Broker
     }, {
       path: "customer",
       name: "CustomerContainer",
@@ -54747,7 +54772,7 @@ Vue.compile = compileToFunctions;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_containers_Container_vue":1,"resources_js_components_Dashboard_vue":1,"resources_js_components_Customer_CustomerContainer_vue":1,"resources_js_components_Vendor_VendorContainer_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_containers_Container_vue":1,"resources_js_components_Dashboard_vue":1,"resources_js_components_InwardQuality_InwardQualityContainer_vue":1,"resources_js_components_SellQuality_SellQualityContainer_vue":1,"resources_js_components_Broker_BrokerContainer_vue":1,"resources_js_components_Customer_CustomerContainer_vue":1,"resources_js_components_Vendor_VendorContainer_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

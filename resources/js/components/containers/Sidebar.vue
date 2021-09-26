@@ -183,6 +183,7 @@
             <a href="/" class="nav-link">
               <i class="nav-icon fas fa-rupee-sign"></i>
               <p class="text-md">Credit</p>
+            </a>  
           </li>
         </ul>
       </nav>

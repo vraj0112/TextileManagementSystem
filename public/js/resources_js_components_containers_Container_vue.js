@@ -681,7 +681,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("footer", { staticClass: "main-footer" }, [
+  return _c("footer", { staticClass: "main-footer text-md" }, [
     _c("strong", [
       _vm._v("Copyright © " + _vm._s(new Date().getFullYear()) + " "),
       _c("a", { attrs: { href: "/" } }, [_vm._v("Sahajanand Textile")]),
@@ -731,14 +731,15 @@ var staticRenderFns = [
                 staticClass: "nav-link",
                 attrs: { "data-widget": "pushmenu", href: "#", role: "button" }
               },
-              [_c("i", { staticClass: "fas fa-bars" })]
+              [_c("i", { staticClass: "fas fa-bars text-lg" })]
             )
           ])
         ]),
         _vm._v(" "),
         _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-          _c("li", { staticClass: "nav-item" }, [
+          _c("li", { staticClass: "nav-item text-md" }, [
             _c("input", {
+              staticClass: "text-md",
               attrs: {
                 type: "checkbox",
                 id: "changeTheme",
@@ -758,7 +759,7 @@ var staticRenderFns = [
             _c(
               "button",
               {
-                staticClass: "btn btn-sm btn-danger",
+                staticClass: "btn btn-sm btn-danger text-md",
                 staticStyle: { "margin-left": "20px", height: "31px" },
                 attrs: { id: "logOut" }
               },
@@ -815,9 +816,46 @@ var render = function() {
             [
               _vm._m(1),
               _vm._v(" "),
-              _vm._m(2),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: "/inwardquality" }
+                    },
+                    [
+                      _c("i", { staticClass: "nav-icon far bi bi-pip" }),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "text-md" }, [
+                        _vm._v("Inward Quality")
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
               _vm._v(" "),
-              _vm._m(3),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/sellquality" } },
+                    [
+                      _c("i", { staticClass: "nav-icon far bi bi-pip" }),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "text-md" }, [
+                        _vm._v("Sell Quality")
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "li",
@@ -831,7 +869,7 @@ var render = function() {
                         staticClass: "nav-icon far bi bi-person-circle"
                       }),
                       _vm._v(" "),
-                      _c("p", [_vm._v("Vendor")])
+                      _c("p", { staticClass: "text-md" }, [_vm._v("Vendor")])
                     ]
                   )
                 ],
@@ -850,12 +888,35 @@ var render = function() {
                         staticClass: "nav-icon far bi bi-person-circle"
                       }),
                       _vm._v(" "),
-                      _c("p", [_vm._v("Customer")])
+                      _c("p", { staticClass: "text-md" }, [_vm._v("Customer")])
                     ]
                   )
                 ],
                 1
               ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/broker" } },
+                    [
+                      _c("i", {
+                        staticClass: "nav-icon far bi bi-person-circle"
+                      }),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "text-md" }, [_vm._v("Broker")])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _vm._m(3),
               _vm._v(" "),
               _vm._m(4),
               _vm._v(" "),
@@ -863,13 +924,7 @@ var render = function() {
               _vm._v(" "),
               _vm._m(6),
               _vm._v(" "),
-              _vm._m(7),
-              _vm._v(" "),
-              _vm._m(8),
-              _vm._v(" "),
-              _vm._m(9),
-              _vm._v(" "),
-              _vm._m(10)
+              _vm._m(7)
             ]
           )
         ])
@@ -905,43 +960,7 @@ var staticRenderFns = [
       _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
         _c("i", { staticClass: "nav-icon fas fa-tachometer-alt" }),
         _vm._v(" "),
-        _c("p", [_vm._v("Dashboard")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
-        _c("i", { staticClass: "nav-icon far bi bi-pip" }),
-        _vm._v(" "),
-        _c("p", [_vm._v("Yarn Qualtiy")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
-        _c("i", { staticClass: "nav-icon far bi bi-pip" }),
-        _vm._v(" "),
-        _c("p", [_vm._v("Grey Qualtiy")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
-        _c("i", { staticClass: "nav-icon far bi bi-person-circle" }),
-        _vm._v(" "),
-        _c("p", [_vm._v("Broker")])
+        _c("p", { staticClass: "text-md" }, [_vm._v("Dashboard")])
       ])
     ])
   },
@@ -955,7 +974,7 @@ var staticRenderFns = [
           staticClass: "nav-icon nav-icon far bi bi-box-arrow-in-right"
         }),
         _vm._v(" "),
-        _c("p", [
+        _c("p", { staticClass: "text-md" }, [
           _vm._v("\n              Inward\n              "),
           _c("i", { staticClass: "right fas fa-angle-left" })
         ])
@@ -966,7 +985,7 @@ var staticRenderFns = [
           _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
             _c("i", { staticClass: "far fa-circle nav-icon" }),
             _vm._v(" "),
-            _c("p", [_vm._v("New Inward")])
+            _c("p", { staticClass: "text-md" }, [_vm._v("New Inward")])
           ])
         ]),
         _vm._v(" "),
@@ -974,7 +993,7 @@ var staticRenderFns = [
           _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
             _c("i", { staticClass: "far fa-circle nav-icon" }),
             _vm._v(" "),
-            _c("p", [_vm._v("Manage Inward")])
+            _c("p", { staticClass: "text-md" }, [_vm._v("Manage Inward")])
           ])
         ])
       ])
@@ -988,7 +1007,7 @@ var staticRenderFns = [
       _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
         _c("i", { staticClass: "nav-icon nav-icon far bi bi-receipt" }),
         _vm._v(" "),
-        _c("p", [
+        _c("p", { staticClass: "text-md" }, [
           _vm._v("\n              Challan\n              "),
           _c("i", { staticClass: "right fas fa-angle-left" })
         ])
@@ -999,7 +1018,7 @@ var staticRenderFns = [
           _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
             _c("i", { staticClass: "far fa-circle nav-icon" }),
             _vm._v(" "),
-            _c("p", [_vm._v("New Challan")])
+            _c("p", { staticClass: "text-md" }, [_vm._v("New Challan")])
           ])
         ]),
         _vm._v(" "),
@@ -1007,7 +1026,7 @@ var staticRenderFns = [
           _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
             _c("i", { staticClass: "far fa-circle nav-icon" }),
             _vm._v(" "),
-            _c("p", [_vm._v("Manage Challan")])
+            _c("p", { staticClass: "text-md" }, [_vm._v("Manage Challan")])
           ])
         ])
       ])
@@ -1021,7 +1040,7 @@ var staticRenderFns = [
       _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
         _c("i", { staticClass: "nav-icon nav-icon far bi bi-receipt-cutoff" }),
         _vm._v(" "),
-        _c("p", [
+        _c("p", { staticClass: "text-md" }, [
           _vm._v("\n              Invoice\n              "),
           _c("i", { staticClass: "right fas fa-angle-left" })
         ])
@@ -1032,7 +1051,9 @@ var staticRenderFns = [
           _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
             _c("i", { staticClass: "far fa-circle nav-icon" }),
             _vm._v(" "),
-            _c("p", [_vm._v("Generate Direct Invoice")])
+            _c("p", { staticClass: "text-md" }, [
+              _vm._v("Generate Direct Invoice")
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -1040,7 +1061,9 @@ var staticRenderFns = [
           _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
             _c("i", { staticClass: "far fa-circle nav-icon" }),
             _vm._v(" "),
-            _c("p", [_vm._v("Manage Direct Invoice")])
+            _c("p", { staticClass: "text-md" }, [
+              _vm._v("Manage Direct Invoice")
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -1048,7 +1071,9 @@ var staticRenderFns = [
           _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
             _c("i", { staticClass: "far fa-circle nav-icon" }),
             _vm._v(" "),
-            _c("p", [_vm._v("Generate from Challan")])
+            _c("p", { staticClass: "text-md" }, [
+              _vm._v("Generate from Challan")
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -1056,7 +1081,9 @@ var staticRenderFns = [
           _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
             _c("i", { staticClass: "far fa-circle nav-icon" }),
             _vm._v(" "),
-            _c("p", [_vm._v("Manage Challan Invoice")])
+            _c("p", { staticClass: "text-md" }, [
+              _vm._v("Manage Challan Invoice")
+            ])
           ])
         ])
       ])
@@ -1070,7 +1097,7 @@ var staticRenderFns = [
       _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
         _c("i", { staticClass: "nav-icon far bi bi-bank" }),
         _vm._v(" "),
-        _c("p", [_vm._v("Bank Details")])
+        _c("p", { staticClass: "text-md" }, [_vm._v("Bank Details")])
       ])
     ])
   },
@@ -1082,7 +1109,7 @@ var staticRenderFns = [
       _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
         _c("i", { staticClass: "nav-icon far bi bi-dash-circle" }),
         _vm._v(" "),
-        _c("p", [
+        _c("p", { staticClass: "text-md" }, [
           _vm._v("\n              Expense\n              "),
           _c("i", { staticClass: "right fas fa-angle-left" })
         ])
@@ -1093,7 +1120,7 @@ var staticRenderFns = [
           _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
             _c("i", { staticClass: "far fa-circle nav-icon" }),
             _vm._v(" "),
-            _c("p", [_vm._v("Expense Category")])
+            _c("p", { staticClass: "text-md" }, [_vm._v("Expense Category")])
           ])
         ]),
         _vm._v(" "),
@@ -1101,7 +1128,7 @@ var staticRenderFns = [
           _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
             _c("i", { staticClass: "far fa-circle nav-icon" }),
             _vm._v(" "),
-            _c("p", [_vm._v("Expense Management")])
+            _c("p", { staticClass: "text-md" }, [_vm._v("Expense Management")])
           ])
         ])
       ])
@@ -1115,7 +1142,7 @@ var staticRenderFns = [
       _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
         _c("i", { staticClass: "nav-icon fas fa-rupee-sign" }),
         _vm._v(" "),
-        _c("p", [_vm._v("Credit")])
+        _c("p", { staticClass: "text-md" }, [_vm._v("Credit")])
       ])
     ])
   }
