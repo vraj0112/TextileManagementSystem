@@ -332,6 +332,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Sidebar"
 });
@@ -943,7 +950,51 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm._m(5),
+              _c("li", { staticClass: "nav-item" }, [
+                _vm._m(5),
+                _vm._v(" "),
+                _c("ul", { staticClass: "nav nav-treeview" }, [
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: "expensecategory" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Expense Category")])
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: "/expensemanagement" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Expense Management")])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ]),
               _vm._v(" "),
               _c(
                 "li",
@@ -1011,7 +1062,9 @@ var staticRenderFns = [
         }),
         _vm._v(" "),
         _c("p", { staticClass: "text-md" }, [
-          _vm._v("\n              Inward\n              "),
+          _vm._v(
+            "\n                            Inward\n                            "
+          ),
           _c("i", { staticClass: "right fas fa-angle-left" })
         ])
       ]),
@@ -1044,7 +1097,9 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon nav-icon far bi bi-receipt" }),
         _vm._v(" "),
         _c("p", { staticClass: "text-md" }, [
-          _vm._v("\n              Challan\n              "),
+          _vm._v(
+            "\n                            Challan\n                            "
+          ),
           _c("i", { staticClass: "right fas fa-angle-left" })
         ])
       ]),
@@ -1077,7 +1132,9 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon nav-icon far bi bi-receipt-cutoff" }),
         _vm._v(" "),
         _c("p", { staticClass: "text-md" }, [
-          _vm._v("\n              Invoice\n              "),
+          _vm._v(
+            "\n                            Invoice\n                            "
+          ),
           _c("i", { staticClass: "right fas fa-angle-left" })
         ])
       ]),
@@ -1088,7 +1145,9 @@ var staticRenderFns = [
             _c("i", { staticClass: "far fa-circle nav-icon" }),
             _vm._v(" "),
             _c("p", { staticClass: "text-md" }, [
-              _vm._v("Generate Direct Invoice")
+              _vm._v(
+                "\n                                    Generate Direct Invoice\n                                "
+              )
             ])
           ])
         ]),
@@ -1118,7 +1177,9 @@ var staticRenderFns = [
             _c("i", { staticClass: "far fa-circle nav-icon" }),
             _vm._v(" "),
             _c("p", { staticClass: "text-md" }, [
-              _vm._v("Manage Challan Invoice")
+              _vm._v(
+                "\n                                    Manage Challan Invoice\n                                "
+              )
             ])
           ])
         ])
@@ -1129,32 +1190,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "nav-icon far bi bi-dash-circle" }),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-md" }, [
-          _vm._v("\n              Expense\n              "),
-          _c("i", { staticClass: "right fas fa-angle-left" })
-        ])
-      ]),
+    return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+      _c("i", { staticClass: "nav-icon far bi bi-dash-circle" }),
       _vm._v(" "),
-      _c("ul", { staticClass: "nav nav-treeview" }, [
-        _c("li", { staticClass: "nav-item" }, [
-          _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
-            _c("i", { staticClass: "far fa-circle nav-icon" }),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-md" }, [_vm._v("Expense Category")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
-            _c("i", { staticClass: "far fa-circle nav-icon" }),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-md" }, [_vm._v("Expense Management")])
-          ])
-        ])
+      _c("p", { staticClass: "text-md" }, [
+        _vm._v(
+          "\n                            Expense\n                            "
+        ),
+        _c("i", { staticClass: "right fas fa-angle-left" })
       ])
     ])
   }

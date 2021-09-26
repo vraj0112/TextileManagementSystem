@@ -10,6 +10,8 @@ const Customer = () => import('../js/components/Customer/CustomerContainer');
 const Vendor = () => import('../js/components/Vendor/VendorContainer');
 const BankDetails = () => import('../js/components/BankDetails/BankDetailsContainer');
 const Credit = () => import('../js/components/Credit/CreditContainer');
+const ExpenseCategory = () => import('../js/components/Expense/ExpenseCategory/ExpenseCategoryContainer');
+const ExpenseManagement = () => import("../js/components/Expense/ExpenseManagement/ExpenseManagementContainer");
 
 Vue.use(Router);
 
@@ -67,6 +69,16 @@ function configRoutes() {
                     path: "credit",
                     name: "Credit",
                     component: Credit
+                },
+                {
+                    path: "expensecategory",
+                    name: "Expense Category",
+                    component: ExpenseCategory,
+                },
+                {
+                    path: "expensemanagement",
+                    name: "Expense Management",
+                    component: ExpenseManagement
                 }
             ]
         }

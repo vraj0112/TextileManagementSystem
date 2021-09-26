@@ -1,0 +1,193 @@
+//// -- LEVEL 1
+//// -- Tables and References
+
+// Creating tables
+
+Table tbl_inward_quality_category{
+  inward_quality_category_id int [pk, increment]
+  inward_category_name varchar(50) [not null]
+  created_at datetime
+  updated_at datetime
+  status bool
+}
+
+Table tbl_sell_quality_category{
+  sell_quality_category_id int [pk, increment]
+  sell_category_name varchar(50) [not null]
+  created_at datetime
+  updated_at datetime
+  status bool
+}
+
+
+Table tbl_inward_quality {
+  inward_quality_id bigint [pk, increment]
+  quality_name varchar(50) [not null]
+  inward_quality_category_id int [ref: > tbl_inward_quality_category.inward_quality_category_id]
+  created_at datetime
+  updated_at datetime
+  status bool
+}
+
+Table tbl_sell_quality {
+  sell_quality_id bigint [pk, increment]
+  quality_name varchar(50) [not null]
+  sell_quality_category_id int [ref: > tbl_sell_quality_category.sell_quality_category_id]
+  created_at datetime
+  updated_at datetime
+  status bool
+}
+
+
+
+Table tbl_customer{
+  customer_id bigint [pk, increment]
+  company_name varchar(50) [not null]
+  contact_no varchar(10) 
+  email varchar(255)
+  gst_no varchar(24) [not null]
+  gst_code varchar(2) [not null]
+  address varchar(255) [not null]
+  created_at datetime
+  updated_at datetime
+  status bool
+}
+
+Table tbl_vendor{
+  vendor_id bigint [pk, increment]
+  company_name varchar(50) [not null]
+  contact_no varchar(10) [not null]
+  email varchar(255)
+  gst_no varchar(24) [not null]
+  gst_code varchar(2) [not null]
+  address varchar(255)
+  created_at datetime
+  updated_at datetime
+  status bool
+}
+
+Table tbl_broker{
+  broker_id bigint [pk, increment]
+  broker_name varchar(70) [not null]
+  contact_no vatchar(10) [not null]
+  created_at datetime
+  updated_at datetime
+  status bool
+}
+
+Table tbl_bank_details{
+  bank_details_id bigint [pk, increment]
+  bank_name varchar(100) [not null]
+  account_no varchar(18) [not null]
+  ifsc_code varchar(11) [not null]
+  created_at datetime
+  updated_at datetime
+  status bool
+}
+
+
+Table tbl_expense_category{
+  expense_category_id int [pk, increment]
+  expense_category varchar(50) [not null]
+  created_at datetime
+  updated_at datetime
+  status bool
+}
+
+Table tbl_expense{
+  expense_id bigint [pk, increment]
+  expense_date date
+  expense_category_id int [ref: > tbl_expense_category.expense_category_id]
+  expense_description text [not null]
+  expense_amount float [not null]
+  created_at datetime
+  updated_at datetime
+  status bool
+}
+
+Table tbl_payment_details{
+  payment_id bigint [pk, increment]
+  expense_id bigint [ref: > tbl_expense.expense_id]
+  payment_date date [not null]
+  payment_type varchar(50) [not null]
+  payment_description text [not null]
+  payment_amount float [not null]
+  created_at datetime
+  updated_at datetime
+  status bool
+}
+
+Table tbl_credit{
+  credit_id bigint [pk, increment]
+  credit_date date [not null]
+  credit_description text [not null]
+  credit_amount float [not null]
+  created_at datetime
+  updated_at datetime
+  status bool
+}
+
+
+
+Table tbl_inward_mst{
+  inward_id bigint [pk, increment]
+  inward_date date [not null]
+  inward_invoice_no varchar(20) [not null]
+  company_name bigint [ref: > tbl_vendor.vendor_id]
+  broker_id bigint [ref: > tbl_broker.broker_id]
+  gst_percentage int [not null]
+  created_at datetime
+  updated_at datetime
+  status bool  
+}
+
+Table tbl_inward_details{
+  inward_details_id bigint [pk, increment]
+  inward_quality_id bigint [ref:> tbl_inward_quality.inward_quality_id, not null]
+  qty float [not null]
+  qty_unit varchar(10) [not null]
+  rate float [not null]
+  inward_mst_id bigint [ref:> tbl_inward_mst.inward_id]
+  created_at datetime
+  updated_at datetime
+  status bool
+}
+
+Table tbl_challan_mst{
+  challan_mst_id bigint [pk, increment]
+  challan_no int
+  challan_date date
+  company_name bigint [ref: > tbl_customer.customer_id]
+  sell_quality_id bigint [ref:> tbl_sell_quality.sell_quality_id, not null]
+  qty_unit varchar(10) [not null]
+  total_qty float [not null]
+  broker_id bigint [ref:> tbl_broker.broker_id]
+  created_at datetime
+  updated_at datetime
+  isDirect bool
+  status bool  
+}
+
+Table tbl_challan_details{
+  challan_details_id bigint [pk, increment]
+  no bigint 
+  qty float [not null]
+  challan_mst_id bigint [ref:> tbl_challan_mst.challan_mst_id]
+  created_at datetime
+  updated_at datetime
+  status bool
+}
+
+
+Table tbl_invoice_mst{
+  invoice_mst_id bigint [pk]
+  challan_mst_id bigint [ref:> tbl_challan_mst.challan_mst_id]
+  invoice_date datetime 
+  rate float [not null]
+  gst_percentage float [not null]
+  created_at datetime
+  updated_at datetime
+  status bool
+}
+
+

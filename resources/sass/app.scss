@@ -1,24 +1,24 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
-@import '/plugins/fontawesome-free/css/all.min.css';
+@import "/plugins/fontawesome-free/css/all.min.css";
 
-@import '/dist/css/adminlte.min.css';
+@import "/dist/css/adminlte.min.css";
 
-@import '../../node_modules/bootstrap4-toggle/css/bootstrap4-toggle.min.css';
+@import "../../node_modules/bootstrap4-toggle/css/bootstrap4-toggle.min.css";
 
-@import '../../node_modules/bootstrap-icons/font/bootstrap-icons.css';
+@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 
-@import '../../node_modules/sweetalert2/dist/sweetalert2.min.css';
+@import "../../node_modules/sweetalert2/dist/sweetalert2.min.css";
 
-@import '../../node_modules/toastr/build/toastr.min.css';
+@import "../../node_modules/toastr/build/toastr.min.css";
 
 // @import '../../node_modules/select2/dist/css/select2.min.css';
 
-@import 'vue-search-select/dist/VueSearchSelect.css';
+@import "vue-search-select/dist/VueSearchSelect.css";

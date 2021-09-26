@@ -9,6 +9,8 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\CreditController;
+use App\Http\Controllers\ExpenseCategoryControler;
+use App\Http\Controllers\ExpenseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,3 +76,16 @@ Route::put("/credit/update/{credit_id}", [CreditController::class, "updateCredit
 Route::delete("/bankdetail/delete/{bank_details_id}", [BankDetailsController::class, "deleteBankDetail"]);
 Route::delete("/credit/delete/{credit_id}", [CreditController::class, "deleteDetail"]);
 
+
+Route::get("/expensecategories", [ExpenseCategoryControler::class, "getAllExpenseCategories"]);
+Route::get("/expensecategorieslist", [ExpenseCategoryControler::class, "getAllExpenseCategoriesList"]);
+Route::put("/expensecategory/update/{expense_category_id}", [ExpenseCategoryControler::class, "updateExpenseCategory"]);
+Route::post("/expensecategory", [ExpenseCategoryControler::class, "addNewCategory"]);
+Route::delete("/expensecategory/{expense_category_id}", [ExpenseCategoryControler::class, "deleteCategory"]);
+
+
+Route::post("/expense", [ExpenseController::class, "addExpense"]);
+Route::get("/expense", [ExpenseController::class, "getExpenses"]);
+Route::put("/expense", [ExpenseController::class, "updateExpenses"]);
+Route::delete("/expense/{expenseid}", [ExpenseController::class, "deleteExpenses"]);
+Route::get("/totalexpenseamount", [ExpenseController::class, "getTotalAmountOfGivenDateRangeAndCategory"]);
