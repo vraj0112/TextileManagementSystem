@@ -7,6 +7,8 @@ use App\Http\Controllers\SellQualityController;
 use App\Http\Controllers\BrokerController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\BankDetailsController;
+use App\Http\Controllers\CreditController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,4 +58,19 @@ Route::get("/vendors", [VendorController::class, "getAllVendors"]);
 Route::put("/vendor/update/{vendor_id}", [VendorController::class, "updateVendor"]);
 Route::delete("/vendor/delete/{vendor_id}", [VendorController::class, "deleteVendor"]);
 
+Route::prefix('/bankdetails')->group(function(){
+    Route::post('/insert',[BankDetailsController::class,'insertBankDetails']);
+});
+Route::prefix('/credit')->group(function(){
+    Route::post('/insert',[CreditController::class,'insertCredit']);
+});
+
+Route::get("/bankdetails", [BankDetailsController::class, "getAllBankDetails"]);
+Route::get("/credits", [CreditController::class, "getAllCreditDetails"]);
+
+Route::put("/bankdetail/update/{bank_details_id}", [BankDetailsController::class, "updateBankDetail"]);
+Route::put("/credit/update/{credit_id}", [CreditController::class, "updateCreditDetail"]);
+
+Route::delete("/bankdetail/delete/{bank_details_id}", [BankDetailsController::class, "deleteBankDetail"]);
+Route::delete("/credit/delete/{credit_id}", [CreditController::class, "deleteDetail"]);
 

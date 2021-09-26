@@ -8,6 +8,8 @@ const SellQuality = () => import('../js/components/SellQuality/SellQualityContai
 const Broker = () => import('../js/components/Broker/BrokerContainer');
 const Customer = () => import('../js/components/Customer/CustomerContainer');
 const Vendor = () => import('../js/components/Vendor/VendorContainer');
+const BankDetails = () => import('../js/components/BankDetails/BankDetailsContainer');
+const Credit = () => import('../js/components/Credit/CreditContainer');
 
 Vue.use(Router);
 
@@ -55,6 +57,16 @@ function configRoutes() {
                     path: "vendor",
                     name: "VendorContainer",
                     component: Vendor
+                },
+                {
+                    path: "bankdetails",
+                    name: "BankDetails",
+                    component: BankDetails
+                },
+                {
+                    path: "credit",
+                    name: "Credit",
+                    component: Credit
                 }
             ]
         }

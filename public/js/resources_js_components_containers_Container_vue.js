@@ -326,6 +326,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Sidebar"
 });
@@ -920,11 +926,41 @@ var render = function() {
               _vm._v(" "),
               _vm._m(4),
               _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/bankdetails" } },
+                    [
+                      _c("i", { staticClass: "nav-icon far bi bi-bank" }),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("Bank Details")])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
               _vm._m(5),
               _vm._v(" "),
-              _vm._m(6),
-              _vm._v(" "),
-              _vm._m(7)
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/credit" } },
+                    [
+                      _c("i", { staticClass: "nav-icon fas fa-rupee-sign" }),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("Credit")])
+                    ]
+                  )
+                ],
+                1
+              )
             ]
           )
         ])
@@ -1094,18 +1130,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
-        _c("i", { staticClass: "nav-icon far bi bi-bank" }),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-md" }, [_vm._v("Bank Details")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
       _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
         _c("i", { staticClass: "nav-icon far bi bi-dash-circle" }),
         _vm._v(" "),
@@ -1131,18 +1155,6 @@ var staticRenderFns = [
             _c("p", { staticClass: "text-md" }, [_vm._v("Expense Management")])
           ])
         ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
-        _c("i", { staticClass: "nav-icon fas fa-rupee-sign" }),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-md" }, [_vm._v("Credit")])
       ])
     ])
   }

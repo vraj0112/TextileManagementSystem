@@ -149,10 +149,13 @@
           </li>
 
           <li class="nav-item">
-            <a href="/" class="nav-link">
+            <router-link
+                to="/bankdetails"
+                class="nav-link"
+            >
               <i class="nav-icon far bi bi-bank"></i>
-              <p class="text-md">Bank Details</p>
-            </a>
+              <p>Bank Details</p>
+            </router-link>
           </li>
 
           <li class="nav-item">
@@ -180,10 +183,13 @@
           </li>
 
           <li class="nav-item">
-            <a href="/" class="nav-link">
+            <router-link
+                to="/credit"
+                class="nav-link"
+            >
               <i class="nav-icon fas fa-rupee-sign"></i>
-              <p class="text-md">Credit</p>
-            </a>  
+              <p>Credit</p>
+            </router-link>
           </li>
         </ul>
       </nav>
