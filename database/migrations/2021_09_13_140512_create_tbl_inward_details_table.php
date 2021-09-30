@@ -19,7 +19,7 @@ class CreateTblInwardDetailsTable extends Migration
             $table->foreign('inward_quality_id')->references('inward_quality_id')->on('tbl_inward_qualities');
             $table->float('qty')->default(0.0);
             $table->string('qty_unit', 10);
-            $table->float('rate')->default(0.0);
+            $table->float('rate',15)->default(0.0);
             $table->unsignedBigInteger('inward_mst_id');
             $table->foreign('inward_mst_id')->references('inward_mst_id')->on('tbl_inward_msts');
             $table->timestamps();

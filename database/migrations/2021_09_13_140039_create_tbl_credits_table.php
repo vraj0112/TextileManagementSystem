@@ -17,7 +17,7 @@ class CreateTblCreditsTable extends Migration
             $table->unsignedBigInteger('credit_id')->autoIncrement();
             $table->date('credit_date');
             $table->text('credit_description');
-            $table->float('credit_amount')->default(0.00);
+            $table->float('credit_amount',15)->default(0.00);
             $table->timestamps();
             $table->boolean('credit_status')->default(true);
         });

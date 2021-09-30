@@ -19,7 +19,7 @@ class CreateTblExpensesTable extends Migration
             $table->unsignedInteger('expense_category_id');
             $table->foreign('expense_category_id')->references('expense_category_id')->on('tbl_expense_categories');
             $table->text("expense_description");
-            $table->float('expense_amount')->default(0.00);
+            $table->float('expense_amount',15)->default(0.00);
             $table->timestamps();
             $table->boolean('expense_status')->default(true);
         });

@@ -20,7 +20,7 @@ class CreateTblPaymentDetailsTable extends Migration
             $table->date('payment_date');
             $table->string('payment_type',50);
             $table->text('payment_description');
-            $table->float('payment_amount')->default(0.00);
+            $table->float('payment_amount',15)->default(0.00);
             $table->timestamps();
             $table->boolean('payment_details_status')->default(true);
         });

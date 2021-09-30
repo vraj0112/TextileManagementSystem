@@ -17,7 +17,7 @@ class CreateTblInvoiceMstsTable extends Migration
             $table->unsignedBigInteger('invoice_mst_id');
             $table->foreign('invoice_mst_id')->references('challan_mst_id')->on('tbl_challan_msts');
             $table->date('invoice_date');
-            $table->float('rate')->default(0.00);
+            $table->float('rate',15)->default(0.00);
             $table->integer('gst_percentage')->default(0);
             $table->timestamps();
             $table->boolean('invoice_mst_status')->default(true);
