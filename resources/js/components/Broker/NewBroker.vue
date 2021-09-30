@@ -97,6 +97,7 @@
                                     html: "<h5 style='color:#9C9794'>Broker Details Added Successfully!</h5>",
                                     icon: 'success'
                                 }).then((result) => {
+                                    this.$emit("refreshBrokersTable");
                                     this.resetFields();
                                 });
                             }
