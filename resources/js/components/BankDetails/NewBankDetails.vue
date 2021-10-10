@@ -16,22 +16,22 @@
 
           <div class="card-body">
             <div class="form-group" style="display: flex; flex-direction: row">
-              <label for="bankName" class="col-md-2">Bank Name <span class="required-mark"
+              <label for="bankName" class="col-md-2 text-md">Bank Name <span class="required-mark"
                   style="color: red;">*</span></label>
               <input type="text" class="form-control col-md-3" maxlength="50" v-model="bankName" placeholder="Enter Bank Name..." />
               <div class="col-md-1"></div>
-              <label for="branchName" class="col-md-2">Branch Name <span class="required-mark"
+              <label for="branchName" class="col-md-2 text-md">Branch Name <span class="required-mark"
                   style="color: red;">*</span></label>
               <input type="text" class="form-control col-md-3" maxlength="50" v-model="branchName"
                 placeholder="Enter Branch Name..." />
             </div>
             <div class="form-group" style="display: flex; flex-direction: row">
-              <label for="ifscCode" class="col-md-2">IFSC Code <span class="required-mark"
+              <label for="ifscCode" class="col-md-2 text-md">IFSC Code <span class="required-mark"
                   style="color: red;">*</span></label>
               <input type="text" class="form-control col-md-3" maxlength="11" v-model="ifscCode"
                 placeholder="Enter IFSC Code..." />
               <div class="col-md-1"></div>
-              <label for="accNo" class="col-md-2">Account No. <span class="required-mark"
+              <label for="accNo" class="col-md-2 text-md">Account No. <span class="required-mark"
                   style="color: red;">*</span></label>
               <input type="text" class="form-control col-md-3" maxlength="18" v-model="accNo"
                 placeholder="Enter Account No..." />

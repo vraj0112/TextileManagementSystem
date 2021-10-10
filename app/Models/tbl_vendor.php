@@ -40,4 +40,16 @@ class tbl_vendor extends Model
         $value = preg_replace('/\s+/', ' ', $value);
         $this->attributes['vendor_address'] = ucwords(strtolower($value));
     }
+
+    public static function isThereCompanyNameWithVendorId($vendorId){
+        $isVendorAvailable = tbl_vendor::where("vendor_status", true)
+            ->where("vendor_id", $vendorId)
+            ->first();
+        if(is_null($isVendorAvailable)){
+           return false; 
+        }
+        
+        return true;
+        
+    }
 }

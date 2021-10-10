@@ -12,6 +12,7 @@ const BankDetails = () => import('../js/components/BankDetails/BankDetailsContai
 const Credit = () => import('../js/components/Credit/CreditContainer');
 const ExpenseCategory = () => import('../js/components/Expense/ExpenseCategory/ExpenseCategoryContainer');
 const ExpenseManagement = () => import("../js/components/Expense/ExpenseManagement/ExpenseManagementContainer");
+const NewInward = () => import("../js/components/Inward/NewInward");
 
 Vue.use(Router);
 
@@ -73,12 +74,17 @@ function configRoutes() {
                 {
                     path: "expensecategory",
                     name: "Expense Category",
-                    component: ExpenseCategory,
+                    component: ExpenseCategory
                 },
                 {
                     path: "expensemanagement",
                     name: "Expense Management",
                     component: ExpenseManagement
+                },
+                {
+                    path: "newinward",
+                    name: "New Inward",
+                    component: NewInward
                 }
             ]
         }

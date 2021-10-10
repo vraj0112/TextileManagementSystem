@@ -154,4 +154,15 @@ class InwardQualityController extends Controller
         );
         return response()->json($res);
     }
+
+    public function getSelectedProductQualities(Request $request, $inwardQualityCategoryId){
+        return tbl_inward_quality::select("inward_quality_id", "quality_name")
+        ->where("inward_quality_status", true)
+        ->where('inward_quality_category_id', '=', $inwardQualityCategoryId)
+        ->get();
+    }
+
+    public function getProductQualityCategories(Request $req){
+        return (tbl_inward_quality_category::select("inward_quality_category_id", "inward_category_name")->where("inward_quality_category_status",true)->get());
+    }
 }

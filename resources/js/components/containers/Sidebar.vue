@@ -75,16 +75,16 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/" class="nav-link">
+                                <router-link to="/newinward" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p class="text-md">New Inward</p>
-                                </a>
+                                </router-link>
                             </li>
                             <li class="nav-item">
-                                <a href="/" class="nav-link">
+                                <router-link to="/manageinward" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p class="text-md">Manage Inward</p>
-                                </a>
+                                </router-link>
                             </li>
                         </ul>
                     </li>

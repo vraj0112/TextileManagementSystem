@@ -34,7 +34,7 @@
 
                         <div class="p-0">
                             <table class="table table-hover table-bordered table-striped table-sm">
-                                <thead class="thead-dark">
+                                <thead>
                                     <tr>
                                         <th width="10%">
                                             <a href="#" @click.prevent="updateSorting('bank_details_id')">Sr. No.</a>
@@ -125,23 +125,23 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group" style="display: flex; flex-direction: row">
-                            <label for="bankName" class="col-md-2">Bank Name <span class="required-mark"
+                            <label for="bankName" class="col-md-2 text-md">Bank Name <span class="required-mark"
                                     style="color: red;">*</span></label>
                             <input type="text" class="form-control col-md-3" v-model="bankName"
                                 placeholder="Enter Bank Name..." />
                             <div class="col-md-1"></div>
-                            <label for="branchName" class="col-md-2">Branch Name <span class="required-mark"
+                            <label for="branchName" class="col-md-2 text-md">Branch Name <span class="required-mark"
                                     style="color: red;">*</span></label>
                             <input type="text" class="form-control col-md-3" v-model="branchName"
                                 placeholder="Enter Branch Name..." />
                         </div>
                         <div class="form-group" style="display: flex; flex-direction: row">
-                            <label for="ifscCode" class="col-md-2">IFSC Code <span class="required-mark"
+                            <label for="ifscCode" class="col-md-2 text-md">IFSC Code <span class="required-mark"
                                     style="color: red;">*</span></label>
                             <input type="text" class="form-control col-md-3" maxlength="11" v-model="ifscCode"
                                 placeholder="Enter IFSC Code..." />
                             <div class="col-md-1"></div>
-                            <label for="accNo" class="col-md-2">Account No. <span class="required-mark"
+                            <label for="accNo" class="col-md-2 text-md">Account No. <span class="required-mark"
                                     style="color: red;">*</span></label>
                             <input type="text" class="form-control col-md-3" v-model="accNo"
                                 placeholder="Enter Account No..." />

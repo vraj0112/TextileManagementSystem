@@ -172,4 +172,14 @@ class VendorController extends Controller
             "message"=> "Vendor Deleted Succesfully..."
         ));
     }
+
+    public function getCompanyNames(Request $req)
+    {
+        return (tbl_vendor::select("vendor_id", "vendor_company_name", "vendor_contact_no")->where("vendor_status",true)->get());
+    }
+    
+    public function getSelectedVendorData(Request $req, $vendorId)
+    {
+        return (tbl_vendor::select("vendor_gst_no", "vendor_contact_no")->where("vendor_id", "=", $vendorId)->where("vendor_status", true)->first());
+    }
 }

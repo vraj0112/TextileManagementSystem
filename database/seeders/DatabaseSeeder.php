@@ -14,6 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call([InwardQualityCategoriesSeeder::class, SellQualityCategoriesSeeder::class]);
+        $this->call([InwardQualityCategoriesSeeder::class, SellQualityCategoriesSeeder::class, BrokerSeeder::class]);
     }
 }

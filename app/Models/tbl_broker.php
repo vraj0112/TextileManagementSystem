@@ -18,4 +18,16 @@ class tbl_broker extends Model
         $value = preg_replace('/\s+/', ' ', $value);
         $this->attributes['broker_name'] = ucwords(strtolower($value));
     }
+
+    public static function isThereBrokerWithBrokerId($brokerId){
+        $isBrokerAvailable = tbl_broker::where("broker_status", true)
+            ->where("broker_id", $brokerId)
+            ->first();
+        if(is_null($isBrokerAvailable)){
+           return false; 
+        }
+        
+        return true;
+        
+    }
 }

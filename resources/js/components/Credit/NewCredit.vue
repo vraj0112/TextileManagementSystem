@@ -15,17 +15,17 @@
           </div>
           <div class="card-body">
             <div class="form-group" style="display: flex; flex-direction: row">
-              <label for="creditDate" class="col-md-2">Credit Date <span class="required-mark"
+              <label for="creditDate" class="col-md-2 text-md">Credit Date <span class="required-mark"
                   style="color: red;">*</span></label>
               <input type="date" class="form-control col-md-2" v-model="creditDate"
                 placeholder="Enter Credit Date..." />
               <div class="col-md-2"></div>
-              <label for="creditAmount" class="col-md-2">Amount <span class="required-mark"
+              <label for="creditAmount" class="col-md-2 text-md">Amount <span class="required-mark"
                   style="color: red;">*</span></label>
               <input type="text" class="form-control col-md-3" v-model="creditAmount" placeholder="Enter Amount..." />
             </div>
             <div class="form-group" style="display: flex; flex-direction: row">
-              <label for="creditDesc" class="col-md-2">Description <span class="required-mark"
+              <label for="creditDesc" class="col-md-2 text-md">Description <span class="required-mark"
                   style="color: red;">*</span></label>
               <textarea class="form-control col-md-3" v-model="creditDesc"
                 placeholder="Enter Description..."></textarea>

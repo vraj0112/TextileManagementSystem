@@ -927,7 +927,55 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm._m(2),
+              _c("li", { staticClass: "nav-item" }, [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("ul", { staticClass: "nav nav-treeview" }, [
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: "/newinward" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "text-md" }, [
+                            _vm._v("New Inward")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: "/manageinward" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "text-md" }, [
+                            _vm._v("Manage Inward")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ]),
               _vm._v(" "),
               _vm._m(3),
               _vm._v(" "),
@@ -1055,36 +1103,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _c("i", {
-          staticClass: "nav-icon nav-icon far bi bi-box-arrow-in-right"
-        }),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-md" }, [
-          _vm._v(
-            "\n                            Inward\n                            "
-          ),
-          _c("i", { staticClass: "right fas fa-angle-left" })
-        ])
-      ]),
+    return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+      _c("i", {
+        staticClass: "nav-icon nav-icon far bi bi-box-arrow-in-right"
+      }),
       _vm._v(" "),
-      _c("ul", { staticClass: "nav nav-treeview" }, [
-        _c("li", { staticClass: "nav-item" }, [
-          _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
-            _c("i", { staticClass: "far fa-circle nav-icon" }),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-md" }, [_vm._v("New Inward")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
-            _c("i", { staticClass: "far fa-circle nav-icon" }),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-md" }, [_vm._v("Manage Inward")])
-          ])
-        ])
+      _c("p", { staticClass: "text-md" }, [
+        _vm._v(
+          "\n                            Inward\n                            "
+        ),
+        _c("i", { staticClass: "right fas fa-angle-left" })
       ])
     ])
   },

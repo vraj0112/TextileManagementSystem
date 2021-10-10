@@ -136,4 +136,9 @@ class BrokerController extends Controller
         );
         return response()->json($res);
     }
+
+    public function getBrokers(Request $req)
+    {
+        return tbl_broker::select("broker_id", "broker_name", "broker_contact_no")->where("broker_status",true)->get();
+    }
 }

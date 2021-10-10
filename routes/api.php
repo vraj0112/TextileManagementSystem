@@ -11,6 +11,7 @@ use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\CreditController;
 use App\Http\Controllers\ExpenseCategoryControler;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\InwardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/inwardqualitycategories',[InwardQualityController::class,'getQualityCategories']);
 Route::get('/inwardqualities',[InwardQualityController::class,'getAllInwardQualities']);
+Route::get('/productqualitycategories',[InwardQualityController::class,'getProductQualityCategories']);
+Route::get('/inwardqualityofcategories/{inward_quality_category_id}',[InwardQualityController::class,'getSelectedProductQualities']);
 Route::prefix('/inwardquality')->group(function(){
     Route::post('/insert',[InwardQualityController::class,'insertInwardQuality']);
     Route::put('/update/{inward_quality_id}',[InwardQualityController::class,'updateInwardQuality']);
@@ -44,6 +47,7 @@ Route::prefix('/sellquality')->group(function(){
 });
 
 Route::get('/brokers',[BrokerController::class,'getAllBrokers']);
+Route::get('/getBrokers',[BrokerController::class,'getBrokers']);
 Route::prefix('/broker')->group(function(){
     Route::post('/insert',[BrokerController::class,'insertBroker']);
     Route::put('/update/{broker_id}',[BrokerController::class,'updateBroker']);
@@ -57,6 +61,8 @@ Route::delete("/customer/delete/{customer_id}", [CustomerController::class, "del
 
 Route::post("/vendor", [VendorController::class, "addNewVendor"]);
 Route::get("/vendors", [VendorController::class, "getAllVendors"]);
+Route::get('/vendorcompanies',[VendorController::class,'getCompanyNames']);
+Route::get('/selectedvendordata/{vendor_id}',[VendorController::class,'getSelectedVendorData']);
 Route::put("/vendor/update/{vendor_id}", [VendorController::class, "updateVendor"]);
 Route::delete("/vendor/delete/{vendor_id}", [VendorController::class, "deleteVendor"]);
 
@@ -89,3 +95,6 @@ Route::get("/expense", [ExpenseController::class, "getExpenses"]);
 Route::put("/expense", [ExpenseController::class, "updateExpenses"]);
 Route::delete("/expense/{expenseid}", [ExpenseController::class, "deleteExpenses"]);
 Route::get("/totalexpenseamount", [ExpenseController::class, "getTotalAmountOfGivenDateRangeAndCategory"]);
+
+
+Route::post("/inward", [InwardController::class, "addNewInward"]);
