@@ -700,7 +700,7 @@
 
       getBrokersList: function () {
         axios
-          .get("/api/getbrokers")
+          .get("/api/getBrokers")
           .then((response) => {
             let allEntry = [{ value: "", text: "All" }];
             let individualEntry = response.data.map((broker) => {
@@ -765,7 +765,7 @@
       // Methods For Options Loading In Editing
       editLoadBroker() {
         axios
-          .get("../api/getbrokers")
+          .get("../api/getBrokers")
           .then((response) => {
             this.editBrokers = response.data.map((broker) => {
               return {

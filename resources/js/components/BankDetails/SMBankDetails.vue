@@ -4,7 +4,7 @@
             <div class="col-md-12 mt-3">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Search and Manage Bank Details</h3>
+                        <h3 class="card-title">Bank Details</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
@@ -34,11 +34,7 @@
 
                         <div class="p-0">
                             <table class="table table-hover table-bordered table-striped table-sm">
-<<<<<<< Updated upstream
-                                <thead>
-=======
                                 <thead class="text-md">
->>>>>>> Stashed changes
                                     <tr>
                                         <th width="10%">
                                             <a href="#" @click.prevent="updateSorting('bank_details_id')">Sr. No.</a>
@@ -64,7 +60,7 @@
                                         </th>
                                         <th width="20%">IFSC Code</th>
                                         <th width="20%">Account No.</th>
-                                        <th width="10%">Action</th>
+                                        <th width="20%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-md">
@@ -94,7 +90,7 @@
                                                     bankdetail.account_no
                                                 )
                                             ">
-                                            <i class="fas fa-pen"></i>
+                                                <i class="fas fa-pen"></i>
                                             </button>
 
                                             <button class="btn btn-danger btn-sm text-md"

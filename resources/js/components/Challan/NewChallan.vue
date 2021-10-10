@@ -138,8 +138,8 @@
                                                                 @keyup.enter="enterPressed(index)" :ref="'qty'+index">
                                                         </td>
                                                         <td v-if="index % 2 ? 0 : 1">
-                                                            <button class="btn btn-danger" @click="deleteRow(index)"><i
-                                                                    class="bi bi-trash"></i></button>
+                                                            <button class="btn btn-danger text-md" @click="deleteRow(index)"><i
+                                                                    class="fas fa-trash"></i></button>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -171,8 +171,8 @@
                                                                 @keyup.enter="enterPressed(index)" :ref="'qty'+index">
                                                         </td>
                                                         <td v-if="index % 2? 1 : 0">
-                                                            <button class="btn btn-danger" @click="deleteRow(index)"><i
-                                                                    class="bi bi-trash"></i></button>
+                                                            <button class="btn btn-danger text-md" @click="deleteRow(index)"><i
+                                                                    class="fas fa-trash"></i></button>
                                                         </td>
                                                     </tr>
                                                 </tbody>

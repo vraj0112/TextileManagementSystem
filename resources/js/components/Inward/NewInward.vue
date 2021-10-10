@@ -578,7 +578,7 @@ export default {
 
     loadBroker() {
       axios
-        .get("../api/getbrokers")
+        .get("../api/getBrokers")
         .then((response) => {
           this.brokers = response.data.map((broker) => {
             return {

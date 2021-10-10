@@ -25,19 +25,19 @@
                                 <div class="card-body table-responsive">
                                     <div class="row">
                                         <div class="col-md-1">
-                                            <label for="from-date">From Date</label>
+                                            <label for="from-date" class="text-md">From Date</label>
                                         </div>
                                         <div class="col-md-3">
                                             <input type="date" class="form-control" id="from-date" v-model="fromDate"/>
                                         </div>
                                         <div class="col-md-1">
-                                            <label for="to-date">To Date</label>
+                                            <label for="to-date" class="text-md">To Date</label>
                                         </div>
                                         <div class="col-md-3">
                                             <input type="date" class="form-control" id="to-date" v-model="toDate"/>
                                         </div>
                                         <div class="col-md-1">
-                                            <label for="company-name">Company Name</label>
+                                            <label for="company-name" class="text-md">Company Name</label>
                                         </div>
                                         <div class="col-md-3">
                                             <model-select :options="compniesForFilter" v-model="selectedCompanyForFilter" placeholder="Select Company">
@@ -83,7 +83,7 @@
 
                                     <div class="row mt-4">
                                         <div class="col-md-1">
-                                            <label for="">Per Page</label>
+                                            <label for="" class="text-md">Per Page</label>
                                         </div>
                                         <div class="col-md-3">
                                             <select v-model="paginate" class="form-control">
@@ -101,7 +101,7 @@
 
                                     <div class="p-0 mt-3">
                                         <table class="table table-hover table-bordered table-striped table-sm">
-                                            <thead>
+                                            <thead class="text-md">
                                                 <tr>
                                                     <th width="12%">
                                                         <a href="#" @click.prevent="updateSorting('challan_date')">Date</a>
@@ -122,10 +122,10 @@
                                                     <th>Quality</th>
                                                     <th>Category</th>
                                                     <th>Qty</th>
-                                                    <th width="10%">Action</th>
+                                                    <th width="15%">Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody class="text-md">
                                                 <tr
                                                     v-for="challan in challans.data"
                                                     v-bind:key="
@@ -140,9 +140,9 @@
                                                     <td>{{ challan.sell_category_name }}</td>
                                                     <td class="text-right">{{ challan.totalqty }}</td>
                                                     <td class="text-center">
-                                                        <button class="btn btn-primary btn-sm" @click="viewChallan(challan.challan_mst_id, challan.challan_no)"><i class="fas fa-eye"></i></button>
-                                                        <button class="btn btn-primary btn-sm" @click="editChallan(challan.challan_mst_id)"><i class="fas fa-pen"></i></button>
-                                                        <button class="btn btn-danger btn-sm" @click="confirmChallandeletation(challan.challan_mst_id, challan.challan_no )"><i class="bi bi-trash"></i></button>
+                                                        <button class="btn btn-info btn-sm text-md" @click="viewChallan(challan.challan_mst_id, challan.challan_no)"><i class="fas fa-eye"></i></button>
+                                                        <button class="btn btn-primary btn-sm text-md" @click="editChallan(challan.challan_mst_id)"><i class="fas fa-pen"></i></button>
+                                                        <button class="btn btn-danger btn-sm text-md" @click="confirmChallandeletation(challan.challan_mst_id, challan.challan_no )"><i class="fas fa-trash"></i></button>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -163,7 +163,7 @@
                                     <div class="row">
                                         <!-- <div class="col-md-5"></div> -->
                                         <div class="col-md-9 text-right">
-                                            <label for="" class="mt-2">
+                                            <label for="" class="mt-2 text-md">
                                                 Total Amount of this page :
                                             </label>
                                         </div>
@@ -311,10 +311,10 @@
                                                                         :ref="'qty'+index">
                                                                 </td>
                                                                 <td v-if="index % 2 ? 0 : 1" class="text-center">
-                                                                    <button class="btn btn-success" @click="data.isDisabled == true ? editChallanDetailsEntry(index, data.challanDetailsId, data.no, data.qty):cancelEditChallanDetailsEntry(index)"><i
+                                                                    <button class="btn btn-success text-md" @click="data.isDisabled == true ? editChallanDetailsEntry(index, data.challanDetailsId, data.no, data.qty):cancelEditChallanDetailsEntry(index)"><i
                                                                         class="fas" :class="data.isDisabled == true?'fa-pen':'fa-times'"></i></button>
-                                                                    <button class="btn btn-danger" @click="deleteChallanDetailsId(index, data.challanDetailsId)"><i
-                                                                        class="bi bi-trash"></i></button>
+                                                                    <button class="btn btn-danger text-md" @click="deleteChallanDetailsId(index, data.challanDetailsId)"><i
+                                                                        class="fas fa-trash"></i></button>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -350,10 +350,10 @@
                                                                         :ref="'qty'+index">
                                                                 </td>
                                                                 <td v-if="index % 2? 1 : 0" class="text-center">
-                                                                    <button class="btn btn-success" @click="data.isDisabled == true? editChallanDetailsEntry(index, data.challanDetailsId, data.no, data.qty):cancelEditChallanDetailsEntry(index)"><i
+                                                                    <button class="btn btn-success text-md" @click="data.isDisabled == true? editChallanDetailsEntry(index, data.challanDetailsId, data.no, data.qty):cancelEditChallanDetailsEntry(index)"><i
                                                                         class="fas" :class="data.isDisabled == true?'fa-pen':'fa-times'"></i></button>
-                                                                    <button class="btn btn-danger" @click="deleteChallanDetailsId(index, data.challanDetailsId)"><i
-                                                                        class="bi bi-trash"></i></button>
+                                                                    <button class="btn btn-danger text-md" @click="deleteChallanDetailsId(index, data.challanDetailsId)"><i
+                                                                        class="fas fa-trash"></i></button>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -384,7 +384,7 @@
                                                             <th >Qty</th>
                                                             <th width="20%"></th>
                                                         </thead>
-                                                        <tbody>
+                                                        <tbody class="text-md">
                                                             <tr v-for="(data, index) in newProductDetails" :key="index">
                                                                 <td v-if="index % 2 ? 0 : 1">{{allData.length + index + 1}}</td>
                                                                 <td v-if="index % 2 ? 0 : 1">
@@ -400,8 +400,8 @@
                                                                         @keyup.enter="enterPressed(index)" :ref="'newqty'+index">
                                                                 </td>
                                                                 <td v-if="index % 2 ? 0 : 1" class="text-center">
-                                                                    <button class="btn btn-danger" @click="deleteNewChallanDetailsId(index)"><i
-                                                                        class="bi bi-trash"></i></button>
+                                                                    <button class="btn btn-danger text-md" @click="deleteNewChallanDetailsId(index)"><i
+                                                                        class="fas fa-trash"></i></button>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -409,7 +409,7 @@
                                                 </div>
 
                                                 <div class="col-md-6 table-responsive">
-                                                    <table class="table table-bordered">
+                                                    <table class="table table-bordered text-md">
                                                         <thead class="table-secondary text-md text-dark">
                                                             <th >Sr. No.</th>
                                                             <th >No</th>
@@ -436,8 +436,8 @@
                                                                         @keyup.enter="enterPressed(index)" :ref="'newqty'+index">
                                                                 </td>
                                                                 <td v-if="index % 2? 1 : 0" class="text-center">
-                                                                    <button class="btn btn-danger" @click="deleteNewChallanDetailsId(index)"><i
-                                                                        class="bi bi-trash"></i></button>
+                                                                    <button class="btn btn-danger text-md" @click="deleteNewChallanDetailsId(index)"><i
+                                                                        class="fas fa-trash"></i></button>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -483,51 +483,51 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-2 mt-2">
+                                        <label class="col-md-2 mt-2 text-md">
                                             Challan Date
-                                        </div>
+                                        </label>
                                         <div class="col-md-4">
                                             <input type="text" class="form-control" v-model="challanToView.challanDate" disabled>
                                         </div>
-                                        <div class="col-md-2 mt-2">
+                                        <label class="col-md-2 mt-2 text-md">
                                             Challan No
-                                        </div>
+                                        </label>
                                         <div class="col-md-4">
                                             <input type="text" class="form-control" v-model="challanToView.challanNo" disabled>
                                         </div>
                                     </div>
                                     <div class="row mt-3">
-                                        <div class="col-md-2 mt-2">
+                                        <label class="col-md-2 mt-2 text-md">
                                             Company
-                                        </div>
+                                        </label>
                                         <div class="col-md-4">
                                             <input type="text" class="form-control" v-model="challanToView.company" disabled>
                                         </div>
-                                        <div class="col-md-2 mt-2">
-                                            Breaker
-                                        </div>
+                                        <label class="col-md-2 mt-2 text-md">
+                                            Broker
+                                        </label>
                                         <div class="col-md-4">
                                             <input type="text" class="form-control" v-model="challanToView.broker" disabled>
                                         </div>
                                     </div>
                                     <div class="row mt-3">
-                                        <div class="col-md-2 mt-2">
+                                        <label class="col-md-2 mt-2 text-md">
                                             Quality
-                                        </div>
+                                        </label>
                                         <div class="col-md-4">
                                             <input type="text" class="form-control" v-model="challanToView.quality" disabled>
                                         </div>
-                                        <div class="col-md-2 mt-2">
+                                        <label class="col-md-2 mt-2 text-md">
                                             Category
-                                        </div>
+                                        </label>
                                         <div class="col-md-4">
                                             <input type="text" class="form-control" v-model="challanToView.category" disabled>
                                         </div>
                                     </div>
                                     <div class="row mt-3">
-                                        <div class="col-md-2 mt-2">
+                                        <label class="col-md-2 mt-2 text-md">
                                             Unit
-                                        </div>
+                                        </label>
                                         <div class="col-md-4">
                                             <input type="text" class="form-control" v-model="challanToView.unit" disabled>
                                         </div>
@@ -535,12 +535,12 @@
                                     <div class="row mt-3">
                                         <div class="col-md-4">
                                             <table class="table table-hover table-bordered table-striped table-sm">
-                                                <thead>
+                                                <thead class="text-md">
                                                     <th width="15%">Sr. No.</th>
                                                     <th class="text-center">No</th>
                                                     <th class="text-center">Qty</th>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="text-md">
                                                     <tr v-for="(product, index) in challanToView.products.productPart1" v-bind:key="index">
                                                         <td class="text-right">{{index+1}}</td>
                                                         <td class="text-right">{{product.no}}</td>
@@ -551,12 +551,12 @@
                                         </div>
                                         <div class="col-md-4">
                                             <table class="table table-hover table-bordered table-striped table-sm">
-                                                <thead>
+                                                <thead class="text-md">
                                                     <th width="15%">Sr. No.</th>
                                                     <th class="text-center">No</th>
                                                     <th class="text-center">Qty</th>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="text-md">
                                                     <tr v-for="(product, index) in challanToView.products.productPart2" v-bind:key="index">
                                                         <td class="text-right">{{index+17}}</td>
                                                         <td class="text-right">{{product.no}}</td>
@@ -567,12 +567,12 @@
                                         </div>
                                         <div class="col-md-4">
                                             <table class="table table-hover table-bordered table-striped table-sm">
-                                                <thead>
+                                                <thead class="text-md">
                                                     <th width="15%">Sr. No.</th>
                                                     <th class="text-center">No</th>
                                                     <th class="text-center">Qty</th>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="text-md">
                                                     <tr v-for="(product, index) in challanToView.products.productPart3" v-bind:key="index">
                                                         <td class="text-right">{{index+33}}</td>
                                                         <td class="text-right">{{product.no}}</td>
@@ -584,27 +584,27 @@
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-md-2 mt-2 text-right text-md">
-                                            <label>Total</label>
+                                            <label class="text-md">Total</label>
                                         </div>
                                         <div class="col-md-2">
                                             <input type="text" class="text-right form-control" v-model="challanToView.totalQty.totalQtyProductPart1" disabled="disabled">
                                         </div>
                                         <div class="col-md-2 mt-2 text-right text-md">
-                                            <label>Total</label>
+                                            <label class="text-md">Total</label>
                                         </div>
                                         <div class="col-md-2">
                                             <input type="text" class="text-right form-control" v-model="challanToView.totalQty.totalQtyProductPart2" disabled="disabled">
                                         </div>
                                         <div class="col-md-2 mt-2 text-right text-md">
-                                            <label>Total</label>
+                                            <label class="text-md">Total</label>
                                         </div>
                                         <div class="col-md-2">
                                             <input type="text" class="text-right form-control" v-model="challanToView.totalQty.totalQtyProductPart3" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="row mt-3">
-                                        <div class="col-md-10 text-right">
-                                            <label for="">Net Total Qty</label>
+                                        <div class="col-md-10 text-right text-md">
+                                            <label for="" class="text-md">Net Total Qty</label>
                                         </div>
                                         <div class="col-md-2">
                                             <input type="text" class='form-control text-right' v-model="challanToView.totalQty.totalQty"  disabled>
