@@ -76,12 +76,12 @@
                     <td class="text-center">
                       <button class="btn btn-primary btn-sm text-md"
                         @click="editInwardQuality(inwardquality.inward_quality_id, inwardquality.inward_quality_category_id,inwardquality.inward_category_name,inwardquality.quality_name)">
-                        Edit
+                        <i class="fas fa-pen"></i>
                       </button>
 
                       <button class="btn btn-danger btn-sm text-md ml-3"
                         @click="deleteInwardQuality(inwardquality.inward_quality_id)">
-                        Delete
+                        <i class="fas fa-trash"></i>
                       </button>
                     </td>
                   </tr>

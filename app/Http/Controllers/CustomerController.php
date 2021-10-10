@@ -172,4 +172,17 @@ class CustomerController extends Controller
             "message"=> "Customer Deleted Succesfully..."
         ));
     }
+
+    public function getCustomersList(Request $req){
+        return (
+            tbl_customer::select("customer_id", "customer_company_name", "customer_contact_no")->where('customer_status', true)->get()
+        );
+    }
+
+    public function getSelectedCustomerData(Request $request, $customerId){
+        return (
+            tbl_customer::select("customer_gst_no", "customer_contact_no")->where('customer_id', '=', $customerId)->where('customer_status', true)->first()
+        );
+    }
+
 }

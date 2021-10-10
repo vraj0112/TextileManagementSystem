@@ -13,6 +13,7 @@ const Credit = () => import('../js/components/Credit/CreditContainer');
 const ExpenseCategory = () => import('../js/components/Expense/ExpenseCategory/ExpenseCategoryContainer');
 const ExpenseManagement = () => import("../js/components/Expense/ExpenseManagement/ExpenseManagementContainer");
 const NewInward = () => import("../js/components/Inward/NewInward");
+const NewChallan = () => import("../js/components/Challan/NewChallan");
 
 Vue.use(Router);
 
@@ -85,6 +86,11 @@ function configRoutes() {
                     path: "newinward",
                     name: "New Inward",
                     component: NewInward
+                },
+                {
+                    path: "newchallan",
+                    name: "New Challan",
+                    component: NewChallan
                 }
             ]
         }

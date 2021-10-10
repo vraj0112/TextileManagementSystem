@@ -154,4 +154,12 @@ class SellQualityController extends Controller
         );
         return response()->json($res);
     }
+
+    public function getSellQualityOfGivenCategory(Request $request, $sellQualityCategoryId){
+        return tbl_sell_quality::select("sell_quality_id", "quality_name")
+        ->where("sell_quality_status", true)
+        ->where('sell_quality_category_id', '=', $sellQualityCategoryId)
+        ->get();
+    }
+
 }

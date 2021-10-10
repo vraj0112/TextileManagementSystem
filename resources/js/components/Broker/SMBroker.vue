@@ -73,12 +73,12 @@
                                         <td class="text-center">
                                             <button class="btn btn-primary btn-sm text-md"
                                                 @click="editBroker(broker.broker_id, broker.broker_name, broker.broker_contact_no)">
-                                                Edit
+                                                <i class="fas fa-pen"></i>
                                             </button>
 
                                             <button class="btn btn-danger btn-sm text-md ml-3"
                                                 @click="deleteBroker(broker.broker_id)">
-                                                Delete
+                                                <i class="fas fa-trash"></i>
                                             </button>
                                         </td>
                                     </tr>

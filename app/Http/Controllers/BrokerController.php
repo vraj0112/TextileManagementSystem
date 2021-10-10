@@ -26,6 +26,7 @@ class BrokerController extends Controller
 
         return (tbl_broker::select('broker_id', 'broker_name', 'broker_contact_no')
         ->where('broker_status', '=', 1)
+        ->where('broker_id', '>', 1)
         ->where(function($query) use ($search_term){
             $query->where('broker_name', 'like', $search_term)
                 ->orWhere('broker_contact_no', 'like', $search_term);
@@ -140,5 +141,9 @@ class BrokerController extends Controller
     public function getBrokers(Request $req)
     {
         return tbl_broker::select("broker_id", "broker_name", "broker_contact_no")->where("broker_status",true)->get();
+    }
+    
+    public function getBrokersList(Request $req){
+        return tbl_broker::select("broker_id", "broker_name", "broker_contact_no")->where('broker_status', true)->get();
     }
 }

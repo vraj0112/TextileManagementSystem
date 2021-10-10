@@ -12,6 +12,7 @@ use App\Http\Controllers\CreditController;
 use App\Http\Controllers\ExpenseCategoryControler;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\InwardController;
+use App\Http\Controllers\ChallanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,7 @@ Route::prefix('/sellquality')->group(function(){
     Route::put('/update/{sell_quality_id}',[SellQualityController::class,'updateSellQuality']);
     Route::delete('/delete/{sell_quality_id}',[SellQualityController::class,'deleteSellQuality']);
 });
+Route::get("/sellqualityofcategory/{sell_quality_category_id}", [SellQualityController::class, "getSellQualityOfGivenCategory"]);
 
 Route::get('/brokers',[BrokerController::class,'getAllBrokers']);
 Route::get('/getBrokers',[BrokerController::class,'getBrokers']);
@@ -53,11 +55,14 @@ Route::prefix('/broker')->group(function(){
     Route::put('/update/{broker_id}',[BrokerController::class,'updateBroker']);
     Route::delete('/delete/{broker_id}',[BrokerController::class,'deleteBroker']);
 });
+Route::get('/brokerslist', [BrokerController::class, "getBrokersList"]);
 
 Route::post("/customer", [CustomerController::class, "addNewCustomer"]);
 Route::get("/customers", [CustomerController::class, "getAllCustomers"]);
 Route::put("/customer/update/{customer_id}", [CustomerController::class, "updateCustomer"]);
 Route::delete("/customer/delete/{customer_id}", [CustomerController::class, "deleteCustomer"]);
+Route::get("/customerlist", [CustomerController::class, "getCustomersList"]);
+Route::get("/selectedcustomerdata/{customer_id}", [CustomerController::class, "getSelectedCustomerData"]);
 
 Route::post("/vendor", [VendorController::class, "addNewVendor"]);
 Route::get("/vendors", [VendorController::class, "getAllVendors"]);
@@ -98,3 +103,7 @@ Route::get("/totalexpenseamount", [ExpenseController::class, "getTotalAmountOfGi
 
 
 Route::post("/inward", [InwardController::class, "addNewInward"]);
+
+Route::get("/getfinancialyear/{challandate}",[ChallanController::class, "getFinancialYearOfChallanDate"]);
+Route::get("/verifychallan/{challanno}/{fromdate}/{todate}",[ChallanController::class, "verifyChallanNumber"]);
+Route::post("/challan/insert", [ChallanController::class, "addNewChallan"]);

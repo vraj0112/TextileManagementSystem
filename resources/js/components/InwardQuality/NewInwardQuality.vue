@@ -121,7 +121,6 @@
           axios
             .post("../api/inwardquality/insert", addData)
             .then((res) => {
-
               if (res.data.status == -1) {
                 var errormsg = res.data.errors;
 

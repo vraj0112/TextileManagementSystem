@@ -76,12 +76,12 @@
                     <td class="text-center">
                       <button class="btn btn-primary btn-sm text-md"
                         @click="editSellQuality(sellquality.sell_quality_id, sellquality.sell_quality_category_id,sellquality.sell_category_name,sellquality.quality_name)">
-                        Edit
+                        <i class="fas fa-pen"></i>
                       </button>
 
                       <button class="btn btn-danger btn-sm text-md ml-3"
                         @click="deleteSellQuality(sellquality.sell_quality_id)">
-                        Delete
+                        <i class="fas fa-trash"></i>
                       </button>
                     </td>
                   </tr>
