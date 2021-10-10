@@ -18,7 +18,7 @@ class CreateTblCustomersTable extends Migration
             $table->string('customer_company_name', 50);
             $table->string('customer_contact_no', 10);
             $table->string('customer_email', 255)->nullable();
-            $table->string('customer_gst_no', 24);
+            $table->string('customer_gst_no', 15);
             $table->string('customer_gst_code', 2);
             $table->string('customer_address', 255);
             $table->timestamps();

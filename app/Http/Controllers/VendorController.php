@@ -14,7 +14,7 @@ class VendorController extends Controller
             'companyContact' => 'required | digits:10',
             'companyAddress' => 'required | max:255',
             'emailAddress' => 'nullable | email | max:255',
-            'gstNumber' => 'required | alpha_num | min:24 | max:24',
+            'gstNumber' => 'required | alpha_num | min:15 | max:15',
             'gstCode' => 'required | alpha_num | min:2 | max:2'
         ]);
 
@@ -117,6 +117,25 @@ class VendorController extends Controller
     }
 
     public function updateVendor(Request $req, $vendorId){
+
+        $validated = validator($req->all(),[
+            'companyName' => 'required | max:50',
+            'companyContact' => 'required | digits:10',
+            'companyAddress' => 'required | max:255',
+            'emailAddress' => 'nullable | email | max:255',
+            'gstNumber' => 'required | alpha_num | min:15 | max:15',
+            'gstCode' => 'required | alpha_num | min:2 | max:2'
+        ]);
+
+        if($validated->fails()){
+            $res = array(
+                "status" => -1,
+                "message" => "The given data was invalid.",
+                "errors" => $validated->errors()
+            );
+
+            return response()->json($res);
+        }
 
         $companyName = $req->input("companyName");
         $companyContact = $req->input("companyContact");

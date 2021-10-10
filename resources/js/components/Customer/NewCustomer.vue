@@ -201,8 +201,8 @@ export default {
       if (this.gstNumber == "") {
         toastr.info("Please Enter GST Number!");
         return false;
-      } else if (this.gstNumber.length != 24) {
-        toastr.warning("GST Number must be equal to 24 characters!");
+      } else if (this.gstNumber.length != 15) {
+        toastr.warning("GST Number must be equal to 15 characters!");
         return false;
       } else {
         return true;
