@@ -388,7 +388,6 @@
             },
 
             getAllExpenseCategoriesForEdit: function(){
-                console.log("Hello");
                 axios
                     .get("/api/expensecategorieslist")
                     .then(res => {
@@ -597,7 +596,6 @@
                 let day = "" + last.getDate();
                 let month = "" + (last.getMonth() + 1);
                 let year = "" + last.getFullYear();
-                console.log(month);
 
                 if (day < 10) {
                     day = "0" + day;
@@ -606,7 +604,6 @@
                 if (month < 10) {
                     month = "0" + month;
                 }
-                console.log(month);
                 return year + "-" + month + "-" + day;
             },
 

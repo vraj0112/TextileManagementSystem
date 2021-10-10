@@ -11,8 +11,8 @@ use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\CreditController;
 use App\Http\Controllers\ExpenseCategoryControler;
 use App\Http\Controllers\ExpenseController;
-use App\Http\Controllers\InwardController;
 use App\Http\Controllers\ChallanController;
+use App\Http\Controllers\InwardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,3 +107,9 @@ Route::post("/inward", [InwardController::class, "addNewInward"]);
 Route::get("/getfinancialyear/{challandate}",[ChallanController::class, "getFinancialYearOfChallanDate"]);
 Route::get("/verifychallan/{challanno}/{fromdate}/{todate}",[ChallanController::class, "verifyChallanNumber"]);
 Route::post("/challan/insert", [ChallanController::class, "addNewChallan"]);
+Route::get('/challans', [ChallanController::class, "getChallans"]);
+Route::get('/challan/{challanid}', [ChallanController::class, "getChallanDataOfChallanId"]);
+Route::put('/challan', [ChallanController::class, "updateChallan"]);
+Route::delete('/challan/{challanId}', [ChallanController::class, "deleteChallan"]);
+
+Route::get("/inwards", [InwardController::class, "getAllInwards"]);

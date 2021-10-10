@@ -105,10 +105,10 @@
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <a href="/" class="nav-link">
+                                <router-link to="/smchallan" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p class="text-md">Manage Challan</p>
-                                </a>
+                                </router-link>
                             </li>
                         </ul>
                     </li>

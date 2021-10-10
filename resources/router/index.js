@@ -14,7 +14,7 @@ const ExpenseCategory = () => import('../js/components/Expense/ExpenseCategory/E
 const ExpenseManagement = () => import("../js/components/Expense/ExpenseManagement/ExpenseManagementContainer");
 const NewInward = () => import("../js/components/Inward/NewInward");
 const NewChallan = () => import("../js/components/Challan/NewChallan");
-
+const SMChallan = () => import("../js/components/Challan/SMChallan");
 Vue.use(Router);
 
 export default new Router({
@@ -91,6 +91,11 @@ function configRoutes() {
                     path: "newchallan",
                     name: "New Challan",
                     component: NewChallan
+                },
+                {
+                    path: "smchallan",
+                    name: "S & M Challan",
+                    component: SMChallan
                 }
             ]
         }
