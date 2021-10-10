@@ -21,19 +21,19 @@
                     <div class="card-body table-responsive">
                         <div class="row">
                             <div class="col-md-1">
-                                <label for="from-date">From Date</label>
+                                <label for="from-date" class="text-md">From Date</label>
                             </div>
                             <div class="col-md-3">
                                 <input type="date" class="form-control" id="from-date" v-model="fromDate" />
                             </div>
                             <div class="col-md-1">
-                                <label for="to-date">To Date</label>
+                                <label for="to-date" class="text-md">To Date</label>
                             </div>
                             <div class="col-md-3">
                                 <input type="date" class="form-control" id="to-date" v-model="toDate" />
                             </div>
                             <div class="col-md-1">
-                                <label for="expense-category">Expense Category</label>
+                                <label for="expense-category" class="text-md">Expense Category</label>
                             </div>
                             <div class="col-md-3">
                                 <model-select :options="categoriesForFilter" v-model="selectedExpenseCategoryForFilter"
@@ -43,7 +43,7 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-1">
-                                <label for="">Per Page</label>
+                                <label for="" class="text-md">Per Page</label>
                             </div>
                             <div class="col-md-3">
                                 <select v-model="paginate" class="form-control">
@@ -61,7 +61,7 @@
 
                         <div class="p-0 mt-3">
                             <table class="table table-hover table-bordered table-striped table-sm">
-                                <thead class="thead-dark">
+                                <thead class="text-md">
                                     <tr>
                                         <th width="12%">
                                             <a href="#" @click.prevent="updateSorting('expense_date')                                               ">Date</a>
@@ -82,15 +82,15 @@
                                         <th width="15%">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-md">
                                     <tr v-for="expense in expenses.data" v-bind:key="expense.expense_id">
                                         <td>{{ expense.expense_date }}</td>
                                         <td>{{ expense.expense_description }}</td>
                                         <td>{{ expense.expense_category }}</td>
                                         <td class="text-right">{{ expense.expense_amount }}</td>
                                         <td class="text-center">
-                                            <button class="btn btn-primary btn-sm" @click="editExpense(expense.expense_id,expense.expense_date,expense.expense_description,expense.expense_amount, expense.expense_category_id)">Edit</button>
-                                            <button class="btn btn-danger btn-sm" @click="deleteExpense(expense.expense_id)">Delete</button>
+                                            <button class="btn btn-primary btn-sm text-md" @click="editExpense(expense.expense_id,expense.expense_date,expense.expense_description,expense.expense_amount, expense.expense_category_id)"><i class="fas fa-pen"></i></button>
+                                            <button class="btn btn-danger btn-sm text-md" @click="deleteExpense(expense.expense_id)"><i class="fas fa-trash"></i></button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -105,7 +105,7 @@
                         <div class="row">
                             <!-- <div class="col-md-5"></div> -->
                             <div class="col-md-9 text-right">
-                                <label for="" class="mt-2">
+                                <label for="" class="mt-2 text-md">
                                     Total Amount of this page :
                                 </label>
                             </div>
@@ -116,7 +116,7 @@
                         <div class="row mt-2">
                             <!-- <div class="col-md-2"></div> -->
                             <div class="col-md-9 text-right">
-                                <label for="" class="mt-2">
+                                <label for="" class="mt-2 text-md">
                                     Total Amount From <span class="text-success"> {{ printDate(fromDate) }} </span> to <span class="text-success"> {{ printDate(toDate) }} </span> of <span class="text-danger"> {{selectedExpenseCategoryForFilter.text}} </span> Category and Search Term = <span class="text-danger">"{{search}}"</span> :
                                 </label>
                             </div>

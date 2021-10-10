@@ -26,7 +26,7 @@
                                     <div class="d-flex align-items-center ml-4">
                                         <label
                                             for="paginate"
-                                            class="text-nowrap mr-2 mb-0"
+                                            class="text-nowrap text-md mr-2 mb-0"
                                         >
                                             Per Page
                                         </label>
@@ -55,7 +55,7 @@
                             <table
                                 class="table table-hover table-bordered table-striped table-sm"
                             >
-                                <thead class="thead-dark">
+                                <thead class="text-md">
                                     <tr>
                                         <th width="10%">
                                             <a
@@ -132,7 +132,7 @@
                                         <th width="20%">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-md">
                                     <tr
                                         v-for="category in categories.data"
                                         v-bind:key="
@@ -146,7 +146,7 @@
 
                                         <td class="text-center">
                                             <button
-                                                class="btn btn-primary btn-sm"
+                                                class="btn btn-primary text-md btn-sm"
                                                 @click="
                                                     editCategoryBtn(
                                                         category.expense_category_id,
@@ -154,14 +154,14 @@
                                                     )
                                                 "
                                             >
-                                                Edit
+                                                <i class="fas fa-pen"></i>
                                             </button>
 
                                             <button
-                                                class="btn btn-danger btn-sm"
+                                                class="btn btn-danger text-md btn-sm"
                                                 @click="deleteCategory(category.expense_category_id)"
                                             >
-                                                Delete
+                                                <i class="fas fa-trash"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -196,7 +196,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-2">
-                                <label for="">Category</label>
+                                <label for="" class="text-md">Category</label>
                                 <span class="required-mark" style="color: red;">*</span>
                             </div>
                             <div class="col-md-4">
@@ -211,7 +211,7 @@
                     </div>
                     <div class="card-footer">
                         <button
-                            class="btn btn-primary"
+                            class="btn btn-primary text-md"
                             @click="updateCategorySaveUpdate"
                         >
                             Update
