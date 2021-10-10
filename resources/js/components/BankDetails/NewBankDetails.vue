@@ -5,7 +5,7 @@
         <div class="card card-primary">
           <div class="card-header">
             <h3 class="card-title">
-              Add Bank Details
+              New Bank Details
             </h3>
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">

@@ -15,6 +15,8 @@ const ExpenseManagement = () => import("../js/components/Expense/ExpenseManageme
 const NewInward = () => import("../js/components/Inward/NewInward");
 const NewChallan = () => import("../js/components/Challan/NewChallan");
 const SMChallan = () => import("../js/components/Challan/SMChallan");
+const ManageInward = () => import('../js/components/Inward/SMInward');
+
 Vue.use(Router);
 
 export default new Router({
@@ -88,6 +90,11 @@ function configRoutes() {
                     component: NewInward
                 },
                 {
+                    path: "manageinward",
+                    name: "ManageInward",
+                    component: ManageInward
+                },
+                {
                     path: "newchallan",
                     name: "New Challan",
                     component: NewChallan
@@ -96,7 +103,7 @@ function configRoutes() {
                     path: "smchallan",
                     name: "S & M Challan",
                     component: SMChallan
-                }
+                },
             ]
         }
     ]

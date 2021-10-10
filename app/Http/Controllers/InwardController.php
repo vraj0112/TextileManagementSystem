@@ -66,8 +66,8 @@ class InwardController extends Controller
                 "message" => "Inward Product Quality Not Available!"
             ));
         }
-
-        if (tbl_inward_details::join('tbl_inward_msts','tbl_inward_details.inward_mst_id',"=","tbl_inward_msts.inward_mst_id")
+        
+        /*if (tbl_inward_details::join('tbl_inward_msts','tbl_inward_details.inward_mst_id',"=","tbl_inward_msts.inward_mst_id")
         ->where('inward_mst_date', "=", $date)
         ->where('inward_mst_invoice_no', "=", $invoiceNo)
         ->where('inward_mst_vendor_id', "=", $companyName)
@@ -81,6 +81,7 @@ class InwardController extends Controller
             );
             return response()->json($res);
         }
+        }*/
 
         DB::beginTransaction();
         try{
@@ -188,6 +189,7 @@ class InwardController extends Controller
     public function viewInwardDetails(Request $request, $inwardMstId)
     {
         return tbl_inward_mst::with(["inward_details:inward_details_id,inward_mst_id,inward_quality_id,qty,qty_unit,rate", "getBroker:broker_id,broker_name", "getVendor:vendor_id,vendor_company_name,vendor_contact_no,vendor_gst_no"])->where("inward_mst_id", $inwardMstId)->select('inward_mst_id','inward_mst_date','inward_mst_invoice_no','inward_mst_vendor_id', 'inward_mst_broker_id','inward_mst_gst_percentage')->first(); 
+        
     }
 
     public function updateInward(Request $request, $inwardId)

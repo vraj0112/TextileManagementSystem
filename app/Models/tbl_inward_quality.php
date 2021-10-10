@@ -23,11 +23,16 @@ class tbl_inward_quality extends Model
         $isQualityAvailable = tbl_inward_quality::where("inward_quality_status", true)
             ->where("inward_quality_id", $inwardQualityId)
             ->first();
+
         if(is_null($isQualityAvailable)){
            return false; 
         }
         
         return true;
         
+    }
+
+    public function category(){
+        return $this->hasOne('App\Models\tbl_inward_quality_category', 'inward_quality_category_id', 'inward_quality_category_id');
     }
 }

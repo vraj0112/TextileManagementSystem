@@ -23,6 +23,7 @@ class tbl_broker extends Model
         $isBrokerAvailable = tbl_broker::where("broker_status", true)
             ->where("broker_id", $brokerId)
             ->first();
+
         if(is_null($isBrokerAvailable)){
            return false; 
         }

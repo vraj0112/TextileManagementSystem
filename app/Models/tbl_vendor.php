@@ -45,6 +45,7 @@ class tbl_vendor extends Model
         $isVendorAvailable = tbl_vendor::where("vendor_status", true)
             ->where("vendor_id", $vendorId)
             ->first();
+
         if(is_null($isVendorAvailable)){
            return false; 
         }

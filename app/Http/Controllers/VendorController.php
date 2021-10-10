@@ -94,7 +94,7 @@ class VendorController extends Controller
         $sort_direction = request("sortdirection");
 
         if(!in_array($sort_direction, ['asc', 'desc'])){
-            $sort_direction = "asc";
+            $sort_direction = "desc";
         }
 
         if(!in_array($sort_field, ['vendor_id', 'vendor_company_name','vendor_contact_no','vendor_email','vendor_gst_no','vendor_gst_code','vendor_address'])){

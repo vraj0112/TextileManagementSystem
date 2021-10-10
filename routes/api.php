@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InwardQualityController;
+use App\Http\Controllers\InwardController;
 use App\Http\Controllers\SellQualityController;
 use App\Http\Controllers\BrokerController;
 use App\Http\Controllers\CustomerController;
@@ -12,7 +13,6 @@ use App\Http\Controllers\CreditController;
 use App\Http\Controllers\ExpenseCategoryControler;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ChallanController;
-use App\Http\Controllers\InwardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +38,14 @@ Route::prefix('/inwardquality')->group(function(){
     Route::put('/update/{inward_quality_id}',[InwardQualityController::class,'updateInwardQuality']);
     Route::delete('/delete/{inward_quality_id}',[InwardQualityController::class,'deleteInwardQuality']);
 });
+
+Route::post("/inward", [InwardController::class, "addNewInward"]);
+Route::get("/inwards", [InwardController::class, "getAllInwards"]);
+Route::get("/inward/view/{inward_mst_id}", [InwardController::class, "viewInwardDetails"]);
+Route::put("/inward/update/{inward_details_id}", [InwardController::class, "updateInward"]);
+Route::delete("/inward/delete/{inward_details_id}", [InwardController::class, "deleteInward"]);
+Route::delete('/inward/delete/{inward_mst_id}', [InwardController::class, 'deleteInward']);
+
 
 Route::get('/sellqualitycategories',[SellQualityController::class,'getQualityCategories']);
 Route::get('/sellqualities',[SellQualityController::class,'getAllSellQualities']);
@@ -102,8 +110,6 @@ Route::delete("/expense/{expenseid}", [ExpenseController::class, "deleteExpenses
 Route::get("/totalexpenseamount", [ExpenseController::class, "getTotalAmountOfGivenDateRangeAndCategory"]);
 
 
-Route::post("/inward", [InwardController::class, "addNewInward"]);
-
 Route::get("/getfinancialyear/{challandate}",[ChallanController::class, "getFinancialYearOfChallanDate"]);
 Route::get("/verifychallan/{challanno}/{fromdate}/{todate}",[ChallanController::class, "verifyChallanNumber"]);
 Route::post("/challan/insert", [ChallanController::class, "addNewChallan"]);
@@ -111,5 +117,3 @@ Route::get('/challans', [ChallanController::class, "getChallans"]);
 Route::get('/challan/{challanid}', [ChallanController::class, "getChallanDataOfChallanId"]);
 Route::put('/challan', [ChallanController::class, "updateChallan"]);
 Route::delete('/challan/{challanId}', [ChallanController::class, "deleteChallan"]);
-
-Route::get("/inwards", [InwardController::class, "getAllInwards"]);

@@ -94,7 +94,7 @@ class CustomerController extends Controller
         $sort_direction = request("sortdirection");
 
         if(!in_array($sort_direction, ['asc', 'desc'])){
-            $sort_direction = "asc";
+            $sort_direction = "desc";
         }
 
         if(!in_array($sort_field, ['customer_id', 'customer_company_name','customer_contact_no','customer_email','customer_gst_no','customer_gst_code','customer_address'])){

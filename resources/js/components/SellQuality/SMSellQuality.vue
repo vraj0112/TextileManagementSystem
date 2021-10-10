@@ -79,7 +79,7 @@
                         <i class="fas fa-pen"></i>
                       </button>
 
-                      <button class="btn btn-danger btn-sm text-md ml-3"
+                      <button class="btn btn-danger btn-sm text-md"
                         @click="deleteSellQuality(sellquality.sell_quality_id)">
                         <i class="fas fa-trash"></i>
                       </button>

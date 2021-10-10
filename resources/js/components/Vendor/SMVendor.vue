@@ -5,7 +5,7 @@
       <div class="col-md-12 mt-3">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Vendor Details</h3>
+            <h3 class="card-title">Search and Manage Vendor</h3>
             <div class="card-tools">
               <button
                 type="button"
@@ -53,7 +53,7 @@
               <table
                 class="table table-hover table-bordered table-striped table-sm"
               >
-                <thead>
+                <thead class="text-md">
                   <tr>
                     <th>
                       <a href="#" @click.prevent="updateSorting('vendor_id')"
@@ -97,7 +97,7 @@
                     <th width="10%">Action</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-md">
                   <tr
                     v-for="vendor in vendors.data"
                     v-bind:key="vendor.vendor_id"
@@ -112,7 +112,7 @@
 
                     <td class="text-center">
                       <button
-                        class="btn btn-primary btn-sm"
+                        class="btn btn-primary btn-sm text-md"
                         @click="
                           editVendorBtn(
                             vendor.vendor_id,
@@ -125,14 +125,14 @@
                           )
                         "
                       >
-                        Edit
+                        <i class="fas fa-pen"></i>
                       </button>
 
                       <button
-                        class="btn btn-danger btn-sm"
+                        class="btn btn-danger btn-sm text-md"
                         @click="deleteVendor(vendor.vendor_id)"
                       >
-                        Delete
+                        <i class="fas fa-trash"></i>
                       </button>
                     </td>
                   </tr>
@@ -180,7 +180,7 @@
                 justify-content: center;
               "
             >
-              <label for="companyName" class="col-md-2">Company Name <span class="required-mark" style="color: red;">*</span></label>
+              <label for="companyName" class="text-md col-md-2">Company Name <span class="required-mark" style="color: red;">*</span></label>
               <input
                 type="text"
                 class="form-control col-md-5"
@@ -188,7 +188,7 @@
                 placeholder="Enter Company Name..."
               />
               <div class="col-md-1"></div>
-              <label for="companyContact" class="col-md-2"
+              <label for="companyContact" class="text-md col-md-2"
                 >Contact Number <span class="required-mark" style="color: red;">*</span></label
               >
               <input
@@ -207,7 +207,7 @@
                 justify-content: center;
               "
             >
-              <label for="companyAddress" class="col-md-2"
+              <label for="companyAddress" class="text-md col-md-2"
                 >Company Address <span class="required-mark" style="color: red;">*</span></label
               >
               <textarea
@@ -225,7 +225,7 @@
                 justify-content: center;
               "
             >
-              <label for="emailAddress" class="col-md-2">Email Address</label>
+              <label for="emailAddress" class="text-md col-md-2">Email Address</label>
               <input
                 type="email"
                 class="form-control col-md-2"
@@ -233,7 +233,7 @@
                 placeholder="Enter Email Address..."
               />
               <div class="col-md-1"></div>
-              <label for="gstNumber" class="col-md-1">GST No. <span class="required-mark" style="color: red;">*</span></label>
+              <label for="gstNumber" class="text-md col-md-1">GST No.<span class="required-mark" style="color: red;">*</span></label>
               <input
                 type="text"
                 class="form-control col-md-2"
@@ -241,7 +241,7 @@
                 placeholder="Enter GST Number..."
               />
               <div class="col-md-1"></div>
-              <label for="gstCode" class="col-md-1">GST Code<span class="required-mark" style="color: red;">*</span></label>
+              <label for="gstCode" class="text-md col-md-1">GST Code<span class="required-mark" style="color: red;">*</span></label>
               <input
                 type="text"
                 class="form-control col-md-2"
@@ -276,7 +276,7 @@ export default {
       vendors: {},
       paginate: "10",
       search: "",
-      sort_direction: "asc",
+      sort_direction: "desc",
       sort_field: "vendor_id",
       vendorId: -1,
       companyName: "",
