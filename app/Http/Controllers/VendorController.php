@@ -48,14 +48,16 @@ class VendorController extends Controller
 
         $isSameVendor = tbl_vendor::where('vendor_company_name', '=', $companyName)
         ->where("vendor_contact_no",'=',$companyContact)
-        ->where("vendor_email",'=',$emailAddress)
-        ->where("vendor_gst_no",'=',$gstNumber)
-        ->where("vendor_gst_code",'=',$gstCode)
-        ->where("vendor_address",'=',$companyAddress)
         ->where("vendor_status", '=', '1')
-        ->first();
+        ->exists();
 
-        if(is_null($isSameVendor)){
+        if($isSameVendor){
+            return response()->json(array(
+                "status" => 0,
+                "message" => "Vendor Already Exists!!!"
+            ));
+        }
+        else{
             $newVendor = new tbl_vendor();
             $newVendor->vendor_company_name = $req->input("companyName");
             $newVendor->vendor_contact_no = $req->input("companyContact");
@@ -76,12 +78,6 @@ class VendorController extends Controller
                     "message" => "Something Went Wrong! Please Try Again..."
                 ));
             }
-        }
-        else{
-            return response()->json(array(
-                "status" => 0,
-                "message" => "Vendor Already Exists!!!"
-            ));
         }
     }
 
@@ -146,10 +142,6 @@ class VendorController extends Controller
     
         $isSameVendor = tbl_vendor::where('vendor_company_name', '=', $companyName)
         ->where("vendor_contact_no",'=',$companyContact)
-        ->where("vendor_email",'=',$emailAddress)
-        ->where("vendor_gst_no",'=',$gstNumber)
-        ->where("vendor_gst_code",'=',$gstCode)
-        ->where("vendor_address",'=',$companyAddress)
         ->where("vendor_status", '=', '1')
         ->first();
 

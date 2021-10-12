@@ -48,10 +48,6 @@ class CustomerController extends Controller
 
         $isSameCustomer = tbl_customer::where('customer_company_name', '=', $companyName)
         ->where("customer_contact_no",'=',$companyContact)
-        ->where("customer_email",'=',$emailAddress)
-        ->where("customer_gst_no",'=',$gstNumber)
-        ->where("customer_gst_code",'=',$gstCode)
-        ->where("customer_address",'=',$companyAddress)
         ->where("customer_status", '=', '1')
         ->first();
 
@@ -146,10 +142,6 @@ class CustomerController extends Controller
     
         $isSameCustomer = tbl_customer::where('customer_company_name', '=', $companyName)
         ->where("customer_contact_no",'=',$companyContact)
-        ->where("customer_email",'=',$emailAddress)
-        ->where("customer_gst_no",'=',$gstNumber)
-        ->where("customer_gst_code",'=',$gstCode)
-        ->where("customer_address",'=',$companyAddress)
         ->where("customer_status", '=', '1')
         ->first();
 

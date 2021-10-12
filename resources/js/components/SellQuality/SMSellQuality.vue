@@ -138,7 +138,6 @@
 
           <div class="card-footer">
             <button type="submit" @click="updateSellQuality" class="btn btn-primary text-md">Update</button>
-            <button type="reset" @click="resetFields" class="btn btn-primary ml-3 text-md">Reset</button>
           </div>
         </div>
       </div>
@@ -307,6 +306,7 @@
 
       closeEditSellQuality: function () {
         this.sellQualityId = -1;
+        this.resetFields();
       }
     }
   };

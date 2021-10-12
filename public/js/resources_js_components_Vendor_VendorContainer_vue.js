@@ -200,8 +200,8 @@ __webpack_require__.r(__webpack_exports__);
       if (this.gstNumber == "") {
         toastr__WEBPACK_IMPORTED_MODULE_0___default().info("Please Enter GST Number!");
         return false;
-      } else if (this.gstNumber.length != 24) {
-        toastr__WEBPACK_IMPORTED_MODULE_0___default().warning("GST Number must be equal to 24 characters!");
+      } else if (this.gstNumber.length != 15) {
+        toastr__WEBPACK_IMPORTED_MODULE_0___default().warning("GST Number must be equal to 15 characters!");
         return false;
       } else {
         return true;
@@ -662,8 +662,8 @@ __webpack_require__.r(__webpack_exports__);
       if (this.gstNumber == "") {
         toastr__WEBPACK_IMPORTED_MODULE_0___default().info("Please Enter GST Number!");
         return false;
-      } else if (this.gstNumber.length != 24) {
-        toastr__WEBPACK_IMPORTED_MODULE_0___default().warning("GST Number must be equal to 24 characters!");
+      } else if (this.gstNumber.length != 15) {
+        toastr__WEBPACK_IMPORTED_MODULE_0___default().warning("GST Number must be equal to 15 characters!");
         return false;
       } else {
         return true;
