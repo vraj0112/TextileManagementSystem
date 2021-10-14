@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('app');
 });
+
+Route::get('/challan/pdf/{challan_id}', [PDFController::class,"generateChallanPDF"]);
+
+Route::get('/invoice/pdf/{invoice_id}', [PDFController::class,"generateInvoicePDF"]);
