@@ -21,3 +21,4 @@ Route::get('/', function () {
 Route::get('/challan/pdf/{challan_id}', [PDFController::class,"generateChallanPDF"]);
 
 Route::get('/invoice/pdf/{invoice_id}', [PDFController::class,"generateInvoicePDF"]);
+Route::get('/directinvoice/pdf/{invoice_id}', [PDFController::class,"generateDirectInvoicePDF"]);

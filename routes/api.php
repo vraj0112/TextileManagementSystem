@@ -13,6 +13,7 @@ use App\Http\Controllers\CreditController;
 use App\Http\Controllers\ExpenseCategoryControler;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ChallanController;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,3 +118,10 @@ Route::get('/challans', [ChallanController::class, "getChallans"]);
 Route::get('/challan/{challanid}', [ChallanController::class, "getChallanDataOfChallanId"]);
 Route::put('/challan', [ChallanController::class, "updateChallan"]);
 Route::delete('/challan/{challanId}', [ChallanController::class, "deleteChallan"]);
+
+
+Route::post('/directinvoice', [InvoiceController::class, 'addNewDirectInvoice']);
+Route::get('/directinvoices', [InvoiceController::class, 'getAllDirectInvoices']);
+Route::get('/directinvoice/{invoiceid}', [InvoiceController::class, "getDirectInvoiceOfInvoiceId"]);
+Route::put('/directinvoice', [InvoiceController::class, "updateDirectInvoice"]);
+Route::delete('/directinvoice/{invoiceMstId}', [InvoiceController::class, "deleteDirectInvoice"]);

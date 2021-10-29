@@ -1027,7 +1027,61 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(4),
+              _c("li", { staticClass: "nav-item" }, [
+                _vm._m(4),
+                _vm._v(" "),
+                _c("ul", { staticClass: "nav nav-treeview" }, [
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: "/newdirectinvoice" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "text-md" }, [
+                            _vm._v(
+                              "\n                                    Generate Direct Invoice\n                                "
+                            )
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: "/managedirectinvoice" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "text-md" }, [
+                            _vm._v("Manage Direct Invoice")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _vm._m(6)
+                ])
+              ]),
               _vm._v(" "),
               _c(
                 "li",
@@ -1047,7 +1101,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("li", { staticClass: "nav-item" }, [
-                _vm._m(5),
+                _vm._m(7),
                 _vm._v(" "),
                 _c("ul", { staticClass: "nav nav-treeview" }, [
                   _c(
@@ -1183,61 +1237,41 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+      _c("i", { staticClass: "nav-icon nav-icon far bi bi-receipt-cutoff" }),
+      _vm._v(" "),
+      _c("p", { staticClass: "text-md" }, [
+        _vm._v(
+          "\n                            Invoice\n                            "
+        ),
+        _c("i", { staticClass: "right fas fa-angle-left" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "nav-icon nav-icon far bi bi-receipt-cutoff" }),
+      _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
+        _c("i", { staticClass: "far fa-circle nav-icon" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-md" }, [_vm._v("Generate from Challan")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
+        _c("i", { staticClass: "far fa-circle nav-icon" }),
         _vm._v(" "),
         _c("p", { staticClass: "text-md" }, [
           _vm._v(
-            "\n                            Invoice\n                            "
-          ),
-          _c("i", { staticClass: "right fas fa-angle-left" })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("ul", { staticClass: "nav nav-treeview" }, [
-        _c("li", { staticClass: "nav-item" }, [
-          _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
-            _c("i", { staticClass: "far fa-circle nav-icon" }),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-md" }, [
-              _vm._v(
-                "\n                                    Generate Direct Invoice\n                                "
-              )
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
-            _c("i", { staticClass: "far fa-circle nav-icon" }),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-md" }, [
-              _vm._v("Manage Direct Invoice")
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
-            _c("i", { staticClass: "far fa-circle nav-icon" }),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-md" }, [
-              _vm._v("Generate from Challan")
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
-            _c("i", { staticClass: "far fa-circle nav-icon" }),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-md" }, [
-              _vm._v(
-                "\n                                    Manage Challan Invoice\n                                "
-              )
-            ])
-          ])
+            "\n                                    Manage Challan Invoice\n                                "
+          )
         ])
       ])
     ])

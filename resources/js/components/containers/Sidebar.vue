@@ -125,18 +125,18 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/" class="nav-link">
+                                <router-link to="/newdirectinvoice" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p class="text-md">
                                         Generate Direct Invoice
                                     </p>
-                                </a>
+                                </router-link>
                             </li>
                             <li class="nav-item">
-                                <a href="/" class="nav-link">
+                                <router-link to="/managedirectinvoice" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p class="text-md">Manage Direct Invoice</p>
-                                </a>
+                                </router-link>
                             </li>
                             <li class="nav-item">
                                 <a href="/" class="nav-link">

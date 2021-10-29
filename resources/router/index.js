@@ -16,7 +16,8 @@ const NewInward = () => import("../js/components/Inward/NewInward");
 const NewChallan = () => import("../js/components/Challan/NewChallan");
 const SMChallan = () => import("../js/components/Challan/SMChallan");
 const ManageInward = () => import('../js/components/Inward/SMInward');
-
+const GenerateDirectInvoice = () => import('../js/components/Invoice/GenerateDirectInvoice');
+const ManageDirectInvoices = () => import('../js/components/Invoice/ManageDirectInvoice');
 Vue.use(Router);
 
 export default new Router({
@@ -104,6 +105,16 @@ function configRoutes() {
                     name: "S & M Challan",
                     component: SMChallan
                 },
+                {
+                    path: "newdirectinvoice",
+                    name: "New Direct Invoice",
+                    component: GenerateDirectInvoice
+                },
+                {
+                    path: "managedirectinvoice",
+                    name: "Manage Direct Invoices",
+                    component: ManageDirectInvoices
+                }
             ]
         }
     ]

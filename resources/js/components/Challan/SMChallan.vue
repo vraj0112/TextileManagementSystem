@@ -658,6 +658,7 @@ export default {
             challanIdToBeEdit: -1,
 
             challanDate: "",
+            oldChallanDate: "",
             challanNo: "",
             oldChallanNo: '',
 
@@ -991,7 +992,8 @@ export default {
                 .get("/api/challan/"+challan_id)
                 .then((response)=>{
                     let challan = response.data;
-                    this.challanDate = this.getStdDate(challan.challandate);   
+                    this.challanDate = this.getStdDate(challan.challandate);  
+                    this.oldChallanDate = this.challanDate; 
                     this.challanNo = challan.challanno;
                     this.oldChallanNo = challan.challanno;
 
@@ -1239,6 +1241,7 @@ export default {
             let payload = {
                 challanMstId: this.challanIdToBeEdit,
                 challandate: this.challanDate,
+                oldChallanDate: this.challanDate,
                 challanNo: this.challanNo,
                 oldChallanNo: this.oldChallanNo,
                 company: this.selectedCompanyName,
@@ -1376,6 +1379,7 @@ export default {
 
         resetChallanEditing: function(){
             this.challanDate = "";
+            this.oldChallanDate="";
             this.challanNo = "";
             this.oldChallanNo = "";
             this.companyNames = [];

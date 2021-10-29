@@ -3209,6 +3209,14 @@ var ManageInward = function ManageInward() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_Inward_SMInward_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../js/components/Inward/SMInward */ "./resources/js/components/Inward/SMInward.vue"));
 };
 
+var GenerateDirectInvoice = function GenerateDirectInvoice() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_Invoice_GenerateDirectInvoice_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../js/components/Invoice/GenerateDirectInvoice */ "./resources/js/components/Invoice/GenerateDirectInvoice.vue"));
+};
+
+var ManageDirectInvoices = function ManageDirectInvoices() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_Invoice_ManageDirectInvoice_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../js/components/Invoice/ManageDirectInvoice */ "./resources/js/components/Invoice/ManageDirectInvoice.vue"));
+};
+
 vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_1__.default);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue_router__WEBPACK_IMPORTED_MODULE_1__.default({
   mode: 'hash',
@@ -3283,6 +3291,14 @@ function configRoutes() {
       path: "smchallan",
       name: "S & M Challan",
       component: SMChallan
+    }, {
+      path: "newdirectinvoice",
+      name: "New Direct Invoice",
+      component: GenerateDirectInvoice
+    }, {
+      path: "managedirectinvoice",
+      name: "Manage Direct Invoices",
+      component: ManageDirectInvoices
     }]
   }];
 }
@@ -54836,7 +54852,7 @@ Vue.compile = compileToFunctions;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_containers_Container_vue":1,"resources_js_components_Dashboard_vue":1,"resources_js_components_InwardQuality_InwardQualityContainer_vue":1,"resources_js_components_SellQuality_SellQualityContainer_vue":1,"resources_js_components_Broker_BrokerContainer_vue":1,"resources_js_components_Customer_CustomerContainer_vue":1,"resources_js_components_Vendor_VendorContainer_vue":1,"resources_js_components_BankDetails_BankDetailsContainer_vue":1,"resources_js_components_Credit_CreditContainer_vue":1,"resources_js_components_Expense_ExpenseCategory_ExpenseCategoryContainer_vue":1,"resources_js_components_Expense_ExpenseManagement_ExpenseManagementContainer_vue":1,"resources_js_components_Inward_NewInward_vue":1,"resources_js_components_Challan_NewChallan_vue":1,"resources_js_components_Challan_SMChallan_vue":1,"resources_js_components_Inward_SMInward_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_containers_Container_vue":1,"resources_js_components_Dashboard_vue":1,"resources_js_components_InwardQuality_InwardQualityContainer_vue":1,"resources_js_components_SellQuality_SellQualityContainer_vue":1,"resources_js_components_Broker_BrokerContainer_vue":1,"resources_js_components_Customer_CustomerContainer_vue":1,"resources_js_components_Vendor_VendorContainer_vue":1,"resources_js_components_BankDetails_BankDetailsContainer_vue":1,"resources_js_components_Credit_CreditContainer_vue":1,"resources_js_components_Expense_ExpenseCategory_ExpenseCategoryContainer_vue":1,"resources_js_components_Expense_ExpenseManagement_ExpenseManagementContainer_vue":1,"resources_js_components_Inward_NewInward_vue":1,"resources_js_components_Challan_NewChallan_vue":1,"resources_js_components_Challan_SMChallan_vue":1,"resources_js_components_Inward_SMInward_vue":1,"resources_js_components_Invoice_GenerateDirectInvoice_vue":1,"resources_js_components_Invoice_ManageDirectInvoice_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

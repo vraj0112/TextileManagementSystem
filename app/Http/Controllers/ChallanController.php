@@ -288,6 +288,7 @@ class ChallanController extends Controller
             'oldChallanNo' => 'required | numeric',
             'challanNo' => 'required | numeric',
             'challandate' => 'required | date_format:Y-m-d',
+            'oldChallanDate' => 'required | date_format:Y-m-d',
             'company' => 'required | numeric',
             'category' => 'required | numeric',
             'quality' => 'required | numeric',
@@ -307,6 +308,7 @@ class ChallanController extends Controller
 
         $challanMstId = $req->input('challanMstId');
         $challanDate = $req->input('challandate');
+        $oldChallanDate = $req->input('oldChallanDate');
         $challanNo = $req->input('challanNo');
         $oldChallanNo = $req->input("oldChallanNo");
         $company = $req->input('company');
@@ -353,19 +355,27 @@ class ChallanController extends Controller
             $oldSellQuality = $challanMst->sell_quality_id;
             $oldCategory = tbl_sell_quality::getCategory($oldSellQuality);
 
-            $challanMst->challan_date = $challanDate;
-            $challanMst->customer_id = $company;
-            $challanMst->broker_id = $broker;
-            $challanMst->sell_quality_id = $quality;
-            $challanMst->qty_unit = $unit;
-            $challanMst->challan_type = $category;
+            
             
 
 
-            $financialYear = $this->getFinancialYearOfChallanDateInArray($challanDate);
+            $financialYearOfNewChallanDate = $this->getFinancialYearOfChallanDateInArray($challanDate);
+            $financialYearOfOldChallanDate = $this->getFinancialYearOfChallanDateInArray($oldChallanDate);
             
-            if((int)$challanNo != (int)$oldChallanNo){
-                if(tbl_challan_mst::isChallanNoExists($challanNo,$financialYear['fromDate'], $financialYear['toDate'])){
+
+            if($financialYearOfNewChallanDate["fromDate"] == $financialYearOfOldChallanDate["fromDate"] && $financialYearOfNewChallanDate["toDate"] == $financialYearOfOldChallanDate["toDate"]){
+                if((int)$challanNo != (int)$oldChallanNo){
+                    if(tbl_challan_mst::isChallanNoExists($challanNo,$financialYearOfNewChallanDate['fromDate'], $financialYearOfNewChallanDate['toDate'])){
+                        return response()->json(array(
+                            "status" => -1,
+                            "statuscode" => 3,
+                            "message" => "Challan No Already Existes"
+                        ));
+                    }
+                }
+            }
+            else{
+                if(tbl_challan_mst::isChallanNoExists($challanNo,$financialYearOfNewChallanDate['fromDate'], $financialYearOfNewChallanDate['toDate'])){
                     return response()->json(array(
                         "status" => -1,
                         "statuscode" => 3,
@@ -373,7 +383,15 @@ class ChallanController extends Controller
                     ));
                 }
             }
+            
 
+
+            $challanMst->challan_date = $challanDate;
+            $challanMst->customer_id = $company;
+            $challanMst->broker_id = $broker;
+            $challanMst->sell_quality_id = $quality;
+            $challanMst->qty_unit = $unit;
+            $challanMst->challan_type = $category;
             $challanMst->challan_no = $challanNo;
             $challanMst->save();
 
