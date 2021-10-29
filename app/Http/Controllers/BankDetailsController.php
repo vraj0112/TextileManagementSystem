@@ -166,4 +166,12 @@ class BankDetailsController extends Controller
             "message"=> "Bank Details Deleted Successfully"
         ));
     }
+
+    public function getBankInfo(Request $req){
+        return (tbl_bank_details::select('bank_name', 'account_no', 'bank_details_id')->where('bank_details_status','=',1)->get());
+    }
+
+    public function getBankBranch(Request $req, $bankId){
+        return (tbl_bank_details::select('branch_name')->where('bank_details_id', '=', $bankId)->where('bank_details_status', '=', 1)->first());
+    }
 }

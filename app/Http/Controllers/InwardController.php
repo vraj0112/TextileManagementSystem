@@ -1,7 +1,10 @@
 <?php
 
+// Controller for performing operations in Inward Module
+
 namespace App\Http\Controllers;
 
+// Using the tbl_inward_mst, tbl_inward_details, tbl_vendor, tbl_broker and tbl_inward_qualities tables for performing the operations
 use Illuminate\Http\Request;
 use App\Models\tbl_inward_mst;
 use App\Models\tbl_inward_details;
@@ -11,12 +14,17 @@ use App\Models\tbl_inward_quality;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
+
+// Using the Carbon for manupulation of Date and its formats
 use Carbon\Carbon;
 
+// InwardContoller Class
 class InwardController extends Controller
 {
+    // function to add new Inward in the database
     public function addNewInward(Request $request)
     {
+        // First of all valdiate all the fields if they are in proper format or not
         $validated = validator($request->all(),[
             'date' => 'required | date_format:Y-m-d',
             'invoiceNo' => 'required | max:20',
@@ -26,6 +34,8 @@ class InwardController extends Controller
             'gstPercentage' => 'required'
         ]);
 
+        /* If any data is not in proper format then change the status to -1 and
+        display errors and failed messaged*/
         if($validated->fails()){
             $res = array(
                 "status" => -1,
@@ -36,6 +46,7 @@ class InwardController extends Controller
             return response()->json($res);
         }
 
+        //If all data is in proper format then input all of them in below variables
         $date = $request->input("date");
         $invoiceNo = $request->input("invoiceNo");
         $companyName = $request->input("companyName");
@@ -46,13 +57,17 @@ class InwardController extends Controller
         $rate = $request->input("rate");
         $gstPercentage = $request->input("gstPercentage");
 
+        /*Check in the DB if the Vendor Company Name available in DB. If
+        No, then change the status to -1 and then display message that vendor not available*/
         if(!tbl_vendor::isThereCompanyNameWithVendorId($companyName)){
             return response()->json(array(
                 "status" => -1,
                 "message" => "Vendor Not Available!"
             ));
         }
-
+        
+        /*Check in the DB if the broker available in DB. If
+        No, then change the status to -1 and then display message that broker not available*/
         if(!tbl_broker::isThereBrokerWithBrokerId($brokerName)){
             return response()->json(array(
                 "status" => -1,
@@ -60,6 +75,8 @@ class InwardController extends Controller
             ));
         }
 
+        /*Check in the DB if the product quality available in DB. If
+        No, then change the status to -1 and then display message that quality not available*/
         if(!tbl_inward_quality::isThereProductQualityWithQualityId($productQuality)){
             return response()->json(array(
                 "status" => -1,
@@ -83,6 +100,7 @@ class InwardController extends Controller
         }
         }*/
 
+        // If all validation are done and data is valid then add the data in the tables
         DB::beginTransaction();
         try{
             $inward_mst = new tbl_inward_mst();
@@ -114,6 +132,7 @@ class InwardController extends Controller
             return response()->json($res, 200);
         }
         catch(QueryException $e){
+            // If any error occurs inbetween then rollback and change the status to -1 and display errors and proper messages
             DB::rollBack();
             $res = array(
                 "status" => -1,
@@ -124,8 +143,10 @@ class InwardController extends Controller
         }
     }
 
+    // Function to get all data of inward records
     public function getAllInwards(Request $request)
     {
+        // Input the filter data in below variables
         $paginate = request("paginate", 10);
         $vendorId = $request->input("company");
         $categoryId = $request->input("category");
@@ -133,24 +154,31 @@ class InwardController extends Controller
         $brokerId = $request->input('broker');
         
 
+        // input the search term in below variables and remove spaces and search in the data available
         $search_term = request("search", "");
         $search_term = trim($search_term);
         $search_term = "%$search_term%";
 
+        // Set the sort field and direction and input in below variables
         $sort_field = request("sortfield");
         $sort_direction = request("sortdirection");
 
+        // Set the from date and to date and input them in below variables
         $from_date = request("fromdate", Carbon::now()->subDays(10));
         $to_date = request("todate", Carbon::now());
  
+        // By default, set the direction to descending
         if(!in_array($sort_direction, ['asc', 'desc'])){
             $sort_direction = "desc";
         }
 
+        /*Apply sort field to below column data and by
+        default set the sort field to inward_mst_date*/
         if(!in_array($sort_field, ['inward_mst_id','inward_mst_date'])){
             $sort_field = 'inward_mst_date';
         }
 
+        // Get all the data from tables
         return (tbl_inward_details::join('tbl_inward_msts','tbl_inward_details.inward_mst_id',"=","tbl_inward_msts.inward_mst_id")
         ->join('tbl_vendors','tbl_inward_msts.inward_mst_vendor_id','=','tbl_vendors.vendor_id')
         ->join('tbl_brokers','tbl_inward_msts.inward_mst_broker_id','=','tbl_brokers.broker_id')
@@ -162,6 +190,7 @@ class InwardController extends Controller
         ->whereBetween('tbl_inward_msts.inward_mst_date', [$from_date, $to_date])
         ->where(function($query) use ($search_term)
         {
+            // Bring the data according to the filters applied using where conditions
             $query->where('tbl_inward_msts.inward_mst_date', 'like', $search_term)
             ->orWhere('tbl_inward_msts.inward_mst_invoice_no', 'like', $search_term)
             ->orWhere('tbl_inward_msts.inward_mst_vendor_id', 'like', $search_term)
@@ -186,14 +215,19 @@ class InwardController extends Controller
         ->paginate($paginate));
     }
 
+    // function to display all data related to inward record
     public function viewInwardDetails(Request $request, $inwardMstId)
     {
+        // Bring the data from the respective tables
         return tbl_inward_mst::with(["inward_details:inward_details_id,inward_mst_id,inward_quality_id,qty,qty_unit,rate", "getBroker:broker_id,broker_name", "getVendor:vendor_id,vendor_company_name,vendor_contact_no,vendor_gst_no"])->where("inward_mst_id", $inwardMstId)->select('inward_mst_id','inward_mst_date','inward_mst_invoice_no','inward_mst_vendor_id', 'inward_mst_broker_id','inward_mst_gst_percentage')->first(); 
         
     }
 
+    // function to update inward record
     public function updateInward(Request $request, $inwardId)
     {
+        /* first of all validate all the data and check that if all of them are
+        in proper format or not*/
         $validated = validator($request->all(),[
             'inwardMstId' => 'required | numeric',
             'inwardDate' => 'required | date_format:Y-m-d',
@@ -208,6 +242,9 @@ class InwardController extends Controller
             'qty' => 'required | numeric'
         ]);
 
+        /* If the Validation failed then status would be -1 and Validation Failed messaged and display
+        Errors */
+        
         if($validated->fails()){
             $res = array(
                 "status" => -1,
@@ -218,6 +255,7 @@ class InwardController extends Controller
             return response()->json($res);
         }
 
+        // if all the data are as per the format then input all of them in below variables
         $date = $request->input("inwardDate");
         $invoiceNo = $request->input("invoiceNo");
         $companyName = $request->input("company");
@@ -228,6 +266,8 @@ class InwardController extends Controller
         $rate = $request->input("rate");
         $gstPercentage = $request->input("gstPercentage");
 
+        /*Check in the DB if the Vendor Company Name available in DB. If
+        No, then change the status to -1 and then display message that vendor not available*/
         if(!tbl_vendor::isThereCompanyNameWithVendorId($companyName)){
             return response()->json(array(
                 "status" => -1,
@@ -235,6 +275,8 @@ class InwardController extends Controller
             ));
         }
 
+        /*Check in the DB if the broker available in DB. If
+        No, then change the status to -1 and then display message that broker not available*/
         if(!tbl_broker::isThereBrokerWithBrokerId($brokerName)){
             return response()->json(array(
                 "status" => -1,
@@ -242,6 +284,8 @@ class InwardController extends Controller
             ));
         }
 
+        /*Check in the DB if the product quality available in DB. If
+        No, then change the status to -1 and then display message that quality not available*/
         if(!tbl_inward_quality::isThereProductQualityWithQualityId($productQuality)){
             return response()->json(array(
                 "status" => -1,
@@ -249,6 +293,8 @@ class InwardController extends Controller
             ));
         }
         
+        /* update the data in DB in both the tables and display the appropriate message on success and
+        change the status to 1*/
         tbl_inward_details::join('tbl_inward_msts','tbl_inward_details.inward_mst_id',"=","tbl_inward_msts.inward_mst_id")
         ->where('inward_details_id','=',$inwardId)
         ->update(['inward_mst_date' => $date, 
@@ -266,8 +312,11 @@ class InwardController extends Controller
         ));
     }
 
+    // Function is to delete respective inward using inward id
     public function deleteInward(Request $request, $inwardId)
     {
+        /* Inside the try block we will update status of the respective inwards as 0 and if it is then
+        status would be 1 and Inward Deleted successfully messaged */
         try{
             tbl_inward_details::join('tbl_inward_msts','tbl_inward_details.inward_mst_id',"=","tbl_inward_msts.inward_mst_id")
             ->where('inward_details_id','=',$inwardId)
@@ -277,6 +326,9 @@ class InwardController extends Controller
                 "message"=> "Inward Record Deleted Succesfully..."
             ));
         }
+
+        /* If any exception occurs it will go inside the catch block then status will be -1 and 
+        Inward Deletion failed messaged */
         catch(Exception $e){
             return response()->json(array(
                 "status" => -1,

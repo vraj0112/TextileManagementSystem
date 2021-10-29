@@ -83,6 +83,9 @@ Route::delete("/vendor/delete/{vendor_id}", [VendorController::class, "deleteVen
 Route::prefix('/bankdetails')->group(function(){
     Route::post('/insert',[BankDetailsController::class,'insertBankDetails']);
 });
+Route::get('/bankinfo', [BankDetailsController::class, 'getBankInfo']);
+Route::get('/bankbranch/{bankId}', [BankDetailsController::class, 'getBankBranch']);
+
 Route::prefix('/credit')->group(function(){
     Route::post('/insert',[CreditController::class,'insertCredit']);
 });
@@ -125,3 +128,13 @@ Route::get('/directinvoices', [InvoiceController::class, 'getAllDirectInvoices']
 Route::get('/directinvoice/{invoiceid}', [InvoiceController::class, "getDirectInvoiceOfInvoiceId"]);
 Route::put('/directinvoice', [InvoiceController::class, "updateDirectInvoice"]);
 Route::delete('/directinvoice/{invoiceMstId}', [InvoiceController::class, "deleteDirectInvoice"]);
+
+Route::get("/invoice/getfinancialyear/{invoiceno}",[InvoiceController::class, "getFromInvoiceNo"]);
+Route::get("/invoice/challandata/{invoiceno}/{fromdate}/{todate}", [InvoiceController::class, "getFromInvoiceNoAndFinancialYear"]);
+Route::get("/getstate/{code}", [InvoiceController::class, "getStateFromCode"]);
+Route::post("/invoice/insert", [InvoiceController::class, "addNewInvoiceFromChallan"]);
+Route::get("/verifyinvoicedate/{invoicedate}/{fromdate}/{todate}", [InvoiceController::class, "verifyInvoiceDate"]);
+Route::get("/invoices", [InvoiceController::class, "getAllChallanInvoices"]);
+Route::put("/invoice", [InvoiceController::class, "updateChallanInvoice"]);
+Route::get("/invoice/{invoiceid}", [InvoiceController::class, "getChallanInvoiceOfInvoiceid"]);
+Route::put('/invoice', [InvoiceController::class, "updateInvoiceForChallan"]);

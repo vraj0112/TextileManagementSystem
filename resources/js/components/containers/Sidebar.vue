@@ -139,18 +139,16 @@
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <a href="/" class="nav-link">
+                                <router-link to="/invoicefromchallan" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p class="text-md">Generate from Challan</p>
-                                </a>
+                                </router-link>
                             </li>
                             <li class="nav-item">
-                                <a href="/" class="nav-link">
+                                <router-link to="/managechallaninvoice" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p class="text-md">
-                                        Manage Challan Invoice
-                                    </p>
-                                </a>
+                                    <p class="text-md">Manage Challan Invoice</p>
+                                </router-link>
                             </li>
                         </ul>
                     </li>

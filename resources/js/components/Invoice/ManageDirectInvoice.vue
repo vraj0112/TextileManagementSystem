@@ -1058,7 +1058,7 @@ export default {
                                 })
                                 .then(() => {
                                     this.cancleEditInvoice();
-                                    this.getInvoices(this.filters.invoice.current_page);
+                                    this.getInvoices(this.filters.invoices.current_page);
                                 });
                         }
                         else if(response.data.status == -1){
@@ -1096,29 +1096,29 @@ export default {
 
         // Close Invoice To Edit
         cancleEditInvoice: function(){
-            invoiceToEdit.invoiceDate = "";
-            invoiceToEdit.oldInvoiceDate = "";
-            invoiceToEdit.invoiceNo = "";
-            invoiceToEdit.oldInvoiceNo = "";
-            invoiceToEdit.customersOptions = [],
-            invoiceToEdit.customer = "";
-            invoiceToEdit.customerMobileNo = "";
-            invoiceToEdit.customerGSTNo = "";
-            invoiceToEdit.brokersOptions = [],
-            invoiceToEdit.broker = "";
-            invoiceToEdit.categoriesOptions = [],
-            invoiceToEdit.category = "";
-            invoiceToEdit.qualitiesOptions = [],
-            invoiceToEdit.quality = "";
-            invoiceToEdit.noOfUnits = "";
-            invoiceToEdit.qty = "";
-            invoiceToEdit.unit = "";
-            invoiceToEdit.rate = "";
-            invoiceToEdit.gstPercentage = "";
-            invoiceToEdit.totalAmount = "";
-            invoiceToEdit.gstAmount = "";
-            invoiceToEdit.netAmount = "";
-            invoiceToEdit.invoiceId = -1;
+            this.invoiceToEdit.invoiceDate = "";
+            this.invoiceToEdit.oldInvoiceDate = "";
+            this.invoiceToEdit.invoiceNo = "";
+            this.invoiceToEdit.oldInvoiceNo = "";
+            this.invoiceToEdit.customersOptions = [],
+            this.invoiceToEdit.customer = "";
+            this.invoiceToEdit.customerMobileNo = "";
+            this.invoiceToEdit.customerGSTNo = "";
+            this.invoiceToEdit.brokersOptions = [],
+            this.invoiceToEdit.broker = "";
+            this.invoiceToEdit.categoriesOptions = [],
+            this.invoiceToEdit.category = "";
+            this.invoiceToEdit.qualitiesOptions = [],
+            this.invoiceToEdit.quality = "";
+            this.invoiceToEdit.noOfUnits = "";
+            this.invoiceToEdit.qty = "";
+            this.invoiceToEdit.unit = "";
+            this.invoiceToEdit.rate = "";
+            this.invoiceToEdit.gstPercentage = "";
+            this.invoiceToEdit.totalAmount = "";
+            this.invoiceToEdit.gstAmount = "";
+            this.invoiceToEdit.netAmount = "";
+            this.invoiceToEdit.invoiceId = -1;
         },  
 
         // Reset Invoice To Viewing

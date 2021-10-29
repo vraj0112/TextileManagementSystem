@@ -1,3 +1,15 @@
+<!--
+DESCRIPTION
+    This modules helps user to search the challan and able to edit and delete and also able to
+    generate pdf and download or print the pdf of the challan.
+NOTES
+    Version         : 1.0
+    Date            : 2/10/2021
+    Author          : Uddhav Savani
+
+    Initial Release : v1.0: Initial Release
+-->
+
 <template>
     <div>
         <aside></aside>
@@ -6,6 +18,8 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12 mt-3">
+
+                            <!-- Filter And Challan Table Card Starts -->
                             <div class="card card-primary">
                                 <div class="card-header">
                                     <h3 class="card-title">
@@ -179,7 +193,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Filter And Challan Table Card Ends -->
 
+                            <!-- Edit Challan Form Card Starts -->
                             <div v-if="challanIdToBeEdit != -1 ? 1:0" class="card card-primary">
                                 <div class="card-header">
                                     <h3 class="card-title">Edit Challan</h3>
@@ -473,7 +489,9 @@
                                         class="btn btn-primary text-md">Update</button>
                                 </div>
                             </div>
-
+                            <!-- Edit Challan Form Card Ends -->
+                            
+                            <!-- View Challan Form Card Starts -->
                             <div v-if="challanToView.challanIdToBeViewd != -1 ? 1:0" class="card card-primary">
                                 <div class="card-header">
                                     <h3 class="card-title">Viewing Challan No: {{challanToView.challanNoToView}}</h3>
@@ -613,6 +631,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- View Challan Form Card Ends -->
                         </div>
                     </div>
                 </div>
@@ -622,144 +641,160 @@
 </template>
 
 <script>
+
+// importing required plugins
 import toastr from "toastr";
 import swal from "sweetalert2";
-import { ModelSelect } from "vue-search-select";
+import { ModelSelect } from "vue-search-select"; // plugin for combobox-Searchable Select Menu
 
 export default {
     name: "SMChallan",
     data() {
         return {
-            compniesForFilter: [],
-            selectedCompanyForFilter: "",
+            compniesForFilter: [], // Options Array Of Companies For Filter
+            selectedCompanyForFilter: "", // selected Company For Filter
 
-            categoriesForFilter: [],
-            selectedCategoryForFilter: "",
+            categoriesForFilter: [],    // Options Array Of Categories For Filter
+            selectedCategoryForFilter: "", // selected Category For Filter
 
-            qualitiesForFilter: [],
-            selectedQualityForFilter: "",
+            qualitiesForFilter: [], // Options Array Of Qualities For Filter
+            selectedQualityForFilter: "", // selected quality For Filter
 
-            brokersForFilter: [],
-            selectedBrokerForFilter: "",
+            brokersForFilter: [], // Options Array Of brokers For Filter
+            selectedBrokerForFilter: "", // selected broker For Filter
 
-            paginate: "10",
+            paginate: "10",  // Entries Per Page For Pagination
 
-            challans: {},
+            challans: {}, // Challans Object To Store Recieved Challans Data From API call
+                          // is showed In table
 
-            days: 10,
-            search: "",
-            sort_direction: "desc",
-            sort_field: "challan_date",
-            fromDate: this.getTodaysDate(),
-            toDate: this.getDateBeforeDays(),
+            days: 10, // default days to set from date
+            search: "", // search term to be search
+            sort_direction: "desc", // sort direction of field to be sort for challans datatabel
+            sort_field: "challan_date", // field name according to which challans need to be serch
+            fromDate: this.getTodaysDate(), // From date to set for getting challans
+            toDate: this.getDateBeforeDays(), // to date to set for getting challans
 
-            totalAmountOfPage: (0).toFixed(2),
+            totalAmountOfPage: (0).toFixed(2),  // Total amount of one page in challans datatable
 
-            challanIdToBeEdit: -1,
+            challanIdToBeEdit: -1, // challan id which need to be edit
+
+
+            //section for Challan to be edit
+            challanDate: "", // challan date
+            challanNo: "", // challan No
+            oldChallanNo: '', // old challan no for api references
 
             challanDate: "",
             oldChallanDate: "",
             challanNo: "",
             oldChallanNo: '',
+            companyNames: [], // options array of companies for update
+            selectedCompanyName: "", // selected company for update
 
-            companyNames: [],
-            selectedCompanyName: "",
+            brokerNames: [], // options array for brokers for update
+            selectedBrokerName: "", // selected broker for update
 
-            brokerNames: [],
-            selectedBrokerName: "",
+            companyContactNo: '', // company contact no which will be loaded as company is selected
+            companyGSTNo: "", // company GST no which will be loaded as comapany is selected
 
-            companyContactNo: '',
-            companyGSTNo: "",
+            productCategories: [], // options array for categories to update
+            selectedProductCategory: '', // selected category for update
 
-            productCategories: [],
-            selectedProductCategory: '',
+            productQualities: [], // options array for qualities to update
+            selectedProductQuality: '', // selected quality to update
 
-            productQualities: [],
-            selectedProductQuality: '',
+            unit: '', // unit of product measure
 
-            unit: '',
+            allData: [], // all the data recived of challan details
 
-            allData: [],
+            totalQty: (0).toFixed(2), // total qty of already added products
+            totalNewQty: (0).toFixed(2), // total quantity which is added at time of update
+            netTotalQty: (0).toFixed(2), // total of new and old qty
 
-            totalQty: (0).toFixed(2),
-            totalNewQty: (0).toFixed(2),
-            netTotalQty: (0).toFixed(2),
+            editedChallanDetailsIds: new Set(), // set to store challanDetailsIds which are updated
+            challanDetailsIdToBeDeleted: new Set(), // set to store challanDetailsIds which need to be deleted
 
-            editedChallanDetailsIds: new Set(),
-            challanDetailsIdToBeDeleted: new Set(),
+            newProductDetails: [], // array of new products
+            isNewProductDetailsFull: false, // flag to check whether new products details is full or not
 
-            newProductDetails: [],
-            isNewProductDetailsFull: false,
 
+            // Challan Details of CHallan to be viewd
             challanToView : {
-                challanIdToBeViewd: -1,
-                challanNoToView: -1,
-                challanDate: '',
-                challanNo: '',
-                company: "",
-                broker: "",
-                quality: "",
-                category: "",
-                unit: "",
+                challanIdToBeViewd: -1, // challan Mst Id
+                challanNoToView: -1, // Challan no
+                challanDate: '', // challan date
+                challanNo: '', // challan no
+                company: "", // company(customer)
+                broker: "", // broker
+                quality: "", // quality
+                category: "", // category
+                unit: "", // unit
                 products: {
-                    productPart1:[],
-                    productPart2:[],
-                    productPart3:[]
+                    productPart1:[], // product in table 1
+                    productPart2:[], // product in table 2
+                    productPart3:[]  // product in table 3
                 },
                 totalQty: {
-                    totalQtyProductPart1: (0).toFixed(2),
-                    totalQtyProductPart2: (0).toFixed(2),
-                    totalQtyProductPart3: (0).toFixed(2),
-                    totalQty: (0).toFixed(2)
+                    totalQtyProductPart1: (0).toFixed(2), // total qty of table 1
+                    totalQtyProductPart2: (0).toFixed(2), // total qty of table 2
+                    totalQtyProductPart3: (0).toFixed(2), // total qty of table 3
+                    totalQty: (0).toFixed(2) // total of 3 table qtys
                 }
             }
         };
     },
     mounted() {
-        this.fromDate = this.getDateBeforeDays(),
-        this.toDate = this.getTodaysDate();
-        this.getChallans();
-        this.loadQualityCategoriesForFilter();
-        this.loadQualitiesOfCategoryForFilter();
-        this.getCustomersList();
-        this.getBrokersList();
-        this.editedChallanDetailsIds = new Set();
-        this.challanDetailsIdToBeDeleted = new Set();
-        this.sumNewTotalQuantity();
-        this.sumTotalQuantity();
-        this.sumNetTotalQty();
+
+        // on mount load data
+        this.fromDate = this.getDateBeforeDays(), // set from date
+        this.toDate = this.getTodaysDate(); // set to date
+        this.getChallans(); // call api to load challans
+        this.loadQualityCategoriesForFilter(); // load categories for filter
+        this.loadQualitiesOfCategoryForFilter(); // load qualities for filter
+        this.getCustomersList(); // load customers list for filter
+        this.getBrokersList(); // load brokers list for filter
+        this.editedChallanDetailsIds = new Set(); // initilize set of challanDetailsId edited
+        this.challanDetailsIdToBeDeleted = new Set(); // initilize set of challanDetailsIds need to be deleted
+        this.sumNewTotalQuantity(); // calculate total qty of newlu added products
+        this.sumTotalQuantity(); // calculate total qty of newlu added products
+        this.sumNetTotalQty(); // calculate total qty of new and old products
     },
     watch: {
+
+        // parameters need to be watch for change
+
+        //will trigger whenever category is changed
         selectedCategoryForFilter: function() {
             this.loadQualitiesOfCategoryForFilter();
             this.getChallans();
         },
 
-        fromDate: function() {
+        fromDate: function() { // will triger when from date is changed
             this.getChallans();
         },
 
-        toDate: function() {
+        toDate: function() { // will trigger when to date is changed
             this.getChallans();
         },
 
-        selectedCompanyForFilter: function() {
+        selectedCompanyForFilter: function() { // will triger when company is changed
             this.getChallans();
         },
 
-        selectedQualityForFilter: function() {
+        selectedQualityForFilter: function() { // will trigger when qualities for filter is changed
             this.getChallans();
         },
 
-        selectedBrokerForFilter: function() {
+        selectedBrokerForFilter: function() { // will triggered when broker for filter is changed
             this.getChallans();
         },
 
-        selectedProductCategory: function() {
+        selectedProductCategory: function() { // will trigger when category for edit changes
             this.loadFromSelectedCategory();
         },
 
-        newProductDetails: function() {
+        newProductDetails: function() { // will triger when new product is added
             this.sumNewTotalQuantity();
             if(this.newProductDetails.length + this.allData.length < 48){
                 this.isNewProductDetailsFull = false;
@@ -769,7 +804,7 @@ export default {
             }
         },
 
-        allData: function() {
+        allData: function() { // will trigger when challan details changes
             if(this.newProductDetails.length + this.allData.length < 48){
                 this.isNewProductDetailsFull = false;
             }
@@ -788,7 +823,7 @@ export default {
 
     },
     methods: {
-        getChallans: function(page = 1) {
+        getChallans: function(page = 1) { // method to load challans in the table
             axios
                 .get(
                     "/api/challans?page=" +
@@ -829,7 +864,7 @@ export default {
                 });
         },
 
-        getTodaysDate: function() {
+        getTodaysDate: function() { // will return todays date in YYYY-MM-DD formate
             let d = new Date();
             let month = "" + (d.getMonth() + 1);
             let day = "" + d.getDate();
@@ -845,7 +880,7 @@ export default {
             return year + "-" + month + "-" + day;
         },
 
-        getDateBeforeDays: function() {
+        getDateBeforeDays: function() { // will return date of day before todays date
             let date = new Date();
             let last = new Date(
                 date.getTime() - this.days * 24 * 60 * 60 * 1000
@@ -864,12 +899,12 @@ export default {
             return year + "-" + month + "-" + day;
         },
 
-        getStdDate: function(date){
+        getStdDate: function(date){ // will return date in YYYY-MM-DD formate of the date given in DD-MM-YYYY formate
             date = date.split("-");
             return (date[2]+"-"+date[1]+"-"+date[0]);
         },
 
-        getCustomersList: function() {
+        getCustomersList: function() { // will load customers list
             axios
                 .get("/api/customerlist")
                 .then(result => {
@@ -891,7 +926,7 @@ export default {
                 });
         },
 
-        loadQualityCategoriesForFilter: function() {
+        loadQualityCategoriesForFilter: function() { // will load categories 
             axios
                 .get("/api/sellqualitycategories")
                 .then(response => {
@@ -915,7 +950,7 @@ export default {
                 });
         },
 
-        loadQualitiesOfCategoryForFilter: function() {
+        loadQualitiesOfCategoryForFilter: function() { // will load qualities of selected category
             if (this.selectedCategoryForFilter == "") {
                 let allEntry = [{ text: "All", value: "" }];
                 this.qualitiesForFilter = allEntry;
@@ -954,7 +989,7 @@ export default {
             this.selectedProductQuality = "";
         },
 
-        getBrokersList: function() {
+        getBrokersList: function() { // will load brokers for filter
             axios
                 .get("/api/brokerslist")
                 .then(response => {
@@ -976,7 +1011,7 @@ export default {
             this.resetUpdateExpenseForm();
         },
 
-        updateSorting: function(field) {
+        updateSorting: function(field) { // will update sorting
             if (this.sort_field == field) {
                 this.sort_direction = this.sort_direction == "asc" ? "desc" : "asc";
             } else {
@@ -985,7 +1020,7 @@ export default {
             this.getChallans(this.challans.current_page);
         },
 
-        editChallan: async function(challan_id) {
+        editChallan: async function(challan_id) { // will set form of challan to be edited
 
             this.resetChallanEditing();
             axios
@@ -1037,20 +1072,20 @@ export default {
             
         },
 
-        editChallanDetailsEntry: function(index, challanDetailsId, no, qty) {
+        editChallanDetailsEntry: function(index, challanDetailsId, no, qty) { // edit challan details entry
             this.allData[index].isDisabled = false; 
             this.editedChallanDetailsIds.add(challanDetailsId);         
         },
 
-        disableField: function(index){
+        disableField: function(index){ // will disable the field of challan details entry after edit
             this.allData[index].isDisabled = true;
         },
 
-        cancelEditChallanDetailsEntry: function(index){
+        cancelEditChallanDetailsEntry: function(index){ // cancel edit of challan details entry
             this.allData[index].isDisabled = true;
         },
 
-        getFromSelectedCompany: function () {
+        getFromSelectedCompany: function () { // will load contact no and gst no of selected company
             if (this.selectedCompanyName == '' || typeof (this.selectedCompanyName) === 'undefined') {
                 this.companyContactNo = '';
                 this.companyGSTNo = '';
@@ -1066,7 +1101,7 @@ export default {
             })
         },
 
-        loadFromSelectedCategory: function () {
+        loadFromSelectedCategory: function () { // will load qualities of selected category
             if (this.selectedProductCategory == '' || typeof (this.selectedProductCategory) === 'undefined') {
                 this.unit = '';
                 this.productQualities = [];
@@ -1093,7 +1128,7 @@ export default {
             })
         },
 
-        addRow: function () {
+        addRow: function () { // will add row in new challan detials entry
             if (this.allData.length < 48) {
                 if((this.allData.length + this.newProductDetails.length) < 48){
                     this.newProductDetails.push({
@@ -1111,19 +1146,19 @@ export default {
             // }
         },
 
-        enterPressed: function (index = -1) {
+        enterPressed: function (index = -1) { // will add new row when enter is pressed in the last challan details entry
             if (this.newProductDetails.length == (index + 1)) {
                 this.addRow();
             }
         },
 
-        deleteChallanDetailsId: function (index, challanDetailsId) {
+        deleteChallanDetailsId: function (index, challanDetailsId) { // will insert challanDetialsId in the challanDetailsIdsToDeleted
             this.challanDetailsIdToBeDeleted.add(challanDetailsId);
             this.allData.splice(index, 1);
             this.sumTotalQuantity();
         },
 
-        tranferCursor: function (index, prefix = 'takano') {
+        tranferCursor: function (index, prefix = 'takano') { // will transfer cusrsor to next cell when TAB is pressed
             
             if (prefix === "takano" && this.allData.length == (index + 1)) {
                 return;
@@ -1136,7 +1171,7 @@ export default {
             this.$refs[prefix + (index + 1)][0].focus();
         },
 
-        loadCompanyName() {
+        loadCompanyName() { // will load company names
             axios.get('../api/customerlist').then((response) => {
                 this.companyNames = response.data.map(company => {
                     return {
@@ -1150,7 +1185,7 @@ export default {
             })
         },
 
-        loadBrokerName() {
+        loadBrokerName() { // will load brokers names
             axios.get('../api/brokerslist').then((response) => {
                 this.brokerNames = response.data.map(broker => {
                     return {
@@ -1164,7 +1199,7 @@ export default {
             })
         },
 
-        loadQualityCategories() {
+        loadQualityCategories() { // will load vcategories of product
             axios.get('../api/sellqualitycategories').then((response) => {
                 this.productCategories = response.data.qualityCategories.map(category => {
                     return {
@@ -1178,7 +1213,9 @@ export default {
             })
         },
 
-        validateChallanDate: function(){
+
+        // method to validate challans
+        validateChallanDate: function(){ // validates Challan Date 
             if(this.challanDate == ""){
                 toastr.info("Challan Date Is Required");
                 return false;
@@ -1187,7 +1224,7 @@ export default {
             return true;
         },
 
-        validateChallanNo: function(){
+        validateChallanNo: function(){ // validates challan no
             if(this.challanNo == ''){
                 toastr.info("Challan No Is Required");
                 return false;
@@ -1195,7 +1232,7 @@ export default {
             return true;
         },
 
-        validateCompany: function(){
+        validateCompany: function(){ // validates company
             if(this.selectedCompanyName == ""){
                 toastr.info("Company Name Is Required");
                 return false;
@@ -1203,7 +1240,7 @@ export default {
             return true;
         },
 
-        validateBroker: function(){
+        validateBroker: function(){ // validates broker
             if(this.selectedBrokerName == ""){
                 toastr.info("Broker Name Is Required");
                 return false;
@@ -1211,7 +1248,7 @@ export default {
             return true;
         },
 
-        validateCategory: function(){
+        validateCategory: function(){ // validates category
             if(typeof this.selectedProductCategory === 'undefined' || this.selectedProductCategory===''){
                 toastr.info("Product Category Is Required");
                 return false;
@@ -1219,7 +1256,7 @@ export default {
             return true;
         },
 
-        validateQuality: function(){
+        validateQuality: function(){ // validates quality
             if(typeof this.selectedProductQuality === 'undefined' || this.selectedProductQuality === ''){
                 toastr.info("Product Quality Is Required");
                 return false;
@@ -1227,7 +1264,7 @@ export default {
             return true;
         },
 
-        updateChallan: function() {
+        updateChallan: function() { // updates challan when update btn is pressed
 
             if((this.allData.length + this.newProductDetails.length) < 1 ) {
                 toastr["info"]("Min 1 Entry is required");
@@ -1357,12 +1394,12 @@ export default {
                 })
         },
 
-        deleteNewChallanDetailsId: function(index) {
+        deleteNewChallanDetailsId: function(index) { // willl delete new challan details entry from new products
             this.newProductDetails.splice(index, 1);
             
         },
 
-        resetFields() {
+        resetFields() { // will resets fields
             this.challanDate = this.getTodaysDate();
             this.challanNo = '',
             this.companyContactNo = '',
@@ -1377,7 +1414,7 @@ export default {
 
         },
 
-        resetChallanEditing: function(){
+        resetChallanEditing: function(){ // reset data which is loaded when any challan is set to edit
             this.challanDate = "";
             this.oldChallanDate="";
             this.challanNo = "";
@@ -1410,15 +1447,15 @@ export default {
             this.challanIdToBeEdit = -1;
         },
 
-        selectQuantity(index, prefix = 'qty') {
+        selectQuantity(index, prefix = 'qty') { // will select figure when ever user clicks inside text field
             this.$refs[prefix + (index)][0].select();
         },
 
-        cancelEdit: function() {
+        cancelEdit: function() { // cancel editing of challan
             this.resetChallanEditing();
         },
 
-        sumTotalQuantity: function () {
+        sumTotalQuantity: function () { // sum of total quantity
             this.totalQty = (0).toFixed(2);
             for (let i = 0; i < this.allData.length; i++) {
                 this.totalQty = parseFloat(this.totalQty) + parseFloat(this.allData[i].qty);
@@ -1428,7 +1465,7 @@ export default {
             }
         },
 
-        sumNewTotalQuantity: function () {
+        sumNewTotalQuantity: function () { // sum of new quantity
             this.totalNewQty = (0).toFixed(2);
             for (let i = 0; i < this.newProductDetails.length; i++) {
                 this.totalNewQty = parseFloat(this.totalNewQty) + parseFloat(this.newProductDetails[i].qty);
@@ -1438,13 +1475,13 @@ export default {
             }
         },
 
-        sumNetTotalQty: function () {
+        sumNetTotalQty: function () { // calculates net quantity
             this.netTotalQty = parseFloat(this.totalQty) + parseFloat(this.totalNewQty);
             this.netTotalQty = parseFloat(this.netTotalQty).toFixed(2);
             
         },
 
-        confirmChallandeletation: function(challanMstId, challanNo){
+        confirmChallandeletation: function(challanMstId, challanNo){ // will confirms challab deletation before deleting it.
 
             swal
                 .fire({
@@ -1466,7 +1503,7 @@ export default {
                 })
         },
 
-        deleteChallan: function(challanMstId){
+        deleteChallan: function(challanMstId){ // calls api to delete challan
             axios
                 .delete("/api/challan/"+challanMstId)
                 .then((res) => {
@@ -1500,7 +1537,7 @@ export default {
                 })
         },
 
-        viewChallan: function(challanMstId, challanNo){
+        viewChallan: function(challanMstId, challanNo){ // will load challan card to be viewd
             
             this.resetProductsArrayAndTotalQty();
             
@@ -1562,8 +1599,8 @@ export default {
                     toastr.error("Something Went Wrong");
                 })
         },
-        
-        closeView: function(){
+
+        closeView: function(){ // will close challan view
             this.challanToView.challanIdToBeViewd = -1;
             this.challanToView.challanNoToView = -1;
             this.challanToView.challanDate = '';
@@ -1577,7 +1614,7 @@ export default {
 
         },
 
-        resetProductsArrayAndTotalQty: function(){
+        resetProductsArrayAndTotalQty: function(){ // reset all product table array
             this.challanToView.products.productPart1 = [];
             this.challanToView.products.productPart2 = [];
             this.challanToView.products.productPart3 = [];
@@ -1594,6 +1631,9 @@ export default {
 </script>
 
 <style scoped>
+
+    /* Code for removing arrows from number text fields*/
+
     /* Chrome, Safari, Edge, Opera */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {

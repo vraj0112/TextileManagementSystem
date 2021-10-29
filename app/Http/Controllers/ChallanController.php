@@ -13,8 +13,7 @@ use Carbon\Carbon;
 
 class ChallanController extends Controller
 {
-    //
-
+    /* will sends challans to datatale according to request recieved */
     function getChallans(Request $req){
         $paginate = request("paginate", 10);
         $company = request("company","");
@@ -48,6 +47,7 @@ class ChallanController extends Controller
         ->join('tbl_sell_qualities', 'tbl_sell_qualities.sell_quality_id',"=", 'tbl_challan_msts.sell_quality_id')
         ->join('tbl_sell_quality_categories', 'tbl_sell_quality_categories.sell_quality_category_id', "=", "tbl_sell_qualities.sell_quality_category_id")
         ->where('tbl_challan_msts.challan_mst_status', true)
+        ->where('tbl_challan_msts.is_direct', false)
         ->where('tbl_challan_details.challan_details_status', true)
         ->whereDate('tbl_challan_msts.challan_date', "<=", $to_date)
         ->whereDate('tbl_challan_msts.challan_date', ">=", $from_date)
@@ -70,6 +70,7 @@ class ChallanController extends Controller
         return $data;
     }
 
+    // will send challan data of requested challan
     function getChallanDataOfChallanId(Request $req, $challanId){
 
         $dataToBeValidate = array(
@@ -114,6 +115,7 @@ class ChallanController extends Controller
         return response()->json($challanData);
     }
 
+    /* will return starting and ending date of financial year of given date*/
     public function getFinancialYearOfChallanDate($challanDate){
 
         $challanSplitDate = explode("-",$challanDate);
@@ -137,6 +139,7 @@ class ChallanController extends Controller
         ));
     }
 
+    /* will return starting and ending date of financial year of given date in array form */
     public function getFinancialYearOfChallanDateInArray($challanDate){
 
         $challanSplitDate = explode("-",$challanDate);
@@ -165,6 +168,7 @@ class ChallanController extends Controller
         );
     }
 
+    /* will  check whether given challan no already exists or not */
     public function verifyChallanNumber(Request $request, $challanNo, $fromDate, $toDate){
         if(tbl_challan_mst::where('challan_no', '=', $challanNo)->where('challan_mst_status', '=', 1)->whereBetween('challan_date', [$fromDate, $toDate])->exists()){
             return response()->json(array(
@@ -178,6 +182,7 @@ class ChallanController extends Controller
         }
     }
 
+    /* Will add new challan when requested with challan data from front-end */
     public function addNewChallan(Request $request){
         $validated = validator($request->all(),[
             'challanNo' => 'required | numeric',
@@ -281,8 +286,10 @@ class ChallanController extends Controller
         return response()->json($res, 200);
     }
 
+    /* updates challan according to data recieved */
     function updateChallan(Request $req){
 
+        // validate data recived from request
         $validated = validator($req->all(),[
             'challanMstId' => 'required | numeric',
             'oldChallanNo' => 'required | numeric',
@@ -297,6 +304,7 @@ class ChallanController extends Controller
         ]);
 
         if($validated->fails()){
+            // if validation fails send negative response with err msg
             $res = array(
                 "status" => -1,
                 "statuscode" => 1,
@@ -306,6 +314,7 @@ class ChallanController extends Controller
             return response()->json($res);
         }
 
+        // recieve data from th request body into local variabvles
         $challanMstId = $req->input('challanMstId');
         $challanDate = $req->input('challandate');
         $oldChallanDate = $req->input('oldChallanDate');
@@ -324,12 +333,14 @@ class ChallanController extends Controller
         $notValidInEditing = array();
         $notValidInNew = array();
 
+        // check whether all the challan detials entiris no which is updated is valid or not 
         foreach($challanDetails as $index=>$challanDetail){
             if(empty($challanDetail['no']) || !is_numeric($challanDetail['no']) || empty($challanDetail['qty']) || !is_numeric($challanDetail['qty']) ){
                 array_push($notValidInEditing, $index);
             }
         }
 
+        // check whether new challan details entiries no is valid or not
         foreach($newProductDetails as $index=>$newProductDetail){
             if(empty($newProductDetail['no']) || !is_numeric($newProductDetail['no']) || empty($newProductDetail['qty']) || !is_numeric($newProductDetail['qty']) ){
                 array_push($notValidInNew, $index);
@@ -337,6 +348,7 @@ class ChallanController extends Controller
         }
 
         if(count($notValidInEditing) != 0 || count($notValidInNew) != 0){
+            // if validation for new and updated challan no fails then return response with given field has error
             return response()->json(array(
                 "status" => -1,
                 "statuscode" => 2,
@@ -346,17 +358,15 @@ class ChallanController extends Controller
             ));
         }
 
-        DB::beginTransaction(); 
+        DB::beginTransaction(); // database transaction starts 
 
         try{
 
+            // find challan with challan mst id
             $challanMst = tbl_challan_mst::find($challanMstId);
 
             $oldSellQuality = $challanMst->sell_quality_id;
             $oldCategory = tbl_sell_quality::getCategory($oldSellQuality);
-
-            
-            
 
 
             $financialYearOfNewChallanDate = $this->getFinancialYearOfChallanDateInArray($challanDate);
@@ -393,14 +403,15 @@ class ChallanController extends Controller
             $challanMst->qty_unit = $unit;
             $challanMst->challan_type = $category;
             $challanMst->challan_no = $challanNo;
-            $challanMst->save();
+            $challanMst->save(); // save challan update
 
             $n = count($challanDetailsIdsToBeDeleted);
         
             for($i=0; $i<$n; $i++){
+                // update each challan details
                 $challanDetailsEntry = tbl_challan_details::find($challanDetailsIdsToBeDeleted[$i]);
                 $challanDetailsEntry->challan_details_status = false;
-                $challanDetailsEntry->save();
+                $challanDetailsEntry->save(); // save changes
             }
 
             $noExists = array();
@@ -452,23 +463,26 @@ class ChallanController extends Controller
                     array_push($noExists,(int)$newProductDetails[$i]['no']);
                     continue;
                 }
+
+                // add new challan details entry
                 $challanDetailsEntry = new tbl_challan_details();
                 $challanDetailsEntry->no = $newProductDetails[$i]['no'];
                 $challanDetailsEntry->qty = $newProductDetails[$i]['qty'];
                 $challanDetailsEntry->challan_mst_id = $challanMstId;
                 $challanDetailsEntry->challan_type = $category;
                 $challanDetailsEntry->save();
+                // save new challan details entry
             }
 
             if(count($noExists) == 0 && count($noError) == 0){
-                DB::commit();
+                DB::commit(); // commit the database if everything goes right and send success response
                 return response()->json(array(
                     "status" => 1,
                     "message" => "Challan Updated Successfully"
                 ));
             }
             else{
-                DB::rollback();
+                DB::rollback(); // rollback the changes if any exception occures and send the repsonse with err message
                 return response()->json(array(
                     "status" => -1,
                     "statuscode" => 4,
@@ -479,7 +493,7 @@ class ChallanController extends Controller
             }
         }
         catch(Exception $e){
-            DB::rollback();
+            DB::rollback(); // rollback the changes if any exception occures
             return response()->json(array(
                 "status" => -1,
                 "statuscode" => 5,
@@ -488,26 +502,30 @@ class ChallanController extends Controller
         }
     }
 
+    /* will delete challan whenever called of given challan mst id */
     public function deleteChallan(Request $req, $challanMstId){
+
+        // Database transaction Starts
         DB::beginTransaction();
         try{
             tbl_challan_details::where("challan_mst_id", $challanMstId)->update(['challan_details_status'=>false]);
             
+            // find challan of given challan Mst Id
             $challan = tbl_challan_mst::find($challanMstId);
             $challanNo = $challan->challan_no;
-            $challan->challan_mst_status = true;
-            $challan->save();
+            $challan->challan_mst_status = true; // set its rec status to 0
+            $challan->save(); // save the changes
 
-            DB::commit();
+            DB::commit(); // commit the changes if everuthing goes right
 
-            return response()->json(array(
+            return response()->json(array( // send response back
                 "status" => 1,
                 "challanNo" => $challanNo,
                 "message" => "Challan Deleted Successfully" 
             ));
         }
         catch(Exception $e){
-            DB::rollback();
+            DB::rollback(); // if any exception occures then rollback the database changes
             return response()->json(array(
                 "status" => -1,
                 "message" => "Challan Deletation Failed" 

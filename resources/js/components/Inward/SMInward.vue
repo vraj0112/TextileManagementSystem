@@ -1,3 +1,16 @@
+<!--
+  DESCRIPTION
+    This modules helps user to search the inward and able to edit and delete.
+NOTES
+    Version         : 1.0
+    Date            : 6/10/2021
+    Author          : Priyansh Shah, Uddhav Savani, Ishan Shah, Vraj Shah
+
+    Initial Release : v1.0: Initial Release
+-->
+
+
+<!--Vue for Search and Manage Inward-->
 <template>
   <div>
     <aside></aside>
@@ -7,6 +20,7 @@
           <div class="row">
             <div class="col-md-12 mt-3">
               <div class="card card-primary">
+              <!--Card header of SM Inward-->
                 <div class="card-header">
                   <h3 class="card-title">Search and Manage Inward</h3>
                   <div class="card-tools">
@@ -16,6 +30,7 @@
                   </div>
                 </div>
 
+                <!--From Date, To Date and Company Name Filters to search and manage particular inward record-->
                 <div class="card-body table-responsive">
                   <div class="row">
                     <div class="col-md-1">
@@ -40,6 +55,7 @@
                     </div>
                   </div>
 
+                  <!-- // Product Category, Quality and Broker Filters to search and manage particular inward record -->
                   <div class="row mt-2">
                     <div class="col-md-1">
                       <label for="" class="text-md" >Category</label>
@@ -68,6 +84,7 @@
                     </div>
                   </div>
 
+                  <!-- // Per page display records filter -->
                   <div class="row mt-4">
                     <div class="col-md-1">
                       <label for="" class="text-md">Per Page</label>
@@ -81,21 +98,24 @@
                     </div>
                   </div>
 
+                  <!-- // Table to display records related to inward -->
                   <div class="p-0 mt-3">
                     <table class="
                         table table-hover table-bordered table-striped table-sm
                       ">
                       <thead class="text-md">
+                      <!-- // Table row for displaying header in a row -->
                         <tr>
+                        <!-- // Table Header -->
                           <th>
-                            <a href="#" @click.prevent="updateSorting('inward_mst_id')">Sr. No.</a>
+                            <a href="#" @click.prevent="updateSorting('inward_mst_id')">Sr. No.</a> <!-- updateSorting is function to sort serial number in either ascending or descending order-->
                             <span v-if="sort_field == 'inward_mst_id' ? 1 : 0">
                               <span v-if="sort_direction == 'asc' ? 1 : 0">&uarr;</span>
                               <span v-if="sort_direction == 'desc' ? 1 : 0">&darr;</span>
                             </span>
                           </th>
                           <th width="12%">
-                            <a href="#" @click.prevent="updateSorting('inward_mst_date')">Date</a>
+                            <a href="#" @click.prevent="updateSorting('inward_mst_date')">Date</a> <!--updateSorting is function to sort date in either ascending or descending order-->
                             <span v-if="sort_field == 'inward_mst_date' ? 1 : 0">
                               <span v-if="sort_direction == 'asc' ? 1 : 0">&uarr;</span>
                               <span v-if="sort_direction == 'desc' ? 1 : 0">&darr;</span>
@@ -110,8 +130,11 @@
                           <th width="15%">Action</th>
                         </tr>
                       </thead>
+                      <!-- // Table Body -->
                       <tbody class="text-md">
+                      <!-- // Display all inward records in different rows -->
                         <tr v-for="inward in inwards.data" v-bind:key="inward.inward_mst_id">
+                        <!-- // Table Data for all inwards -->
                           <td>{{ inward.inward_mst_id }}</td>
                           <td>{{ inward.inward_mst_date }}</td>
                           <td>{{ inward.inward_mst_invoice_no }}</td>
@@ -123,12 +146,15 @@
                             {{ inward.nettotal }}
                           </td>
                           <td class="text-center">
+                            <!-- // Button to view detailed information about particular inward -->
                             <button class="btn btn-info btn-sm text-md" @click="viewInward(inward.inward_mst_id)">
                               <i class="fa fa-eye"></i>
                             </button>
+                            <!-- // Button to edit information of particular inward -->
                             <button class="btn btn-primary btn-sm text-md" @click="editInward(inward.inward_mst_id)">
                               <i class="fas fa-pen"></i>
                             </button>
+                            <!-- // Button to delete particular inward -->
                             <button class="btn btn-danger btn-sm text-md" @click="deleteInward(inward.inward_mst_id)">
                               <i class="fas fa-trash"></i>
                             </button>
@@ -138,12 +164,14 @@
                     </table>
                   </div>
 
+                  <!-- // Display records according to per page records selected and buttons to navigate on other pages for other records -->
                   <div class="row mt-4">
                     <div class="col-sm-6 offset-5">
                       <pagination :data="inwards" @pagination-change-page="getInwards"></pagination>
                     </div>
                   </div>
 
+                  <!-- // Display Total Amount of all inwards of particular page -->
                   <div class="row">
                     <!-- <div class="col-md-5"></div> -->
                     <div class="col-md-9 text-right">
@@ -158,8 +186,10 @@
                 </div>
               </div>
 
+              <!-- // Display this card when edit button of particular inward record is clicked  -->
               <div v-if="inwardIdToBeEdit != -1 ? 1 : 0" class="card card-primary">
                 <div class="card-header">
+                <!-- // Card header -->
                   <h3 class="card-title">Edit Inward</h3>
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -170,6 +200,7 @@
                     </button>
                   </div>
                 </div>
+                <!-- // Card body that displays a form to edit inward record -->
                 <div class="card-body">
                   <div class="form-group" style="display: flex; flex-direction: row">
                     <div class="col-md-2">
@@ -325,14 +356,17 @@
                   </div>
                 </div>
                 <div class="card-footer">
+                <!-- // Button to edit particular inward record after editing the data -->
                   <button type="submit" v-on:click="updateInward" class="btn btn-primary">
                     Update
                   </button>
                 </div>
               </div>
 
+              <!-- // Display this card when view button of particular inward record is clicked  -->
               <div class="card card-primary" v-if="inwardToView.inwardIdToBeViewd != -1 ? 1:0">
                 <div class="card-header">
+                <!-- // Card header -->
                   <h3 class="card-title">View Inward</h3>
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -345,6 +379,7 @@
                 </div>
                 <div class="card-body">
 
+                  <!-- // All data related to particular inward are displayed in textbox  -->
                   <div class="row">
                     <div class="col-md-2">
                       <label class="text-md">Inward Date</label>
@@ -470,15 +505,18 @@
 </template>
 
 <script>
+//Here we have imported toastr and sweetalert2 for the alerts and Model Select for dynamic searchable options
   import toastr from "toastr";
   import swal from "sweetalert2";
   import { ModelSelect } from "vue-search-select";
 
+//it contains all the data properties and methods of all the events.
   export default {
     name: "ManageInward",
     components: {
       ModelSelect,
     },
+    /*this are all the data properties which I have used as a v-model and here I have initailized it all*/
     data() {
       return {
         //For Filter
@@ -562,13 +600,13 @@
         }
       };
     },
+
+    /*whatever we write in the mounted function will load on page refresh so here we have called some functions 
+        like to display todays date, populate options for Company Name, Broker Name and Quality Categories on refreshing 
+        the page.*/
     mounted() {
       this.fromDate = this.getDateBeforeDays();
       this.toDate = this.getTodaysDate();
-
-
-
-
       this.getInwards();
       this.editLoadCompanyName();
       this.loadProductQualityCategory();
@@ -577,6 +615,8 @@
       this.getVendorsList();
       this.getBrokersList();
     },
+
+    // it contains all watchers on which we are keeping watch for changing other fields based on that particular field
     watch: {
       quantity: function () {
         this.calcTotalAmount();
@@ -629,9 +669,10 @@
       },
 
     },
-    methods: {
 
-      // Methods For Filter's Option Loading
+    // Below are the methods that are called during execution
+    methods: {
+      // Method For Loading Vendor info in filter option
       getVendorsList: function () {
         axios
           .get("/api/vendorcompanies")
@@ -652,6 +693,7 @@
           });
       },
 
+      // Method for loading quality categories in filter
       loadQualityCategoriesForFilter: function () {
         axios
           .get("/api/productqualitycategories")
@@ -671,6 +713,7 @@
           });
       },
 
+     // Method for loading product qualities in filter
       loadQualitiesOfCategoryForFilter: function () {
         if (this.selectedCategoryForFilter == "") {
           let allEntry = [{ text: "All", value: "" }];
@@ -698,6 +741,7 @@
           });
       },
 
+      // Method For Loading Broker info in filter option
       getBrokersList: function () {
         axios
           .get("/api/getBrokers")
@@ -716,7 +760,7 @@
       },
 
 
-      // Methods For Datatable
+      // Method For Datatable
       getInwards: function (page = 1) {
         axios
           .get(
@@ -762,7 +806,7 @@
       },
 
 
-      // Methods For Options Loading In Editing
+      // Method For Options Loading In Editing Broker
       editLoadBroker() {
         axios
           .get("../api/getBrokers")
@@ -780,6 +824,7 @@
           });
       },
 
+      // Method For Options Loading In Editing Company Name
       editLoadCompanyName() {
         axios
           .get("../api/vendorcompanies")
@@ -797,6 +842,8 @@
           });
       },
 
+      // Method to get mobile number and gst number of particular vendor 
+      // on selecting company name from options
       editGetFromSelectedCompany: function () {
         if (
           this.editSelectedCompanyName == "" ||
@@ -819,6 +866,7 @@
           });
       },
 
+      // Method for loading quality categories for option
       loadProductQualityCategory() {
         axios
           .get("../api/productqualitycategories")
@@ -836,6 +884,8 @@
           });
       },
 
+      /* Method to load product qualities in options when
+      edit button is pressed */
       editLoadFromSelectedCategory: function () {
         if (
           this.editSelectedProductQualityCategory == "" ||
@@ -871,6 +921,7 @@
           });
       },
 
+      // Method to load unit and qualities on selecting product category from options
       loadFromSelectedCategory: function () {
         if (
           this.editSelectedProductQualityCategory == "" ||
@@ -910,7 +961,7 @@
 
 
 
-      // Methods For Editing Inward
+      // Method to View all Inward details of particular Inward
       editInward: async function (inwardMstId) {
         axios
           .get("/api/inward/view/" + inwardMstId)
@@ -950,7 +1001,7 @@
       },
 
     
-      // Calculate Anount Watcher's Call back
+      // Method to Calculate Total Amount Watcher's Call back
       calcTotalAmount: function () {
         if (this.quantity == "" || this.rate == "") {
           this.totalAmount = "";
@@ -959,6 +1010,7 @@
         }
       },
 
+      // Method to calculate gst amount based on total amount and gst percentage selected
       calcGstAmount: function () {
         if (this.gstPercentage == "0" || this.totalAmount == "") {
           this.gstAmount = "";
@@ -967,6 +1019,7 @@
         }
       },
 
+      // Method to calculate net amount based on total amount and gst amount
       calcNetAmount: function () {
         if (this.totalAmount == "") {
           this.netAmount = "";
@@ -976,9 +1029,7 @@
       },
 
 
-
-
-      // Comman
+      // Method to sort particular field in either ascending or descending order
       updateSorting: function (field) {
         if (this.sort_field == field) {
           this.sort_direction = this.sort_direction == "asc" ? "desc" : "asc";
@@ -989,7 +1040,7 @@
       },
 
       
-      // methods For Validation On Update
+      // Method to Validate Date on doing edit
       editDateValidation: function () {
         if (this.inwardDate == "") {
           toastr.info("Inward Date Is Required");
@@ -999,6 +1050,7 @@
         }
       },
 
+      // Method to Validate Company Name on doing edit
       editCompanyNameValidation: function () {
         if (
           this.editSelectedCompanyName == "" ||
@@ -1011,6 +1063,7 @@
         }
       },
 
+      // Method to Validate Invoive number on doing edit
       editInvoiceNoValidation: function () {
         if (this.invoiceNo == "") {
           toastr.info("Invoice No Is Required");
@@ -1023,6 +1076,7 @@
         }
       },
 
+      // Method to Validate Broker on doing edit
       editBrokerValidation: function () {
         if (
           this.editSelectedBroker == "" ||
@@ -1035,6 +1089,7 @@
         }
       },
 
+      // Method to Validate Product Category on doing edit
       editProductCategoryValidation: function () {
         if (
           this.editSelectedProductQualityCategory == "" ||
@@ -1048,6 +1103,7 @@
         }
       },
 
+      // Method to Validate Quality on doing edit
       editProductQualityValidation: function () {
         if (
           this.editSelectedProductQuality == "" ||
@@ -1060,6 +1116,7 @@
         }
       },
 
+      // Method to Validate Quantity on doing edit
       editQuantityValidation: function () {
         if (this.quantity == "") {
           toastr.info("Please Enter Quantity");
@@ -1075,6 +1132,7 @@
         }
       },
 
+      // Method to Validate Rate of per quanitity on doing edit
       editRatePerQtyValidation: function () {
         if (this.rate == "") {
           toastr.info("Please Enter Rate Per Quantity");
@@ -1090,6 +1148,7 @@
         }
       },
 
+      // Method to Validate quality unit on doing edit
       editUnitValidation: function () {
         if (this.unit == "" || typeof this.unit === "undefined") {
           toastr.error("Unit Is Required");
@@ -1207,7 +1266,7 @@
 
 
 
-      // Delete Inward
+      // Delete Inward Method
       deleteInward(inwardMstId) {
         axios
           .delete("../api/inward/delete/" + inwardMstId)
@@ -1239,6 +1298,7 @@
 
       // Reset Functions
 
+      // Reset Edit Inward data method
       resetEditingInward: function(){
           this.invoiceNo = "";
           this.inwardDate = "";
@@ -1257,6 +1317,7 @@
           this.inwardIdToBeEdit = -1;
       },
 
+      // Cancel Edit Card Method
       cancelEdit: function() {
         this.resetEditingInward();
       },
@@ -1264,6 +1325,8 @@
 
 
       // Comman Methods For Date Handling
+      
+      // Get Today's Date method 
       getTodaysDate: function () {
         let d = new Date();
         let month = "" + (d.getMonth() + 1);
@@ -1280,6 +1343,7 @@
         return year + "-" + month + "-" + day;
       },
 
+      // Get Date before days method
       getDateBeforeDays: function () {
         let date = new Date();
         let last = new Date(date.getTime() - this.days * 24 * 60 * 60 * 1000);
@@ -1297,13 +1361,14 @@
         return year + "-" + month + "-" + day;
       },
 
+      // Get Standard Date method
       getStdDate: function (date) {
         date = date.split("-");
         return date[2] + "-" + date[1] + "-" + date[0];
       },
 
 
-      // View Inward
+      // View Inward Method
       viewInward: function(inwardMstId){
         this.resetViewInward();
 
@@ -1336,6 +1401,7 @@
 
       },
 
+      // Reset View Inward Data Method
       resetViewInward: function(){
           this.inwardToView.inwardDate = "";
           this.inwardToView.invoiceNo = "";
@@ -1355,12 +1421,11 @@
           this.inwardToView.inwardIdToBeViewd = -1;
       },
 
+      // Close View Inward Card Method
       closeViewInward: function(){
         this.resetViewInward();
       },
       
-
-      //dont know
       /*
       loadBrokerName() {
         axios
