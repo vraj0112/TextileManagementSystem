@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Challan - {{$challanData["challanno"]}}</title>
     <style>
-        /*!
- * Bootstrap v4.6.0 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+            /*!
+            * Bootstrap v4.6.0 (https://getbootstrap.com/)
+            * Copyright 2011-2021 The Bootstrap Authors
+            * Copyright 2011-2021 Twitter, Inc.
+            * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+            */ 
         :root {
             --blue: #007bff;
             --indigo: #6610f2;
@@ -109,8 +109,8 @@
         abbr[title],
         abbr[data-original-title] {
             text-decoration: underline;
-            -webkit-text-decoration: underline dotted;
-            text-decoration: underline dotted;
+            -webkit-text-decoration: underline solid;
+            text-decoration: underline solid;
             cursor: help;
             border-bottom: 0;
             -webkit-text-decoration-skip-ink: none;
@@ -11502,19 +11502,135 @@
 </head>
 
 <body>
-    <!-- <h1>Hello</h1> -->
-    <table class="table-bordered table-striped table">
-        <thead class="bg-info">
-            <th>ID</th>
-            <th>Name</th>
+    <h2 class="text-center"><b>Delivery Challan</b></h2>
+    <!-- <table class="table table-sm" style="border-style: solid; border-radius: 50%;">
+        <tbody>
+            <tr style="font-size: x-small;">
+                <td style="border-right: solid; width: 50%;"><b>From</b><br><br><br><br><br><br><br><center>Sahajanad Texttile</center></td>
+                <td style="border-style: solid;">
+                    <table class="table table-sm" style="margin-bottom: -0.3rem; margin-top: -0.4rem;">
+                        <tbody>
+                            <tr>
+                                <td><b>Challan No. :
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date : </b></td>
+                            </tr>
+                            <tr>
+                                <td><b>Messers &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </b></td>
+                            </tr>
+                            <tr>
+                                <td style="word-wrap: break-word;"><b>Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </b>Nadiad, Gujarat, India vadodra, Gujarat, Ahmedabad, Gujarat India Surat Gujarat India Anand Gujarat India Ishan Priyansh Vraj Uddhav</td>
+                            </tr>
+                            <tr>
+                                <td><b>Haste &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </b></td>
+                            </tr>
+                            <tr>
+                                <td><b>Broker &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table> -->
+    <table class="table table-sm" style="border-style: solid;">
+        <tbody style="font-size: x-small;">
+            <tr>
+                <td style="width: 50%; border-right: solid;"><b>From </b></td>
+                <td><b>Challan No. :  </b> {{$challanData["challanno"]}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Date : </b> {{$challanData["challandate"]}} </td>
+            </tr>
+            <tr>
+                <td style="border-top: none; border-right: solid;"></td>
+                <td><b>Messers &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </b> {{$challanData["customer"]["customer_company_name"]}} </td>
+            </tr>
+            <tr>
+                <td style="border-top: none; border-right: solid;"></td>
+                <td style="word-wrap: break-word;"><b>Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </b> {{$challanData["customer"]["customer_address"]}} </td>
+            </tr>
+            <tr>
+                <td class="text-center" style="border-right: solid; font-size: 20px; border-top: none;">Sahajanad Textile</td>
+                <td><b>Broker &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </b> {{$challanData["broker"]["broker_name"]}} </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm" style="border-style: solid;">
+        <tbody style="font-size: x-small;">
+            <tr>
+                <td style="border-right: solid; width: 50%;"><b>GSTIN :</b> <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>24CHYPG1640P1ZS</b></span></td>
+                <td style="border-right: solid;"><b>P. GSTIN &nbsp;&nbsp;&nbsp;&nbsp; : </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{$challanData["customer"]["customer_gst_no"]}}</b> </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm" style="border-style: solid;">
+        <tbody style="font-size: x-small;">
+            <tr>
+                <td style="border-right: solid;"><b>Quality :</b> {{$challanData["quality"]["quality_name"]}} </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm" style="border-style: solid; margin-top: -0.3rem;">
+        <thead>
+            <tr>
+                <td class="text-center" style="border-style: solid; font-size: small; width: 16%;"><b>No.</b></td>
+                <td class="text-center" style="border-style: solid; font-size: small; width: 16%;"><b>Quantity</b></td>
+                <td class="text-center" style="border-style: solid; font-size: small; width: 16%;"><b>No.</b></td>
+                <td class="text-center" style="border-style: solid; font-size: small; width: 16%;"><b>Quantity</b></td>
+                <td class="text-center" style="border-style: solid; font-size: small; width: 16%;"><b>No.</b></td>
+                <td class="text-center" style="border-style: solid; font-size: small; width: 16%;"><b>Quantity</b></td>
+                <td class="text-center" style="border-style: solid; font-size: small; width: 16%;"><b>No.</b></td>
+                <td class="text-center" style="border-style: solid; font-size: small; width: 16%;"><b>Quantity</b></td>
+            </tr>
         </thead>
         <tbody>
-            @foreach($students as $student)
+            
+            @for ($i = 0; $i < 12; $i++)
+                <tr>
+                    <td style="border-right: solid; text-align: right; font-size: 13px; height: 20px;">{{$challanData["challandetails"]["challanDetails01"][$i]["no"]}}</td>
+                    <td style="border-right: solid; text-align: right; font-size: 13px; height: 20px;">{{$challanData["challandetails"]["challanDetails01"][$i]["qty"]}}</td>
+                    <td style="border-right: solid; text-align: right; font-size: 13px; height: 20px;">{{$challanData["challandetails"]["challanDetails02"][$i]["no"]}}</td>
+                    <td style="border-right: solid; text-align: right; font-size: 13px; height: 20px;">{{$challanData["challandetails"]["challanDetails02"][$i]["qty"]}}</td>
+                    <td style="border-right: solid; text-align: right; font-size: 13px; height: 20px;">{{$challanData["challandetails"]["challanDetails03"][$i]["no"]}}</td>
+                    <td style="border-right: solid; text-align: right; font-size: 13px; height: 20px;">{{$challanData["challandetails"]["challanDetails03"][$i]["qty"]}}</td>
+                    <td style="border-right: solid; text-align: right; font-size: 13px; height: 20px;">{{$challanData["challandetails"]["challanDetails04"][$i]["no"]}}</td>
+                    <td style="border-right: solid; text-align: right; font-size: 13px; height: 20px;">{{$challanData["challandetails"]["challanDetails04"][$i]["qty"]}}</td>
+                </tr>
+            @endfor
             <tr>
-                <td>{{$student->customer_id}}</td>
-                <td>{{$student->customer_company_name}}</td>
+                <td style="border-right: solid; border-bottom: solid; border-top: 1.5px solid black; text-align: right; font-size: 13px;"></td>
+                <td style="border-right: solid; border-bottom: solid; border-top: 1.5px solid black; text-align: right; font-size: 13px;">{{$challanData["sum"]["sum01"]}}</td>
+                <td style="border-right: solid; border-bottom: solid; border-top: 1.5px solid black; text-align: right; font-size: 13px;"></td>
+                <td style="border-right: solid; border-bottom: solid; border-top: 1.5px solid black; text-align: right; font-size: 13px;">{{$challanData["sum"]["sum02"]}}</td>
+                <td style="border-right: solid; border-bottom: solid; border-top: 1.5px solid black; text-align: right; font-size: 13px;"></td>
+                <td style="border-right: solid; border-bottom: solid; border-top: 1.5px solid black; text-align: right; font-size: 13px;">{{$challanData["sum"]["sum03"]}}</td>
+                <td style="border-right: solid; border-bottom: solid; border-top: 1.5px solid black; text-align: right; font-size: 13px;"></td>
+                <td style="border-right: solid; border-bottom: solid; border-top: 1.5px solid black; text-align: right; font-size: 13px;">{{$challanData["sum"]["sum04"]}}</td>
             </tr>
-            @endforeach
+            <tr>
+                <td style=" text-align: right; font-size: 13px;"></td>
+                <td style=" text-align: right; font-size: 13px;"></td>
+                <td style=" text-align: right; font-size: 13px;"></td>
+                <td style=" text-align: right; font-size: 13px;"></td>
+                <td style="border-right: solid; border-left: solid; text-align: right; font-size: 13px;">Total Pieces</td>
+                <td style="border-right: solid; text-align: right; font-size: 13px;">{{$challanData["pieces"]}}</td>
+                <td style="border-right: solid; text-align: right; font-size: 13px;">Total</td>
+                <td style="border-right: solid; text-align: right; font-size: 13px;">{{$challanData["sum"]["totalSum"]}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm" style="border-style: solid;">
+        <tbody>
+            <tr style="font-size: x-small;">
+                <td style="border-right: solid; width: 60%;">No Dyeing Guarantee<br>The above goods are recived in good condition<br>Reciver's Signature : </td>
+                <td style="border-style: solid;">
+                    <table class="table table-sm" style="margin-bottom: -0.3rem; margin-top: -0.4rem;">
+                        <tbody>
+                            <tr>
+                                <td>Signature : </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
         </tbody>
     </table>
 </body>

@@ -419,7 +419,7 @@ class ChallanController extends Controller
                     $challanDetailsEntry->no = (int)$challanDetails[$i]['no'];
                 } 
 
-                $challanDetailsEntry->qty = (int)$challanDetails[$i]['qty'];
+                $challanDetailsEntry->qty = (float)$challanDetails[$i]['qty'];
                 $challanDetailsEntry->challan_type = $category;
                 if(!($challanDetailsEntry->save())){
                     array_push($noError,(int)$challanDetails[$i]['no']);

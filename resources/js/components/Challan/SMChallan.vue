@@ -122,7 +122,7 @@
                                                     <th>Quality</th>
                                                     <th>Category</th>
                                                     <th>Qty</th>
-                                                    <th width="15%">Action</th>
+                                                    <th width="18%">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="text-md">
@@ -140,6 +140,7 @@
                                                     <td>{{ challan.sell_category_name }}</td>
                                                     <td class="text-right">{{ challan.totalqty }}</td>
                                                     <td class="text-center">
+                                                        <a :href="'challan/pdf/'+challan.challan_mst_id" target="_blank" class="btn btn-danger btn-sm text-md" ><i class="fas fa-file-pdf" style="font-size: 20px;"></i></a>
                                                         <button class="btn btn-info btn-sm text-md" @click="viewChallan(challan.challan_mst_id, challan.challan_no)"><i class="fas fa-eye"></i></button>
                                                         <button class="btn btn-primary btn-sm text-md" @click="editChallan(challan.challan_mst_id)"><i class="fas fa-pen"></i></button>
                                                         <button class="btn btn-danger btn-sm text-md" @click="confirmChallandeletation(challan.challan_mst_id, challan.challan_no )"><i class="fas fa-trash"></i></button>
@@ -1557,7 +1558,7 @@ export default {
                     toastr.error("Something Went Wrong");
                 })
         },
-
+        
         closeView: function(){
             this.challanToView.challanIdToBeViewd = -1;
             this.challanToView.challanNoToView = -1;
