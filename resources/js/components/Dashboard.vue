@@ -39,7 +39,7 @@
                                 <div class="icon">
                                     <i class="nav-icon nav-icon far bi bi-receipt-cutoff"></i>
                                 </div>
-                                <router-link to="/" class="nav-link small-box-footer">
+                                <router-link to="/managechallaninvoice" class="nav-link small-box-footer">
                                     More info <i class="fas fa-arrow-circle-right"></i>
                                 </router-link>
                             </div>

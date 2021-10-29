@@ -764,21 +764,6 @@ var staticRenderFns = [
                 "data-toggle": "toggle"
               }
             })
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-sm btn-danger text-md",
-                staticStyle: { "margin-left": "20px", height: "31px" },
-                attrs: { id: "logOut" }
-              },
-              [
-                _c("i", { staticClass: "bi bi-box-arrow-left" }),
-                _vm._v("  Logout")
-              ]
-            )
           ])
         ])
       ]

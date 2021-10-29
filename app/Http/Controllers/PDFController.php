@@ -10,10 +10,52 @@ use App\Models\tbl_challan_details;
 use App\Models\tbl_sell_quality;
 use App\Models\tbl_broker;
 use App\Models\tbl_bank_details;
+use App\Models\tbl_gst_code;
 use PDF;
 
 class PDFController extends Controller
 {
+    public function generateDirectInvoicePDF(Request $req, $invoice_id){
+        $data = tbl_invoice_mst::with(['challanMstForInvoice','bank'])
+            ->where('invoice_mst_status', true)
+            ->where('invoice_mst_id', $invoice_id)
+            ->select('invoice_mst_id', 'invoice_date', 'no_of_units', 'rate', 'gst_percentage', 'due_date','bank_details_id')
+            ->first();
+
+            
+            $gstEntry = tbl_gst_code::find(intval($data['challanMstForInvoice']['customer_relation']['customer_gst_code']));
+            $state = $gstEntry->state_name;
+            
+            // return $state;
+
+        $invoice = array(
+            "customer_company_name" => $data['challanMstForInvoice']['customer_relation']['customer_company_name'],
+            "customer_address" => $data['challanMstForInvoice']['customer_relation']['customer_address'],
+            "customer_gst_no" => $data['challanMstForInvoice']['customer_relation']['customer_gst_no'],
+            "customer_gst_code"=> $data['challanMstForInvoice']['customer_relation']['customer_gst_code'],
+            "broker_name"=> $data['challanMstForInvoice']['broker']['broker_name'],
+            "bank_name"=>$data['bank']['bank_name'],
+            "branch_name"=> $data['bank']['branch_name'],
+            "account_no"=> $data['bank']['account_no'],
+            "ifsc_code"=> $data['bank']['ifsc_code'],
+            "invoice_date"=> $data['invoice_date'],
+            "due_date"=> $data['due_date'],
+            "invoice_mst_id"=> intval($data['invoice_mst_id']),
+            "challan_no"=> $data['challanMstForInvoice']['challan_no'],
+            "quality_name"=> $data['challanMstForInvoice']['quality']['quality_name'],
+            "total_qty"=> $data['challanMstForInvoice']['total_qty'],
+            "qty_unit"=> $data['challanMstForInvoice']['qty_unit'],
+            "state_name"=> $state,
+            "rate"=> $data['rate'],
+            "gst_percentage" => $data['gst_percentage']
+        );
+
+        $invoice = (object)$invoice;
+
+        $pdf = PDF::loadView('invoicePDF', array("invoice" => $invoice, "piecesCount" => $data['no_of_units']));
+        return $pdf->stream('Invoice - ' . $invoice_id . '.pdf');
+    }
+
     public function generateChallanPDF(Request $req, $challanId){
 
         $dataToBeValidate = array(

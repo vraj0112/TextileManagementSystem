@@ -14,9 +14,9 @@
       <li class="nav-item text-md">
         <input type="checkbox" class="text-md" id="changeTheme" onchange="changeTheme" data-size="sm" data-onstyle="light" data-offstyle="secondary" data-on="<i class='bi bi-sun'></i>" data-off="<i class='bi bi-moon'></i>" checked data-toggle="toggle">
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <button style="margin-left: 20px; height: 31px;" id="logOut" class="btn btn-sm btn-danger text-md"><i class="bi bi-box-arrow-left"></i>  Logout</button>
-      </li>
+      </li> -->
     </ul>
   </nav>
   <!-- /.navbar -->

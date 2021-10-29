@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice - {{$invoice->invoice_mst_id}}</title>
+    <title>Invoice - {{$invoice->challan_no}}</title>
     <style>
         /*!
         * Bootstrap v4.6.0 (https://getbootstrap.com/)
@@ -11530,7 +11530,7 @@
             </tr>
             <tr>
                 <td style="border-right: dotted; word-wrap: break-word; border-top: none;"><b>Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</b>&nbsp;&nbsp;&nbsp;{{$invoice->customer_address}}</td>
-                <td style="border-top: none;"><b>Invoice No.&nbsp;&nbsp;:</b>&nbsp;&nbsp;&nbsp;{{$invoice->invoice_mst_id}}</td>
+                <td style="border-top: none;"><b>Invoice No.&nbsp;&nbsp;:</b>&nbsp;&nbsp;&nbsp;{{$invoice->challan_no}}</td>
             </tr>
             <tr>
                 <td style="border-right: dotted; border-top: none;"><b>GST No.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</b>{{$invoice->customer_gst_no}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Code&nbsp;&nbsp;&nbsp;:</b>&nbsp;&nbsp;&nbsp;{{$invoice->customer_gst_code}}</td>

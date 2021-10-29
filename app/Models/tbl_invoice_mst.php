@@ -39,7 +39,7 @@ class tbl_invoice_mst extends Model
     }
 
     public function challanMstForInvoice(){
-        return $this->hasOne('App\Models\tbl_challan_mst', 'challan_mst_id', 'invoice_mst_id')->with(['quality:sell_quality_id,quality_name,sell_quality_category_id', 'customer_relation:customer_id,customer_company_name,customer_contact_no,customer_gst_no','broker:broker_id,broker_name']);
+        return $this->hasOne('App\Models\tbl_challan_mst', 'challan_mst_id', 'invoice_mst_id')->with(['quality:sell_quality_id,quality_name,sell_quality_category_id', 'customer_relation:customer_id,customer_company_name,customer_contact_no,customer_gst_no,customer_address,customer_gst_code','broker:broker_id,broker_name']);
     }
     
     public function getInvoiceDateAttribute($value){

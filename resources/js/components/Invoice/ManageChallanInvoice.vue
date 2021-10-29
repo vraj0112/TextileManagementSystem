@@ -144,7 +144,7 @@
                                                     <td>{{ invoice.sell_category_name }}</td>
                                                     <td class="text-right">{{ invoice.netAmount }}</td>
                                                     <td class="text-center">
-                                                        <a :href="'/directinvoice/pdf/'+invoice.invoice_mst_id"
+                                                        <a :href="'/invoice/pdf/'+invoice.invoice_mst_id"
                                                             target="_blank" class="btn btn-danger btn-sm text-md"><i
                                                                 class="fas fa-file-pdf"></i></a>
                                                         <button class="btn btn-info btn-sm text-md"
