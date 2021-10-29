@@ -11503,36 +11503,6 @@
 
 <body>
     <h2 class="text-center"><b>Delivery Challan</b></h2>
-    <!-- <table class="table table-sm" style="border-style: solid; border-radius: 50%;">
-        <tbody>
-            <tr style="font-size: x-small;">
-                <td style="border-right: solid; width: 50%;"><b>From</b><br><br><br><br><br><br><br><center>Sahajanad Texttile</center></td>
-                <td style="border-style: solid;">
-                    <table class="table table-sm" style="margin-bottom: -0.3rem; margin-top: -0.4rem;">
-                        <tbody>
-                            <tr>
-                                <td><b>Challan No. :
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date : </b></td>
-                            </tr>
-                            <tr>
-                                <td><b>Messers &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </b></td>
-                            </tr>
-                            <tr>
-                                <td style="word-wrap: break-word;"><b>Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </b>Nadiad, Gujarat, India vadodra, Gujarat, Ahmedabad, Gujarat India Surat Gujarat India Anand Gujarat India Ishan Priyansh Vraj Uddhav</td>
-                            </tr>
-                            <tr>
-                                <td><b>Haste &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </b></td>
-                            </tr>
-                            <tr>
-                                <td><b>Broker &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </b></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-        </tbody>
-    </table> -->
     <table class="table table-sm" style="border-style: solid;">
         <tbody style="font-size: x-small;">
             <tr>

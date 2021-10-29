@@ -825,7 +825,24 @@ var render = function() {
               }
             },
             [
-              _vm._m(1),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/dashboard" } },
+                    [
+                      _c("i", {
+                        staticClass: "nav-icon fas fa-tachometer-alt"
+                      }),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "text-md" }, [_vm._v("Dashboard")])
+                    ]
+                  )
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "li",
@@ -926,7 +943,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("li", { staticClass: "nav-item" }, [
-                _vm._m(2),
+                _vm._m(1),
                 _vm._v(" "),
                 _c("ul", { staticClass: "nav nav-treeview" }, [
                   _c(
@@ -976,7 +993,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("li", { staticClass: "nav-item" }, [
-                _vm._m(3),
+                _vm._m(2),
                 _vm._v(" "),
                 _c("ul", { staticClass: "nav nav-treeview" }, [
                   _c(
@@ -1026,7 +1043,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("li", { staticClass: "nav-item" }, [
-                _vm._m(4),
+                _vm._m(3),
                 _vm._v(" "),
                 _c("ul", { staticClass: "nav nav-treeview" }, [
                   _c(
@@ -1139,7 +1156,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("li", { staticClass: "nav-item" }, [
-                _vm._m(5),
+                _vm._m(4),
                 _vm._v(" "),
                 _c("ul", { staticClass: "nav nav-treeview" }, [
                   _c(
@@ -1224,18 +1241,6 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("span", { staticClass: "brand-text font-weight-light" }, [
         _vm._v("Sahajanand Textile")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
-        _c("i", { staticClass: "nav-icon fas fa-tachometer-alt" }),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-md" }, [_vm._v("Dashboard")])
       ])
     ])
   },

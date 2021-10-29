@@ -3,54 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\tbl_invoice_mst;
 use App\Models\tbl_customer;
 use App\Models\tbl_challan_mst;
 use App\Models\tbl_challan_details;
 use App\Models\tbl_sell_quality;
 use App\Models\tbl_broker;
+use App\Models\tbl_bank_details;
 use PDF;
 
 class PDFController extends Controller
 {
-
-    public function roundTo2($num){
-        var_dump($num);
-        $floorNum = floor($num);
-
-        if($num-$floorNum == 0){
-            return $num.".00";
-        }
-        else{
-            return round((float)$num, 2);
-        }
-    }
-    // public function generateChallanPDF(Request $req, $challan_mst_id)
-    // {
-
-    //     // $data = tbl_challan_details::join('tbl_challan_msts', 'tbl_challan_details.challan_mst_id', "=", 'tbl_challan_msts.challan_mst_id')
-    //     // ->join('tbl_sell_qualities', 'tbl_challan_msts.sell_quality_id', "=", 'tbl_sell_qualities.sell_quality_id')
-    //     // ->join('tbl_customers', 'tbl_challan_msts.customer_id', "=", 'tbl_customers.customer_id')
-    //     // ->join('tbl_brokers', 'tbl_challan_msts.broker_id', "=", 'tbl_brokers.broker_id')
-    //     // ->select('tbl_challan_details.challan_mst_id', 'challan_no', 'challan_date', 'customer_company_name', 'customer_address', 'broker_name', 'customer_gst_no', 'quality_name')
-    //     // ->where('tbl_challan_msts.challan_no', '=', $challan_mst_id)
-    //     // ->where('tbl_challan_msts.challan_mst_status', "=", 1)
-    //     // ->where('tbl_challan_details.challan_details_status', "=", 1)
-    //     // ->where('tbl_sell_qualities.sell_quality_status', "=", 1)
-    //     // ->where('tbl_customers.customer_status', "=", 1)
-    //     // ->where('tbl_brokers.broker_status', "=", 1)
-    //     // ->get();
-
-    //     // $product = tbl_challan_details::join('tbl_challan_msts', 'tbl_challan_details.challan_mst_id', "=", 'tbl_challan_msts.challan_mst_id')
-    //     // ->select('no', 'qty')
-    //     // ->where('tbl_challan_msts.challan_mst_status', "=", 1)
-    //     // ->where('tbl_challan_details.challan_details_status', "=", 1);
-        
-    //     return $data;
-        
-    //     $pdf = PDF::loadView('challanPDF',["data" => $data, "product" => $product]);
-    //     return $pdf->stream('Challan'.'-'.$data->challan_no.'.pdf');
-    // }
-
     public function generateChallanPDF(Request $req, $challanId){
 
         $dataToBeValidate = array(
@@ -148,5 +111,29 @@ class PDFController extends Controller
 
         $pdf = PDF::loadView('challanPDF',["challanData" => $challanData]);
         return $pdf->stream('Challan'.' - '.$challanData["challanno"].'.pdf');
+    }
+    
+    public function generateInvoicePDF(Request $req, $invoice_id)
+    {
+        $piecesCount = tbl_invoice_mst::join('tbl_challan_msts','tbl_invoice_msts.invoice_mst_id',"=","tbl_challan_msts.challan_no")
+        ->join('tbl_challan_details','tbl_challan_msts.challan_mst_id',"=",'tbl_challan_details.challan_mst_id')
+        ->where('tbl_challan_details.challan_mst_id',"=",$invoice_id)
+        ->count();
+
+        $invoice = tbl_invoice_mst::join('tbl_challan_msts','tbl_invoice_msts.invoice_mst_id',"=","tbl_challan_msts.challan_no")
+        ->join('tbl_challan_details','tbl_challan_msts.challan_mst_id',"=",'tbl_challan_details.challan_mst_id')
+        ->join('tbl_customers','tbl_challan_msts.customer_id','=','tbl_customers.customer_id')
+        ->join('tbl_brokers','tbl_challan_msts.broker_id','=','tbl_brokers.broker_id')
+        ->join('tbl_bank_details','tbl_invoice_msts.bank_details_id','=','tbl_bank_details.bank_details_id')
+        ->join('tbl_sell_qualities','tbl_challan_msts.sell_quality_id','=','tbl_sell_qualities.sell_quality_id')
+        ->join('tbl_gst_codes','tbl_customers.customer_gst_code',"=",'tbl_gst_codes.gst_code')
+        ->select('customer_company_name','customer_address','customer_gst_no','customer_gst_code','broker_name','bank_name','branch_name','account_no','ifsc_code',
+        'invoice_date','due_date','invoice_mst_id','challan_no','quality_name','total_qty','qty_unit','state_name','rate','tbl_invoice_msts.gst_percentage')
+        ->where('tbl_invoice_msts.invoice_mst_id',"=",$invoice_id)
+        ->where('tbl_invoice_msts.invoice_mst_status',"=",1)
+        ->first();
+
+        $pdf = PDF::loadView('invoicePDF', array("invoice" => $invoice, "piecesCount" => $piecesCount));
+        return $pdf->stream('Invoice - ' . $invoice_id . '.pdf');
     }
 }

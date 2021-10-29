@@ -14,6 +14,7 @@ use App\Http\Controllers\ExpenseCategoryControler;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ChallanController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,8 @@ use App\Http\Controllers\InvoiceController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/dashboarddata',[DashboardController::class,'dashboardCalculations']);
 
 Route::get('/inwardqualitycategories',[InwardQualityController::class,'getQualityCategories']);
 Route::get('/inwardqualities',[InwardQualityController::class,'getAllInwardQualities']);
