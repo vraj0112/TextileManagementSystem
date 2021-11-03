@@ -3,3 +3,7 @@
 Textile Management System is a SPA Web Application made using Laravel and Vuejs.
 
 ![smartmockups_kvcl31qh](https://user-images.githubusercontent.com/68781375/139470368-bc266667-210e-4161-8c38-c22c57b35531.jpg)
+
+## Demo Video
+
+https://user-images.githubusercontent.com/68781375/140166202-976c8834-4190-4fdb-bed0-6acd6ce2b564.mp4
