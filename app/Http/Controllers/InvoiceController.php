@@ -143,6 +143,7 @@ class InvoiceController extends Controller
             $invoice = new tbl_invoice_mst();
             $invoice->invoice_mst_id = $invoiceId;  
             $invoice->invoice_date = $invoiceDate;
+            $invoice->no_of_units = 0;
             $invoice->rate = $rate;
             $invoice->gst_percentage = $gstPercentage;
             $invoice->bank_details_id = $bankId;

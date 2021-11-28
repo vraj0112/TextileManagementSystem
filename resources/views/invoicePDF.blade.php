@@ -11504,7 +11504,7 @@
 <body>
     <div class="wrapper" style="overflow: auto; display: flex;">
         <div class="img" style="margin-left: -0.7rem;">
-            <img src="E:\priyansh sem5\SGP-3\TextileManagementSystem\public\dist\img\ST - Logo.jpg" height="126" width="143"/>
+            <img src="E:\Laravel Files\TMS\public\dist\img\ST - Logo.jpg" height="126" width="143"/>
         </div>
         <div class="heading" style="text-align: center;">
             <h1 style="margin-left: 3rem; margin-top: -0.5rem;">SAHAJANAND TEXTILE</h1>
