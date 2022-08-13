@@ -4,9 +4,9 @@ The project **"Textile Management System"** is a Single Page Web Application. Th
 
 ![smartmockups_kvcl31qh](https://user-images.githubusercontent.com/68781375/139470368-bc266667-210e-4161-8c38-c22c57b35531.jpg)
 
-## Other Contributors
+## Contributors
 
-[Uddhav Savani](https://github.com/uds0128) | [Priyansh Shah](https://github.com/Priyansh42) | [Ishan Shah](https://github.com/ishanshah1802)
+[Vraj Shah](https://github.com/vraj0112) ● [Uddhav Savani](https://github.com/uds0128) ● [Priyansh Shah](https://github.com/Priyansh42) ● [Ishan Shah](https://github.com/ishanshah1802)
 
 ## Abstract
 
